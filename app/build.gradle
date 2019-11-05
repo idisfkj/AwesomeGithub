@@ -1,0 +1,125 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.target_sdk
+    buildToolsVersion Versions.build_tools
+    defaultConfig {
+        applicationId "com.idisfkj.awesome.github"
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode Versions.version_code
+        versionName Versions.version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('keystore')
+            keyAlias 'github'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+afterEvaluate {
+    def propsFile = rootProject.file('keystore.properties')
+    def configName = 'config'
+    if (propsFile.exists() && android.signingConfigs.hasProperty(configName)) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        android.signingConfigs[configName].keyPassword = props['keyPassword']
+        android.signingConfigs[configName].storePassword = props['storePassword']
+    }
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':common')
+    implementation project(':componentbridge')
+    implementation project(':network')
+    implementation project(':basic')
+    if (addLogin.toBoolean()) {
+        implementation project(':login')
+    }
+    if (addHome.toBoolean()) {
+        implementation project(':home')
+    }
+    implementation Deps.kotlin_stdlib
+    implementation Deps.appcompat
+    implementation Deps.kotlin_core
+
+    implementation Deps.constraint_layout
+    implementation Deps.material
+
+    // architecture component
+    implementation Deps.arch_lifecycle
+    implementation Deps.arch_viewmodel
+    implementation Deps.arch_livedata
+    implementation Deps.arch_runtime
+    implementation Deps.arch_room_runtime
+    implementation Deps.arch_room
+    implementation Deps.paging_runtime
+    implementation Deps.work_runtime
+    kapt Deps.arch_room_compiler
+
+    // retrofit
+    implementation Deps.retrofit_runtime
+    implementation Deps.retrofit_gson
+    implementation Deps.okhttp_logging_interceptor
+    implementation Deps.retrofit_adapter_rxjava2
+
+    // glide
+    implementation Deps.glide_runtime
+    kapt Deps.glide_compiler
+
+    //timber
+    implementation Deps.timber
+
+    //arouter
+    implementation Deps.arouter_api
+    kapt Deps.arouter_compiler
+
+    testImplementation Deps.junit
+    androidTestImplementation Deps.runner
+    androidTestImplementation Deps.espresso_core
+}

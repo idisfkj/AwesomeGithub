@@ -1,0 +1,8 @@
+<resources>
+    <string name="login_app_name">Login</string>
+    <string name="login_sign_in_to_github">Sign in to Github</string>
+    <string name="login_username_or_email_address">Username or email address</string>
+    <string name="login_password">Password</string>
+    <string name="login_sign_in">Sign in</string>
+    <string name="login_authorize">Authorize</string>
+</resources>

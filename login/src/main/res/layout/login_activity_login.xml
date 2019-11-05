@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.idisfkj.awesome.login.LoginVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            tools:context=".ui.login.LoginActivity">
+
+        <ImageView
+                android:id="@+id/login_icon"
+                android:layout_width="100dp"
+                android:layout_height="83dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/app_welcome"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/login_sign_in_to_github"
+                android:textColor="@color/login_color_1c313a"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_icon" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_username_or_email_address"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{vm.username}"
+                    android:textSize="18sp"
+                    app:addTextChangedListener="@{vm.usernameTextChangedListener()}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintLeft_toLeftOf="@+id/username"
+                app:layout_constraintRight_toRightOf="@+id/username"
+                app:layout_constraintTop_toBottomOf="@+id/username"
+                app:passwordToggleEnabled="true">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@{vm.password}"
+                    android:textSize="18sp"
+                    app:actionListener="@{vm.addActionListener()}"
+                    app:addTextChangedListener="@{vm.passwordTextChangedListener()}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:id="@+id/normal_login"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/login_bg_selector_sign_in"
+                android:enabled="@{vm.signInEnable}"
+                android:onClick="@{() -> vm.signInClick()}"
+                android:text="@string/login_sign_in"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <Button
+                android:id="@+id/author_login"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/login_bg_selector_authorize"
+                android:onClick="@{() -> vm.authorizeClick()}"
+                android:text="@string/login_authorize"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/normal_login" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

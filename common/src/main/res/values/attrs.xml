@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CommonNavigationLayout">
+        <attr name="nb_title" format="string" />
+        <attr name="nb_show_line" format="boolean" />
+        <attr name="nb_background" format="reference" />
+        <attr name="nb_back_icon" format="reference" />
+        <attr name="nb_title_color" format="color|reference" />
+        <!--右边icon-->
+        <attr name="nb_right_icon" format="reference" />
+        <!--是否展示右边icon-->
+        <attr name="nb_show_right_icon" format="boolean" />
+    </declare-styleable>
+
+</resources>

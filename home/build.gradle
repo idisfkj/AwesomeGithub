@@ -1,0 +1,78 @@
+if (addHome.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.target_sdk
+    buildToolsVersion Versions.build_tools
+
+
+    resourcePrefix "home_"
+    defaultConfig {
+        if (!addHome.toBoolean()) {
+            applicationId "com.idisfkj.awesome.home"
+        }
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode Versions.version_code
+        versionName Versions.version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (addHome.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            }
+        }
+    }
+
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':componentbridge')
+    implementation project(':network')
+    implementation project(':basic')
+    // glide
+    implementation Deps.glide_runtime
+    kapt Deps.glide_compiler
+
+    implementation Deps.arouter_api
+    kapt Deps.arouter_compiler
+}
+
+repositories {
+    mavenCentral()
+}

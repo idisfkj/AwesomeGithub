@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_height">55dp</dimen>
+    <dimen name="horizontal_space">15dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="normal_margin">10dp</dimen>
+    <dimen name="x_normal_margin">15dp</dimen>
+    <dimen name="xx_normal_margin">20dp</dimen>
+    <dimen name="xxx_normal_margin">25dp</dimen>
+</resources>

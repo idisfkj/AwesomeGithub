@@ -1,0 +1,9 @@
+<resources>
+    <string name="home_app_name">Home</string>
+    <string name="home">Home</string>
+    <string name="home_user_avatar">user avatar</string>
+    <string name="home_public_repos">公有库</string>
+    <string name="home_public_gits">公有gits</string>
+    <string name="home_followers">粉丝</string>
+    <string name="home_following">关注了</string>
+</resources>

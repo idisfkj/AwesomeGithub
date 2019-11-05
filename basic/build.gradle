@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.target_sdk
+    buildToolsVersion Versions.build_tools
+
+
+    defaultConfig {
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode Versions.version_code
+        versionName Versions.version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(':common')
+    implementation Deps.kotlin_stdlib
+    implementation Deps.kotlin_core
+
+    api Deps.appcompat
+    api Deps.material
+
+    // architecture component
+    api Deps.arch_lifecycle
+    api Deps.arch_viewmodel
+    api Deps.arch_runtime
+    api Deps.paging_runtime
+
+    //timber
+    implementation Deps.timber
+}
+
+repositories {
+    mavenCentral()
+}
+
