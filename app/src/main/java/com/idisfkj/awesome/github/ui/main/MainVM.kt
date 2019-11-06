@@ -4,8 +4,6 @@ import android.app.Application
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager.widget.PagerAdapter
 import com.idisfkj.awesome.basic.BaseVM
@@ -30,7 +28,9 @@ class MainVM(application: Application, private val fm: FragmentManager) : BaseVM
     }
 
     private var mUserJob: Job? = null
-    private val mainViewPagerAdapter by lazy { MainViewPagerAdapter(fm) }
+    private val mMainViewPagerAdapter by lazy { MainViewPagerAdapter(fm) }
+    private var mBackTime = 0L
+    private var mBackIntervalTime = 2500L
     val selectedPosition = MutableLiveData<Int>(HOME_POS)
 
     override fun attach(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class MainVM(application: Application, private val fm: FragmentManager) : BaseVM
         mUserJob?.cancel()
     }
 
-    fun createAdapter(): PagerAdapter = mainViewPagerAdapter
+    fun createAdapter(): PagerAdapter = mMainViewPagerAdapter
 
     fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
@@ -71,6 +71,14 @@ class MainVM(application: Application, private val fm: FragmentManager) : BaseVM
             )
             Timber.d("createIssue onResponse %s", issuesModel.title)
         }
+    }
+
+    fun exitApp(): Boolean {
+        if (System.currentTimeMillis() - mBackTime <= mBackIntervalTime) {
+            return true
+        }
+        mBackTime = System.currentTimeMillis()
+        return false
     }
 
 }
