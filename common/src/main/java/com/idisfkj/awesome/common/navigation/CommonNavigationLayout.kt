@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import com.idisfkj.awesome.common.R
+import com.idisfkj.awesome.common.extensions.visibleOrGone
 
 /**
  * Created by idisfkj on 2019-08-29.
@@ -45,47 +46,50 @@ class CommonNavigationLayout @JvmOverloads constructor(
     }
 
     private fun obtainStyledAttributes(attrs: AttributeSet, defStyleAttr: Int) {
-        val ta = mContext.obtainStyledAttributes(attrs, R.styleable.CommonNavigationLayout, defStyleAttr, 0)
-        if (ta != null) {
-            mTitle = ta.getString(R.styleable.CommonNavigationLayout_nb_title)
-            mShowLine = ta.getBoolean(R.styleable.CommonNavigationLayout_nb_show_line, true)
-            mShowRightIcon = ta.getBoolean(R.styleable.CommonNavigationLayout_nb_show_right_icon, false)
-            mBackgroundColor = ta.getDrawable(R.styleable.CommonNavigationLayout_nb_background)
-            mBackDrawable = ta.getDrawable(R.styleable.CommonNavigationLayout_nb_back_icon)
-            mRightDrawable = ta.getDrawable(R.styleable.CommonNavigationLayout_nb_right_icon)
+        mContext.obtainStyledAttributes(
+            attrs,
+            R.styleable.CommonNavigationLayout,
+            defStyleAttr,
+            0
+        ).run {
+            mTitle = getString(R.styleable.CommonNavigationLayout_nb_title)
+            mShowLine = getBoolean(R.styleable.CommonNavigationLayout_nb_show_line, true)
+            mShowRightIcon =
+                getBoolean(R.styleable.CommonNavigationLayout_nb_show_right_icon, false)
+            mBackgroundColor = getDrawable(R.styleable.CommonNavigationLayout_nb_background)
+            mBackDrawable = getDrawable(R.styleable.CommonNavigationLayout_nb_back_icon)
+            mRightDrawable = getDrawable(R.styleable.CommonNavigationLayout_nb_right_icon)
             mTitleColor = ColorStateList.valueOf(
-                ta.getColor(
+                getColor(
                     R.styleable.CommonNavigationLayout_nb_title_color,
                     ContextCompat.getColor(mContext, R.color.primaryLightColor)
                 )
             )
-            ta.recycle()
+            recycle()
         }
     }
 
     private fun initView() {
-        mView = LayoutInflater.from(mContext).inflate(R.layout.common_navigation_layout, this, false)
-        mBackView = mView?.findViewById(R.id.back_image)
-        mTitleView = mView?.findViewById(R.id.title)
-        mRightView = mView?.findViewById(R.id.right_image)
-        mLineView = mView?.findViewById(R.id.navigation_line)
-        mTitleView?.text = mTitle
-        if (mTitleColor != null) {
-            mTitleView?.setTextColor(mTitleColor)
-        }
-        mLineView?.visibility = if (mShowLine) View.VISIBLE else View.GONE
-        mRightView?.visibility = if (mShowRightIcon) View.VISIBLE else View.GONE
-        if (mBackgroundColor != null) {
-            mView?.background = mBackgroundColor
-        }
-        if (mBackDrawable != null) {
-            mBackView?.setImageDrawable(mBackDrawable)
-        }
-        if (mRightDrawable != null) {
-            mRightView?.setImageDrawable(mRightDrawable)
-        }
-        mNavigationListener = OnNavigationListenerImpl(context)
-        addView(mView)
+        mView = LayoutInflater.from(mContext)
+            .inflate(R.layout.common_navigation_layout, this, false).apply {
+                mBackView = findViewById<ImageView>(R.id.back_image).apply {
+                    mBackDrawable?.let { background = it }
+                }
+                mTitleView = findViewById<TextView>(R.id.title).apply {
+                    text = mTitle
+                    mTitleColor?.let { setTextColor(it) }
+                }
+                mRightView = (findViewById<ImageView>(R.id.right_image)).apply {
+                    visibleOrGone(mShowRightIcon)
+                    mRightDrawable?.let { setImageDrawable(it) }
+                }
+                mLineView = findViewById<View>(R.id.navigation_line).apply {
+                    visibleOrGone(mShowLine)
+                }
+                mBackgroundColor?.let { background = it }
+                mNavigationListener = OnNavigationListenerImpl(context)
+                addView(this)
+            }
     }
 
     private fun setupListener() {
@@ -112,7 +116,7 @@ class CommonNavigationLayout @JvmOverloads constructor(
 
     fun setNavigationLineVisible(visible: Boolean) {
         mShowLine = visible
-        mLineView?.visibility = if (visible) View.VISIBLE else View.GONE
+        mLineView?.visibleOrGone(visible)
     }
 
     /**
@@ -131,7 +135,7 @@ class CommonNavigationLayout @JvmOverloads constructor(
      */
     fun setRightViewVisible(visible: Boolean) {
         mShowRightIcon = visible
-        mRightView?.visibility = if (visible) View.VISIBLE else View.GONE
+        mRightView?.visibleOrGone(visible)
     }
 
     fun setNavigationListener(navigationListener: OnNavigationListener) {

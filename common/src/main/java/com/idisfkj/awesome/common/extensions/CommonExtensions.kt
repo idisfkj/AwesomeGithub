@@ -2,6 +2,7 @@ package com.idisfkj.awesome.common.extensions
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 
 /**
  * Created by idisfkj on 2019-08-30.
@@ -25,5 +26,9 @@ inline fun createTextWatcher(
         onTextChanged(s, start, before, count)
     }
 
+}
+
+fun View.visibleOrGone(visible: Boolean) {
+    visibility = if (visible) View.VISIBLE else View.GONE
 }
 
