@@ -18,8 +18,10 @@ fun ViewModel.request(
         block()
     } catch (e: Exception) {
         e.printStackTrace()
-        handler?.handleException(this.coroutineContext, e)
         Timber.e("Http Request Exception message %s", e.message)
+        withContext(Dispatchers.Main) {
+            handler?.handleException(this.coroutineContext, e)
 //        Timber.e("Http Request Exception code %d, message %s, response %s", e.code(), e.message(), e.response())
+        }
     }
 }

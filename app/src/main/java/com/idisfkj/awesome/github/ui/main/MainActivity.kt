@@ -31,15 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
     override fun getViewModelClass(): Class<MainVM> = MainVM::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        addObserver()
-    }
-
-    private fun addObserver() {
-
-    }
-
     companion object {
 
         fun goToPage(context: Context) {

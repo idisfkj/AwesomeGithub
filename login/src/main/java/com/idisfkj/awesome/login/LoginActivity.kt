@@ -2,17 +2,19 @@ package com.idisfkj.awesome.login
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.text.TextUtils
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.basic.activity.BaseActivity
 import com.idisfkj.awesome.common.*
+import com.idisfkj.awesome.common.utils.LoadingUtils
 import com.idisfkj.awesome.componentbridge.app.AppBridgeInterface
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.login.databinding.LoginActivityLoginBinding
 import com.idisfkj.awesome.network.HttpClient
+import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-08-30.
@@ -36,11 +38,6 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginVM>() {
 
     override fun getViewModelClass(): Class<LoginVM> = LoginVM::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        addObserve()
-    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         getExtra(intent)
@@ -54,7 +51,8 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginVM>() {
         }
     }
 
-    private fun addObserve() {
+    override fun addObserver() {
+        super.addObserver()
         viewModel.hideSoftInput.observe(this, Observer {
             if (it) hideSoftInput()
         })

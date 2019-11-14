@@ -50,6 +50,10 @@ dependencies {
 
     //timber
     api Deps.timber
+
+    // glide
+    implementation Deps.glide_runtime
+    kapt Deps.glide_compiler
 }
 
 repositories {

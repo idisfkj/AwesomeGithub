@@ -28,11 +28,6 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding, WelcomeVM>() {
 
     override fun getViewModelClass(): Class<WelcomeVM> = WelcomeVM::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        addObserve()
-    }
-
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return true
@@ -40,7 +35,8 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding, WelcomeVM>() {
         return super.onKeyUp(keyCode, event)
     }
 
-    private fun addObserve() {
+    override fun addObserver() {
+        super.addObserver()
         viewModel.toPage.observe(this, Observer {
             when (it) {
                 is WelcomeToMain -> {

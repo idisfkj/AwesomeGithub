@@ -17,6 +17,7 @@ import com.idisfkj.awesome.common.extensions.createTextWatcher
 import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.utils.CommonUtils
 import com.idisfkj.awesome.common.utils.SPUtils
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 
 /**
@@ -69,6 +70,7 @@ class LoginVM(
         }
 
     fun signInClick() {
+        showLoading.value = true
         loginFromUsername()
     }
 
@@ -88,14 +90,20 @@ class LoginVM(
     }
 
     private fun getUser() {
-        mUserJob = request {
+        mUserJob = request(handler = CoroutineExceptionHandler(({ _, _ ->
+            showLoading.value = false
+        }))) {
             repository.getUser()
+            showLoading.postValue(false)
             toPage.postValue(LoginToMain)
         }
     }
 
     fun getAccessTokenFromCode(code: String) {
-        mTokenJob = request {
+        showLoading.value = true
+        mTokenJob = request(handler = CoroutineExceptionHandler(({ _, _ ->
+            showLoading.value = false
+        }))) {
             repository.getAccessToken(code) {
                 getUser()
             }

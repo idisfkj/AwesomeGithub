@@ -1,5 +1,6 @@
 package com.idisfkj.awesome.common.utils
 
+import android.content.Context
 import android.text.TextUtils
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -27,4 +28,9 @@ object CommonUtils {
 
     fun parseToJsonObject(src: Any): JsonObject =
         JsonParser().parse(Gson().toJson(src)).asJsonObject
+
+    fun dip2px(context: Context, dpValue: Float): Int {
+        val scale = context.resources.displayMetrics.density
+        return (dpValue * scale + 0.5).toInt()
+    }
 }
