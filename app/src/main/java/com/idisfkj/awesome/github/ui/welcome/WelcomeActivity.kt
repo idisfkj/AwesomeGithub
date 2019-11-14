@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.github.ui.welcome
 
-import android.os.Bundle
 import android.view.KeyEvent
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.launcher.ARouter
