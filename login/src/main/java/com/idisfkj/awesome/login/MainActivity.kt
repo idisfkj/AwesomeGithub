@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity_main)
         findViewById<TextView>(R.id.login).setOnClickListener {
-            ARouter.getInstance().build("/login/login").navigation()
+            ARouter.getInstance().build(ARouterPaths.PATH_LOGIN_LOGIN).navigation()
         }
     }
 }

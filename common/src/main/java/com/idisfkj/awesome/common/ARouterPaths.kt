@@ -9,4 +9,8 @@ object ARouterPaths {
     const val PATH_LOGIN_MAIN = "/login/main"
 
     const val PATH_APP_MAIN = "/app/main"
+
+    const val PATH_HOME_MAIN = "home/main"
+
+    const val PATH_USER_MAIN = "/user/main"
 }

@@ -10,6 +10,7 @@ import com.idisfkj.awesome.componentbridge.factory.Factory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.github.bridge.AppBridge
 import com.idisfkj.awesome.home.bridge.HomeBridge
+import com.idisfkj.awesome.user.bridge.UserBridge
 import timber.log.Timber
 
 /**
@@ -80,6 +81,8 @@ class App : Application() {
                 @Suppress("UNCHECKED_CAST")
                 return AppBridge() as T
             }
-        }).register(HomeBridge::class.java)
+        })
+            .register(HomeBridge::class.java)
+            .register(UserBridge::class.java)
     }
 }

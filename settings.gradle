@@ -1,1 +1,1 @@
-include ':app', ':network', ':common', ':componentbridge', ':basic', ':login', ':home'
+include ':app', ':network', ':common', ':componentbridge', ':basic', ':login', ':home', ':user'

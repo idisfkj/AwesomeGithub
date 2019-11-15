@@ -84,6 +84,9 @@ dependencies {
     if (addHome.toBoolean()) {
         implementation project(':home')
     }
+    if (addUser.toBoolean()) {
+        implementation project(':user')
+    }
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core
