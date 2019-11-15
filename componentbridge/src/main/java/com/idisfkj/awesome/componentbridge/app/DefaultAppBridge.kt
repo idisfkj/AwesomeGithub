@@ -1,5 +1,7 @@
 package com.idisfkj.awesome.componentbridge.app
 
+import com.idisfkj.awesome.componentbridge.BuildConfig
+
 /**
  * app bridge default implement
  * Created by idisfkj on 2019-09-02.
@@ -7,13 +9,13 @@ package com.idisfkj.awesome.componentbridge.app
  */
 class DefaultAppBridge : AppBridgeInterface {
 
-    override fun getAuthorizationBasic(): String? = ""
+    override fun getAuthorizationBasic(): String? = BuildConfig.AUTHORIZATION_BASIC
 
     override fun setAuthorizationBasic(authorization: String?) {
 
     }
 
-    override fun getAccessToken(): String? = "2db4feafada84416d4c4d75cf667d8d126286c5d"
+    override fun getAccessToken(): String? = BuildConfig.ACCESS_TOKEN
 
     override fun setAccessToken(accessToken: String?) {
 

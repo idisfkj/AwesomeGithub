@@ -4,16 +4,23 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-android'
 
+def getProperties(String key) {
+    Properties properties = new Properties()
+    properties.load(rootProject.project.file("local.properties").newDataInputStream())
+    return properties.getProperty(key)
+}
+
 android {
     compileSdkVersion Versions.target_sdk
     buildToolsVersion Versions.build_tools
-
 
     defaultConfig {
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
         versionCode Versions.version_code
         versionName Versions.version_name
+        buildConfigField "String", "AUTHORIZATION_BASIC", getProperties("AuthorizationBasic")
+        buildConfigField "String", "ACCESS_TOKEN", getProperties("AccessToken")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
