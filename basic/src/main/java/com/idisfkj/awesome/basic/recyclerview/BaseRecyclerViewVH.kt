@@ -21,7 +21,11 @@ abstract class BaseRecyclerViewVH<out VB : ViewDataBinding, out M : BaseRecycler
     private var mVM: BaseRecyclerVM<M>? = null
     private var mVariableId: Int = 0
 
-    constructor(parent: ViewGroup, @LayoutRes layoutId: Int, vm: BaseRecyclerVM<M>?, variableId: Int) : super(
+    constructor(
+        parent: ViewGroup, @LayoutRes layoutId: Int,
+        vm: BaseRecyclerVM<M>?,
+        variableId: Int
+    ) : super(
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
     ) {
         mVM = vm

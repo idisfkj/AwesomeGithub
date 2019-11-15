@@ -44,10 +44,7 @@ abstract class BaseActivity<V : ViewDataBinding, M : BaseVM> : AppCompatActivity
 
     open fun addObserver() {
         viewModel.showLoading.observe(this, Observer {
-            LoadingUtils.loading(
-                it,
-                window.decorView.findViewById(android.R.id.content) as? ViewGroup
-            )
+            LoadingUtils.loading(it, viewDataBinding.root as? ViewGroup)
         })
     }
 

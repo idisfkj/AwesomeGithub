@@ -22,10 +22,7 @@ abstract class BaseRecyclerViewAdapter :
         parent: ViewGroup,
         viewType: Int
     ): BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel> {
-        return object :
-            BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel>(
-                View(parent.context), null, 0
-            ) {}
+        return CommonRecyclerViewVH(View(parent.context), null, 0)
     }
 
     override fun onBindViewHolder(

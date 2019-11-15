@@ -21,7 +21,8 @@ data class UserModel(
     val location: String,
     val url: String,
     val bio: String,
-    val node_id: String
+    val node_id: String,
+    val total_private_repos: Int
 ) : BaseRecyclerViewModel(itemType = TYPE_INFO)
 
 data class IssuesModel(

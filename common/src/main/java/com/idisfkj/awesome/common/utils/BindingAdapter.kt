@@ -3,13 +3,17 @@ package com.idisfkj.awesome.common.utils
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.idisfkj.awesome.common.R
 
 /**
  * Created by idisfkj on 2019-08-29.
@@ -79,5 +83,17 @@ object BindingAdapter {
         bottomNavigationView.setOnNavigationItemSelectedListener(listener)
     }
 
+    // -------- ImageView start --------
+
+    @JvmStatic
+    @BindingAdapter("app:imageUrl")
+    fun setImageRes(imageView: ImageView, url: String?) {
+        Glide.with(imageView).applyDefaultRequestOptions(RequestOptions().apply {
+            placeholder(R.drawable.placeholder)
+            centerCrop()
+        }).load(url).into(imageView)
+    }
+
+    // -------- ImageView end --------
 }
 

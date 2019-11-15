@@ -8,10 +8,12 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.idisfkj.awesome.basic.BaseVM
+import com.idisfkj.awesome.common.utils.LoadingUtils
 import timber.log.Timber
 
 /**
@@ -44,7 +46,14 @@ abstract class BaseFragment<V : ViewDataBinding, M : BaseVM> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("$this: onViewCreated")
+        addObserver()
         viewModel.attach(savedInstanceState)
+    }
+
+    open fun addObserver() {
+        viewModel.showLoading.observe(this, Observer {
+            LoadingUtils.loading(it, viewDataBinding.root as? ViewGroup)
+        })
     }
 
     abstract fun getVariableId(): Int
