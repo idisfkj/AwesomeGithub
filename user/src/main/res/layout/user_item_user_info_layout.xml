@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.idisfkj.awesome.user.vm.UserInfoVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/user_avatar"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="@dimen/horizontal_space"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/x_normal_margin"
+                android:contentDescription="@string/user_user_avatar"
+                app:imageUrl="@{vm.data.avatar_url}"
+                app:layout_constraintBottom_toTopOf="@+id/line"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+        <TextView
+                android:id="@+id/user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xxx_normal_margin"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/xxx_normal_margin"
+                android:text="@{vm.data.name}"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/user_avatar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/user_avatar"
+                tools:text="@tools:sample/full_names" />
+
+        <TextView
+                android:id="@+id/user_bio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{vm.data.bio}"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/user_name"
+                app:layout_constraintRight_toRightOf="@+id/user_name"
+                app:layout_constraintTop_toBottomOf="@+id/user_name"
+                tools:text="@tools:sample/lorem" />
+
+        <TextView
+                android:id="@+id/user_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@{vm.data.location}"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/user_name"
+                app:layout_constraintRight_toRightOf="@+id/user_name"
+                app:layout_constraintTop_toBottomOf="@+id/user_bio"
+                tools:text="@tools:sample/cities" />
+
+        <View
+                android:id="@+id/line"
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/dividerColor"
+                app:layout_constraintBottom_toBottomOf="@+id/user_public_repos"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_avatar" />
+
+        <TextView
+                android:id="@+id/user_public_repos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="@{String.valueOf(vm.data.public_repos)}"
+                android:textColor="@color/color_455a64"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/user_public_gits"
+                app:layout_constraintTop_toTopOf="@+id/line"
+                tools:text="121" />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="@string/user_public_repos"
+                android:textStyle="bold"
+                android:typeface="serif"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/user_public_repos"
+                app:layout_constraintRight_toRightOf="@+id/user_public_repos"
+                app:layout_constraintTop_toBottomOf="@+id/user_public_repos" />
+
+        <TextView
+                android:id="@+id/user_public_gits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{String.valueOf(vm.data.total_private_repos)}"
+                android:textColor="@color/color_455a64"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/user_public_repos"
+                app:layout_constraintRight_toLeftOf="@+id/user_followers"
+                app:layout_constraintTop_toTopOf="@+id/user_public_repos"
+                tools:text="123" />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="@string/user_private_repos"
+                android:textStyle="bold"
+                android:typeface="serif"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/user_public_gits"
+                app:layout_constraintRight_toRightOf="@+id/user_public_gits"
+                app:layout_constraintTop_toBottomOf="@+id/user_public_gits" />
+
+        <TextView
+                android:id="@+id/user_followers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{String.valueOf(vm.data.followers)}"
+                android:textColor="@color/color_455a64"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/user_public_gits"
+                app:layout_constraintRight_toLeftOf="@+id/user_following"
+                app:layout_constraintTop_toTopOf="@+id/user_public_gits"
+                tools:text="123" />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="@string/user_followers"
+                android:textStyle="bold"
+                android:typeface="serif"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/user_followers"
+                app:layout_constraintRight_toRightOf="@+id/user_followers"
+                app:layout_constraintTop_toBottomOf="@+id/user_followers" />
+
+        <TextView
+                android:id="@+id/user_following"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{String.valueOf(vm.data.following)}"
+                android:textColor="@color/color_455a64"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/user_followers"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/user_followers"
+                tools:text="123" />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="@string/user_following"
+                android:textStyle="bold"
+                android:typeface="serif"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/user_following"
+                app:layout_constraintRight_toRightOf="@+id/user_following"
+                app:layout_constraintTop_toBottomOf="@+id/user_following" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="user_app_name">User</string>
+    <string name="user_user_avatar">user avatar</string>
+    <string name="user_public_repos">Public Repos</string>
+    <string name="user_private_repos">Private Repos</string>
+    <string name="user_followers">Followers</string>
+    <string name="user_following">Following</string>
 </resources>
