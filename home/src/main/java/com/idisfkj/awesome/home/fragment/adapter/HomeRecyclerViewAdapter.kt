@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
 import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewVH
+import com.idisfkj.awesome.basic.recyclerview.CommonRecyclerViewVH
 import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 import com.idisfkj.awesome.common.model.TYPE_INFO
 import com.idisfkj.awesome.common.model.UserModel
@@ -24,11 +25,11 @@ class HomeRecyclerViewAdapter(private val application: Application) : BaseRecycl
         viewType: Int
     ): BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel> {
         return when (viewType) {
-            TYPE_INFO -> object : BaseRecyclerViewVH<HomeItemUserInfoLayoutBinding, UserModel>(
+            TYPE_INFO -> CommonRecyclerViewVH<HomeItemUserInfoLayoutBinding, UserModel>(
                 parent,
                 R.layout.home_item_user_info_layout,
                 HomeUserInfoVM(application), BR.vm
-            ) {}
+            )
             else -> super.onCreateViewHolder(parent, viewType)
         }
     }

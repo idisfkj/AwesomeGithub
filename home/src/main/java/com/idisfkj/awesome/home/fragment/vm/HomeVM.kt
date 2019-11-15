@@ -31,9 +31,13 @@ class HomeVM(
     }
 
     private fun getUser() {
-        request(handler = CoroutineExceptionHandler { _, e -> Timber.d(e) }) {
+        showLoading.value = true
+        request(handler = CoroutineExceptionHandler { _, e ->
+            showLoading.value = false
+        }) {
             val userModel = repository.getUser()
             withContext(Dispatchers.Main) {
+                showLoading.value = false
                 val userInfo = userModel.copy()
                 userInfo.itemType = TYPE_INFO
                 mAdapter.addData(userInfo)

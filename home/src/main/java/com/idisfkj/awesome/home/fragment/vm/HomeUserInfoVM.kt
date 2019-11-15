@@ -9,9 +9,10 @@ import com.idisfkj.awesome.common.model.UserModel
  * Email : idisfkj@gmail.com.
  */
 class HomeUserInfoVM(application: Application) : BaseRecyclerVM<UserModel>(application) {
+    var data: UserModel? = null
 
     override fun onBind(model: UserModel?) {
-
+        data = model
     }
 
 }

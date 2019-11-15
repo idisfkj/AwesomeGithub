@@ -1,7 +1,5 @@
 package com.idisfkj.awesome.home.fragment
 
-import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import com.idisfkj.awesome.basic.fragment.BaseFragment
 import com.idisfkj.awesome.home.BR
@@ -23,7 +21,7 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeVM>() {
     override fun getLayoutId(): Int = R.layout.home_fragment_home
 
     override fun getViewModelInstance(): HomeVM =
-        HomeVM(activity!!.application, HomeRepository(HttpClient.getService()))
+        HomeVM(requireActivity().application, HomeRepository(HttpClient.getService()))
 
     override fun getViewModelClass(): Class<HomeVM> = HomeVM::class.java
 
@@ -33,12 +31,8 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeVM>() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        addObserver()
-    }
-
-    private fun addObserver() {
+    override fun addObserver() {
+        super.addObserver()
         viewModel.userData.observe(this, Observer {
             Timber.d("addObserver %s", it.followers)
         })
