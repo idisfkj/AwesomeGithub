@@ -2,8 +2,8 @@
     <string name="home_app_name">Home</string>
     <string name="home">Home</string>
     <string name="home_user_avatar">user avatar</string>
-    <string name="home_public_repos">Public Repos</string>
-    <string name="home_private_repos">Private Repos</string>
+    <string name="home_repos">Repos</string>
+    <string name="home_gists">Gists</string>
     <string name="home_followers">Followers</string>
     <string name="home_following">Following</string>
 </resources>

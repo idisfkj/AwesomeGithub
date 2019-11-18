@@ -13,6 +13,7 @@ data class UserModel(
     val avatar_url: String,
     val name: String,
     val public_repos: Int,
+    val public_gists: Int,
     val followers: Int,
     val following: Int,
     val email: String,
