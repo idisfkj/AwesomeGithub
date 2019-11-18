@@ -19,8 +19,8 @@ android {
         targetSdkVersion Versions.target_sdk
         versionCode Versions.version_code
         versionName Versions.version_name
-        buildConfigField "String", "AUTHORIZATION_BASIC", getProperties("AuthorizationBasic")
-        buildConfigField "String", "ACCESS_TOKEN", getProperties("AccessToken")
+        buildConfigField "String", "AUTHORIZATION_BASIC", getProperties("AuthorizationBasic") + ""
+        buildConfigField "String", "ACCESS_TOKEN", getProperties("AccessToken") + ""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
