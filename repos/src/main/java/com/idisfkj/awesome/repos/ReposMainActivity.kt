@@ -3,7 +3,6 @@ package com.idisfkj.awesome.repos
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.repos.R
 import com.idisfkj.awesome.common.ARouterPaths
 
 /**

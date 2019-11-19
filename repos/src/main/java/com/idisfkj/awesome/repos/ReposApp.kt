@@ -2,7 +2,6 @@ package com.idisfkj.awesome.repos
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.repos.BuildConfig
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
