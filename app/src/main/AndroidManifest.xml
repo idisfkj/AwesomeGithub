@@ -14,6 +14,7 @@
 
         <activity
                 android:name=".ui.welcome.WelcomeActivity"
+                android:screenOrientation="portrait"
                 android:theme="@style/NoActionBarTheme">
 
             <intent-filter>
@@ -27,7 +28,12 @@
 
         <activity
                 android:name=".ui.main.MainActivity"
-                android:launchMode="singleTask" />
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name="com.idisfkj.awesome.repos.ReposActivity"
+                android:screenOrientation="portrait" />
 
         <!--<activity-->
         <!--android:name=".ui.login.LoginActivity"-->

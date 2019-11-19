@@ -87,6 +87,9 @@ dependencies {
     if (addUser.toBoolean()) {
         implementation project(':user')
     }
+    if (addRepos.toBoolean()) {
+        implementation project(':repos')
+    }
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core

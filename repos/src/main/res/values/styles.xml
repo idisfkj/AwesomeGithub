@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="ReposAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/reposColorPrimary</item>
+        <item name="colorPrimaryDark">@color/reposColorPrimaryDark</item>
+        <item name="colorAccent">@color/reposColorAccent</item>
+    </style>
+
+</resources>

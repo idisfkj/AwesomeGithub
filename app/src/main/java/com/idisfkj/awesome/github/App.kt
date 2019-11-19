@@ -10,6 +10,7 @@ import com.idisfkj.awesome.componentbridge.factory.Factory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.github.bridge.AppBridge
 import com.idisfkj.awesome.home.bridge.HomeBridge
+import com.idisfkj.awesome.repos.bridge.ReposBridge
 import com.idisfkj.awesome.user.bridge.UserBridge
 import timber.log.Timber
 
@@ -84,5 +85,6 @@ class App : Application() {
         })
             .register(HomeBridge::class.java)
             .register(UserBridge::class.java)
+            .register(ReposBridge::class.java)
     }
 }

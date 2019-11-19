@@ -1,18 +1,18 @@
-package com.idisfkj.awesome.user
+package com.idisfkj.awesome.repos
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.repos.BuildConfig
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
-import com.idisfkj.awesome.componentbridge.repos.DefaultReposBridge
 import timber.log.Timber
 
 /**
- * Created by idisfkj on 2019-11-15.
+ * Created by idisfkj on 2019-11-19.
  * Email: idisfkj@gmail.com.
  */
-class UserApp : Application() {
+class ReposApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -20,9 +20,7 @@ class UserApp : Application() {
         initTimber()
         initRouter()
         // register bridges
-        BridgeProviders.instance
-            .register(DefaultAppBridge::class.java)
-            .register(DefaultReposBridge::class.java)
+        BridgeProviders.instance.register(DefaultAppBridge::class.java)
     }
 
     private fun initTimber() {

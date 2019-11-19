@@ -18,7 +18,7 @@ import com.idisfkj.awesome.user.vm.UserInfoVM
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserRecyclerViewAdapter(private val application: Application) : BaseRecyclerViewAdapter() {
+class UserRecyclerViewAdapter(val vm: UserInfoVM) : BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,7 +28,8 @@ class UserRecyclerViewAdapter(private val application: Application) : BaseRecycl
             TYPE_INFO -> CommonRecyclerViewVH<UserItemUserInfoLayoutBinding, UserModel>(
                 parent,
                 R.layout.user_item_user_info_layout,
-                UserInfoVM(application), BR.vm
+                vm,
+                BR.vm
             )
             else -> super.onCreateViewHolder(parent, viewType)
         }

@@ -19,11 +19,12 @@ import kotlinx.coroutines.withContext
  */
 class UserVM(
     application: Application,
-    private val repository: UserRepository
+    private val repository: UserRepository,
+    val userInfoVM: UserInfoVM
 ) : BaseVM(application) {
 
     val userData = MutableLiveData<UserModel>()
-    private val mAdapter = UserRecyclerViewAdapter(application)
+    private val mAdapter = UserRecyclerViewAdapter(userInfoVM)
 
     override fun attach(savedInstanceState: Bundle?) {
         getUser()

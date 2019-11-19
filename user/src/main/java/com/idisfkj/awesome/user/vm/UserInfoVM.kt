@@ -2,6 +2,9 @@ package com.idisfkj.awesome.user.vm
 
 import android.app.Application
 import com.idisfkj.awesome.basic.BaseRecyclerVM
+import com.idisfkj.awesome.common.ToPageStatus
+import com.idisfkj.awesome.common.UserToRepos
+import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.common.model.UserModel
 
 /**
@@ -11,8 +14,13 @@ import com.idisfkj.awesome.common.model.UserModel
 class UserInfoVM(application: Application) : BaseRecyclerVM<UserModel>(application) {
 
     var data: UserModel? = null
+    var navigate: SingleLiveEvent<ToPageStatus> = SingleLiveEvent()
 
     override fun onBind(model: UserModel?) {
         data = model
+    }
+
+    fun reposClick() {
+        navigate.value = UserToRepos
     }
 }
