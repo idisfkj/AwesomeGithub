@@ -35,6 +35,3 @@ data class IssuesModel(
     val body: String
 )
 
-data class ReposModel(
-    val id: Int
-)
