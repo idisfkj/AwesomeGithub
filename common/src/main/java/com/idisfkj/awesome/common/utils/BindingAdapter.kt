@@ -6,8 +6,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
@@ -95,5 +95,30 @@ object BindingAdapter {
     }
 
     // -------- ImageView end --------
+
+    // -------- RefreshLayout start --------
+
+    @JvmStatic
+    @BindingAdapter("app:isEnabled")
+    fun setEnabled(refreshLayout: SwipeRefreshLayout, enabled: Boolean) {
+        refreshLayout.isEnabled = enabled
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:setOnRefreshListener")
+    fun setListener(
+        refreshLayout: SwipeRefreshLayout,
+        listener: SwipeRefreshLayout.OnRefreshListener
+    ) {
+        refreshLayout.setOnRefreshListener(listener)
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:isRefreshing")
+    fun setRefreshing(refreshLayout: SwipeRefreshLayout, refreshing: Boolean) {
+        refreshLayout.isRefreshing = refreshing
+    }
+
+    // -------- RefreshLayout end --------
 }
 
