@@ -22,11 +22,14 @@ data class ReposModel(
     val homePage: String,
     val language: String,
     val forks_count: Int,
-    val open_issues_count: Int
-)
+    val open_issues_count: Int,
+    val license: License?
+): BaseRecyclerViewModel()
 
 data class OwnerModel(
     val login: String,
     val id: Int,
     val avatar_url: String
 )
+
+data class License(val name: String)

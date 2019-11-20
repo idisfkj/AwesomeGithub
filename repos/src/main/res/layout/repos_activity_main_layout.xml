@@ -13,6 +13,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/white"
             tools:context=".ReposActivity">
 
         <com.idisfkj.awesome.common.navigation.CommonNavigationLayout
@@ -28,6 +29,7 @@
                 android:id="@+id/refresh_layout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:clipToPadding="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -37,6 +39,8 @@
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingTop="@dimen/vertical_space"
                     app:adapter="@{vm.adapter}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

@@ -6,4 +6,8 @@
 
     <color name="dividerColor">#cfd8dc</color>
     <color name="color_455a64">#455a64</color>
+    <color name="color_2175F3">#2175F3</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_eaeaea">#eaeaea</color>
 </resources>

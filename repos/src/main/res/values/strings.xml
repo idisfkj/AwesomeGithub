@@ -1,3 +1,4 @@
 <resources>
     <string name="repos_app_name">Repository</string>
+    <string name="repos_private">private</string>
 </resources>

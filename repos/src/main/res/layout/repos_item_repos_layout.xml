@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.idisfkj.awesome.repos.vm.ReposeVHVM" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_space"
+            android:layout_marginEnd="@dimen/horizontal_space"
+            android:layout_marginBottom="@dimen/vertical_space">
+
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@{vm.data.name}"
+                android:textColor="@color/color_2175F3"
+                android:textSize="@dimen/largest_text_size"
+                android:textStyle="bold"
+                android:typeface="serif"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="AwesomeGithub" />
+
+        <TextView
+                android:id="@+id/private_state"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:background="@drawable/corners_2_solid_white_stroke_1_darker_gray_bg"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/repos_private"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/smallest_text_size"
+                android:visibility="@{vm.data.private ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/name"
+                app:layout_constraintStart_toEndOf="@+id/name"
+                app:layout_constraintTop_toTopOf="@+id/name" />
+
+        <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:lineSpacingExtra="3dp"
+                android:text="@{vm.data.description}"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/small_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:text="AwesomeGithub App" />
+
+        <TextView
+                android:id="@+id/language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:drawableStart="@drawable/circle"
+                android:drawablePadding="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                android:text="@{vm.data.language}"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/smallest_text_size"
+                android:textStyle="italic"
+                android:visibility="@{!TextUtils.isEmpty(vm.data.language) ? View.VISIBLE: View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="kotlin" />
+
+        <TextView
+                android:id="@+id/stargazers_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:drawableStart="@drawable/start"
+                android:drawablePadding="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                android:text="@{String.valueOf(vm.data.stargazers_count)}"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/smallest_text_size"
+                android:textStyle="italic"
+                android:visibility="@{vm.data.stargazers_count &gt; 0 ? View.VISIBLE: View.GONE}"
+                app:layout_constraintStart_toEndOf="@+id/language"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="100" />
+
+        <TextView
+                android:id="@+id/forks_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:drawableStart="@drawable/git_repo_forked"
+                android:drawablePadding="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                android:text="@{String.valueOf(vm.data.forks_count)}"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/smallest_text_size"
+                android:textStyle="italic"
+                android:visibility="@{vm.data.forks_count &gt; 0 ? View.VISIBLE: View.GONE}"
+                app:layout_constraintStart_toEndOf="@+id/stargazers_count"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="999" />
+
+        <TextView
+                android:id="@+id/license"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:drawableStart="@drawable/license"
+                android:drawablePadding="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                android:text="@{vm.data.license != null ? vm.data.license.name : ``}"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/smallest_text_size"
+                android:textStyle="italic"
+                android:visibility="@{vm.data.license != null ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toEndOf="@+id/forks_count"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="License 2.0" />
+
+        <TextView
+                android:id="@+id/update_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:paddingEnd="10dp"
+                android:text="@{vm.updateAtContent()}"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/smallest_text_size"
+                android:textStyle="italic"
+                app:layout_constraintStart_toEndOf="@+id/license"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="2019-11-05T15:57:00Z" />
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/x_normal_margin"
+                android:background="@color/color_eaeaea"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_at" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

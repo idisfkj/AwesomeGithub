@@ -24,8 +24,4 @@ class ReposActivity : BaseActivity<ReposActivityMainLayoutBinding, ReposVM>() {
 
     override fun getViewModelClass(): Class<ReposVM> = ReposVM::class.java
 
-    override fun addObserver() {
-        super.addObserver()
-    }
-
 }

@@ -2,9 +2,16 @@
 <resources>
     <dimen name="title_height">55dp</dimen>
     <dimen name="horizontal_space">15dp</dimen>
+    <dimen name="vertical_space">20dp</dimen>
     <dimen name="small_margin">5dp</dimen>
     <dimen name="normal_margin">10dp</dimen>
     <dimen name="x_normal_margin">15dp</dimen>
     <dimen name="xx_normal_margin">20dp</dimen>
     <dimen name="xxx_normal_margin">25dp</dimen>
+
+    <dimen name="smallest_text_size">12sp</dimen>
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="large_text_size">18sp</dimen>
+    <dimen name="largest_text_size">20sp</dimen>
 </resources>

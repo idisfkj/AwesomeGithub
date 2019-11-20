@@ -7,8 +7,8 @@
 
     <ImageView
             android:id="@+id/back_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="8dp"
             android:padding="8dp"
@@ -26,13 +26,13 @@
 
     <ImageView
             android:id="@+id/right_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/notification"
-            android:visibility="gone"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:src="@drawable/notification"
             tools:visibility="visible" />
 
     <View

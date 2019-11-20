@@ -8,7 +8,6 @@ import com.idisfkj.awesome.repos.adapter.ReposAdapter
 import com.idisfkj.awesome.repos.repository.ReposRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-11-20.
@@ -19,7 +18,7 @@ class ReposVM(
     private val repository: ReposRepository
 ) : BaseVM(application) {
 
-    val adapter = ReposAdapter()
+    val adapter = ReposAdapter(application)
 
     override fun attach(savedInstanceState: Bundle?) {
         getRepos()
@@ -28,10 +27,10 @@ class ReposVM(
     private fun getRepos() {
         showLoading.value = true
         request {
-            val reposMode = repository.getRepos()
+            val list = repository.getRepos()
             withContext(Dispatchers.Main) {
                 showLoading.value = false
-                Timber.d("getRepos: $reposMode")
+                adapter.addData(list)
             }
         }
     }
