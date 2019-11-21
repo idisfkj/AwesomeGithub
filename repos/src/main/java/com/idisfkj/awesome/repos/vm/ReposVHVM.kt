@@ -7,7 +7,7 @@ import com.idisfkj.awesome.common.model.ReposModel
  * Created by idisfkj on 2019-11-20.
  * Email : idisfkj@gmail.com.
  */
-class ReposeVHVM : BaseRecyclerVM<ReposModel>() {
+class ReposVHVM : BaseRecyclerVM<ReposModel>() {
 
     var data: ReposModel? = null
 

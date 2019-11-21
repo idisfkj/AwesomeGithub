@@ -10,7 +10,7 @@ import com.idisfkj.awesome.common.model.ReposModel
 import com.idisfkj.awesome.repos.BR
 import com.idisfkj.awesome.repos.R
 import com.idisfkj.awesome.repos.databinding.ReposItemReposLayoutBinding
-import com.idisfkj.awesome.repos.vm.ReposeVHVM
+import com.idisfkj.awesome.repos.vm.ReposVHVM
 
 /**
  * Created by idisfkj on 2019-11-20.
@@ -25,7 +25,7 @@ class ReposAdapter : BaseRecyclerViewAdapter() {
         return CommonRecyclerViewVH<ReposItemReposLayoutBinding, ReposModel>(
             parent,
             R.layout.repos_item_repos_layout,
-            ReposeVHVM(),
+            ReposVHVM(),
             BR.vm
         )
     }

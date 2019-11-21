@@ -5,7 +5,7 @@
 
         <variable
                 name="vm"
-                type="com.idisfkj.awesome.repos.vm.ReposeVHVM" />
+                type="com.idisfkj.awesome.repos.vm.ReposVHVM" />
 
         <import type="android.view.View" />
 

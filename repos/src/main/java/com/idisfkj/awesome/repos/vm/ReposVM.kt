@@ -6,6 +6,7 @@ import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.repos.adapter.ReposAdapter
 import com.idisfkj.awesome.repos.repository.ReposRepository
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -24,7 +25,10 @@ class ReposVM(private val repository: ReposRepository) : BaseVM() {
 
     private fun getRepos(refresh: Boolean) {
         if (!refresh) showLoading.value = true
-        request {
+        request(handler = CoroutineExceptionHandler { _, _ ->
+            showLoading.value = false
+            isRefreshing.value = false
+        }) {
             val list = repository.getRepos()
             withContext(Dispatchers.Main) {
                 isRefreshing.value = false
