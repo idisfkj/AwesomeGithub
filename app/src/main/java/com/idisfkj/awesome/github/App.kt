@@ -9,6 +9,7 @@ import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.BridgeInterface
 import com.idisfkj.awesome.componentbridge.factory.Factory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
+import com.idisfkj.awesome.followers.bridge.FollowersBridge
 import com.idisfkj.awesome.github.bridge.AppBridge
 import com.idisfkj.awesome.home.bridge.HomeBridge
 import com.idisfkj.awesome.repos.bridge.ReposBridge
@@ -88,5 +89,6 @@ class App : Application() {
             .register(HomeBridge::class.java)
             .register(UserBridge::class.java)
             .register(ReposBridge::class.java)
+            .register(FollowersBridge::class.java)
     }
 }

@@ -90,6 +90,9 @@ dependencies {
     if (addRepos.toBoolean()) {
         implementation project(':repos')
     }
+    if (addFollowers.toBoolean()) {
+        implementation project(':followers')
+    }
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core

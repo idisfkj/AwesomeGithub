@@ -15,4 +15,6 @@ object ARouterPaths {
     const val PATH_USER_MAIN = "/user/main"
 
     const val PATH_REPOS_REPOS= "/repos/repos"
+
+    const val PATH_FOLLOWERS_FOLLOWERS = "/followers/followers"
 }

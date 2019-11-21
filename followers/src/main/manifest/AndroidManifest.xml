@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.idisfkj.awesome.followers">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+            android:name=".FollowersApp"
+            android:allowBackup="true"
+            android:icon="@mipmap/followers_ic_launcher"
+            android:label="@string/followers_app_name"
+            android:roundIcon="@mipmap/followers_ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/FollowersAppTheme">
+        <activity android:name=".FollowersActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

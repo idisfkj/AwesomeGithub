@@ -2,7 +2,9 @@ package com.idisfkj.awesome.user.fragment
 
 import androidx.lifecycle.Observer
 import com.idisfkj.awesome.basic.fragment.BaseFragment
+import com.idisfkj.awesome.common.UserToFollowers
 import com.idisfkj.awesome.common.UserToRepos
+import com.idisfkj.awesome.componentbridge.followers.FollowersBridgeInterface
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
 import com.idisfkj.awesome.network.HttpClient
@@ -44,6 +46,9 @@ class UserFragment : BaseFragment<UserFragmentUserBinding, UserVM>() {
             if (it is UserToRepos) {
                 BridgeProviders.instance.getBridge(ReposBridgeInterface::class.java)
                     .toReposActivity(requireContext())
+            } else if (it is UserToFollowers) {
+                BridgeProviders.instance.getBridge(FollowersBridgeInterface::class.java)
+                    .toFollowersActivity(requireContext())
             }
         })
     }
