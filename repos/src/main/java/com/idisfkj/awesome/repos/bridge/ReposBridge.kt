@@ -1,9 +1,9 @@
 package com.idisfkj.awesome.repos.bridge
 
 import android.content.Context
-import android.content.Intent
+import com.alibaba.android.arouter.launcher.ARouter
+import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
-import com.idisfkj.awesome.repos.ReposActivity
 
 /**
  * Created by idisfkj on 2019-11-19.
@@ -12,7 +12,7 @@ import com.idisfkj.awesome.repos.ReposActivity
 class ReposBridge : ReposBridgeInterface {
 
     override fun toReposActivity(context: Context) {
-        context.startActivity(Intent(context, ReposActivity::class.java))
+        ARouter.getInstance().build(ARouterPaths.PATH_REPOS_REPOS).navigation(context)
     }
 
 }

@@ -1,8 +1,5 @@
 package com.idisfkj.awesome.github.ui.main
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -29,13 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
     override fun getViewModelInstance(): MainVM = MainVM(supportFragmentManager)
 
     override fun getViewModelClass(): Class<MainVM> = MainVM::class.java
-
-    companion object {
-
-        fun goToPage(context: Context) {
-            context.startActivity(Intent(context, MainActivity::class.java))
-        }
-    }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

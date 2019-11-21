@@ -11,7 +11,6 @@ import com.idisfkj.awesome.common.WelcomeToMain
 import com.idisfkj.awesome.github.BR
 import com.idisfkj.awesome.github.R
 import com.idisfkj.awesome.github.databinding.ActivityWelcomeBinding
-import com.idisfkj.awesome.github.ui.main.MainActivity
 
 /**
  * Created by idisfkj on 2019-08-13.
@@ -39,7 +38,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding, WelcomeVM>() {
         viewModel.toPage.observe(this, Observer {
             when (it) {
                 is WelcomeToMain -> {
-                    MainActivity.goToPage(this)
+                    ARouter.getInstance().build(ARouterPaths.PATH_APP_MAIN).navigation(this)
                     finish()
                 }
                 is WelcomeToLogin -> {
