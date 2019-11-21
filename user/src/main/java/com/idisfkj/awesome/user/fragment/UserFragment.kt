@@ -25,11 +25,7 @@ class UserFragment : BaseFragment<UserFragmentUserBinding, UserVM>() {
     override fun getLayoutId(): Int = R.layout.user_fragment_user
 
     override fun getViewModelInstance(): UserVM =
-        UserVM(
-            requireActivity().application,
-            UserRepository(HttpClient.getService()),
-            UserInfoVM(requireActivity().application)
-        )
+        UserVM(UserRepository(HttpClient.getService()), UserInfoVM())
 
     override fun getViewModelClass(): Class<UserVM> = UserVM::class.java
 

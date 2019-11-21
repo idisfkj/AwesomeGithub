@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginVM>() {
         LoginRepository(
             BridgeProviders.instance.getBridge(AppBridgeInterface::class.java),
             HttpClient.getService()
-        ), application
+        )
     )
 
     override fun getViewModelClass(): Class<LoginVM> = LoginVM::class.java

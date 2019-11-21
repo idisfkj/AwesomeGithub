@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
+import com.idisfkj.awesome.common.utils.CommonUtils
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.BridgeInterface
 import com.idisfkj.awesome.componentbridge.factory.Factory
@@ -46,6 +47,7 @@ class App : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        CommonUtils.initApp(this)
         SPUtils.init(this)
         AUTHORIZATION_BASIC = SPUtils.getString(SPUtils.KEY_AUTHORIZATION_BASIC)
         ACCESS_TOKEN = SPUtils.getString(SPUtils.KEY_ACCESS_TOKEN)

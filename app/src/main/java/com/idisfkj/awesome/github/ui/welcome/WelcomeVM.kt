@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.github.ui.welcome
 
-import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import com.idisfkj.awesome.basic.BaseVM
@@ -15,7 +14,7 @@ import java.util.*
  * Created by idisfkj on 2019-08-13.
  * Email : idisfkj@gmail.com.
  */
-class WelcomeVM(application: Application) : BaseVM(application) {
+class WelcomeVM : BaseVM() {
 
     val toPage = MutableLiveData<ToPageStatus>(PageDefault)
     private var mTimer: Timer? = null

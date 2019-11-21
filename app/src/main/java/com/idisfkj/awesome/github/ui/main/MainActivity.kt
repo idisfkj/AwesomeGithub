@@ -26,8 +26,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
-    override fun getViewModelInstance(): MainVM =
-        MainVM(application, supportFragmentManager)
+    override fun getViewModelInstance(): MainVM = MainVM(supportFragmentManager)
 
     override fun getViewModelClass(): Class<MainVM> = MainVM::class.java
 

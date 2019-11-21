@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.repos.vm
 
-import android.app.Application
 import com.idisfkj.awesome.basic.BaseRecyclerVM
 import com.idisfkj.awesome.common.model.ReposModel
 
@@ -8,7 +7,7 @@ import com.idisfkj.awesome.common.model.ReposModel
  * Created by idisfkj on 2019-11-20.
  * Email : idisfkj@gmail.com.
  */
-class ReposeVHVM(application: Application) : BaseRecyclerVM<ReposModel>(application) {
+class ReposeVHVM : BaseRecyclerVM<ReposModel>() {
 
     var data: ReposModel? = null
 

@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.repos.adapter
 
-import android.app.Application
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
@@ -17,7 +16,7 @@ import com.idisfkj.awesome.repos.vm.ReposeVHVM
  * Created by idisfkj on 2019-11-20.
  * Email : idisfkj@gmail.com.
  */
-class ReposAdapter(private val application: Application) : BaseRecyclerViewAdapter() {
+class ReposAdapter : BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,7 +25,7 @@ class ReposAdapter(private val application: Application) : BaseRecyclerViewAdapt
         return CommonRecyclerViewVH<ReposItemReposLayoutBinding, ReposModel>(
             parent,
             R.layout.repos_item_repos_layout,
-            ReposeVHVM(application),
+            ReposeVHVM(),
             BR.vm
         )
     }

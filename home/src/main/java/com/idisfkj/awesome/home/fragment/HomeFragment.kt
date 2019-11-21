@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeVM>() {
     override fun getLayoutId(): Int = R.layout.home_fragment_home
 
     override fun getViewModelInstance(): HomeVM =
-        HomeVM(requireActivity().application, HomeRepository(HttpClient.getService()))
+        HomeVM(HomeRepository(HttpClient.getService()))
 
     override fun getViewModelClass(): Class<HomeVM> = HomeVM::class.java
 

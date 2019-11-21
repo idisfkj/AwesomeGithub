@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.user.vm
 
-import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import com.idisfkj.awesome.basic.BaseVM
@@ -17,11 +16,7 @@ import kotlinx.coroutines.withContext
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserVM(
-    application: Application,
-    private val repository: UserRepository,
-    val userInfoVM: UserInfoVM
-) : BaseVM(application) {
+class UserVM(private val repository: UserRepository, val userInfoVM: UserInfoVM) : BaseVM() {
 
     val userData = MutableLiveData<UserModel>()
     private val mAdapter = UserRecyclerViewAdapter(userInfoVM)
@@ -32,7 +27,7 @@ class UserVM(
 
     private fun getUser() {
         showLoading.value = true
-        request(handler = CoroutineExceptionHandler { _, e ->
+        request(handler = CoroutineExceptionHandler { _, _ ->
             showLoading.value = false
         }) {
             val userModel = repository.getUser()

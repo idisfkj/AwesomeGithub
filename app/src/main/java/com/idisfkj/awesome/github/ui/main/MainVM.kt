@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.github.ui.main
 
-import android.app.Application
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.FragmentManager
@@ -19,7 +18,7 @@ import timber.log.Timber
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
-class MainVM(application: Application, private val fm: FragmentManager) : BaseVM(application) {
+class MainVM(private val fm: FragmentManager) : BaseVM() {
 
     companion object {
         private const val HOME_POS = 0

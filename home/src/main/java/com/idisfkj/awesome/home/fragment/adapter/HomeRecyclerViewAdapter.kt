@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.home.fragment.adapter
 
-import android.app.Application
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
@@ -18,7 +17,7 @@ import com.idisfkj.awesome.home.fragment.vm.HomeUserInfoVM
  * Created by idisfkj on 2019-09-03.
  * Email : idisfkj@gmail.com.
  */
-class HomeRecyclerViewAdapter(private val application: Application) : BaseRecyclerViewAdapter() {
+class HomeRecyclerViewAdapter : BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,7 +27,7 @@ class HomeRecyclerViewAdapter(private val application: Application) : BaseRecycl
             TYPE_INFO -> CommonRecyclerViewVH<HomeItemUserInfoLayoutBinding, UserModel>(
                 parent,
                 R.layout.home_item_user_info_layout,
-                HomeUserInfoVM(application), BR.vm
+                HomeUserInfoVM(), BR.vm
             )
             else -> super.onCreateViewHolder(parent, viewType)
         }

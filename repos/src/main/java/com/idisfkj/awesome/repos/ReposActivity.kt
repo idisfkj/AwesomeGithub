@@ -20,7 +20,7 @@ class ReposActivity : BaseActivity<ReposActivityMainLayoutBinding, ReposVM>() {
     override fun getLayoutId(): Int = R.layout.repos_activity_main_layout
 
     override fun getViewModelInstance(): ReposVM =
-        ReposVM(application, ReposRepository(HttpClient.getService()))
+        ReposVM(ReposRepository(HttpClient.getService()))
 
     override fun getViewModelClass(): Class<ReposVM> = ReposVM::class.java
 

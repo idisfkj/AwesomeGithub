@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.login
 
-import android.app.Application
 import android.os.Bundle
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -24,10 +23,7 @@ import kotlinx.coroutines.Job
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
-class LoginVM(
-    private val repository: LoginRepository,
-    application: Application
-) : BaseVM(application) {
+class LoginVM(private val repository: LoginRepository) : BaseVM() {
 
     val username = MutableLiveData<String>(CommonUtils.getUsername())
     val password = MutableLiveData<String>(CommonUtils.getPassword())

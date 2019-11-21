@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.repos.vm
 
-import android.app.Application
 import android.os.Bundle
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.request
@@ -14,12 +13,9 @@ import kotlinx.coroutines.withContext
  * Created by idisfkj on 2019-11-20.
  * Email : idisfkj@gmail.com.
  */
-class ReposVM(
-    application: Application,
-    private val repository: ReposRepository
-) : BaseVM(application) {
+class ReposVM(private val repository: ReposRepository) : BaseVM() {
 
-    val adapter = ReposAdapter(application)
+    val adapter = ReposAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
 
     override fun attach(savedInstanceState: Bundle?) {

@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.home.fragment.adapter
 
-import android.app.Application
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.idisfkj.awesome.basic.recyclerview.BasePagedListAdapter
@@ -16,13 +15,18 @@ import com.idisfkj.awesome.home.fragment.vm.HomeUserInfoVM
  * Email : idisfkj@gmail.com.
  */
 class HomePagedListAdapter(
-    private val application: Application,
     areItemsTheSame: (oldItem: UserModel, newItem: UserModel) -> Boolean = { oldItem, newItem -> oldItem == newItem },
     areContentsTheSame: (oldItem: UserModel, newItem: UserModel) -> Boolean = { oldItem, newItem -> oldItem.id == newItem.id }
-) : BasePagedListAdapter<UserModel>(areItemsTheSame = areItemsTheSame, areContentsTheSame = areContentsTheSame) {
+) : BasePagedListAdapter<UserModel>(
+    areItemsTheSame = areItemsTheSame,
+    areContentsTheSame = areContentsTheSame
+) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel> {
-        return HomeUserInfoVH(parent, R.layout.home_item_user_info_layout, HomeUserInfoVM(application))
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel> {
+        return HomeUserInfoVH(parent, R.layout.home_item_user_info_layout, HomeUserInfoVM())
     }
 
 }

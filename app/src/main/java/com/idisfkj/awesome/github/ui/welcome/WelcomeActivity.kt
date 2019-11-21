@@ -23,7 +23,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding, WelcomeVM>() {
 
     override fun getLayoutId(): Int = R.layout.activity_welcome
 
-    override fun getViewModelInstance(): WelcomeVM = WelcomeVM(application)
+    override fun getViewModelInstance(): WelcomeVM = WelcomeVM()
 
     override fun getViewModelClass(): Class<WelcomeVM> = WelcomeVM::class.java
 
