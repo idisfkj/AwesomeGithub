@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.network
 
 import com.google.gson.JsonObject
+import com.idisfkj.awesome.common.model.FollowersModel
 import com.idisfkj.awesome.common.model.IssuesModel
 import com.idisfkj.awesome.common.model.ReposModel
 import com.idisfkj.awesome.common.model.UserModel
@@ -36,5 +37,7 @@ interface GithubService {
     @POST("/login/oauth/access_token")
     suspend fun getAccessToken(@Body params: JsonObject): Response<ResponseBody>
 
+    @GET("/user/followers")
+    suspend fun getFollowers(): List<FollowersModel>
 
 }
