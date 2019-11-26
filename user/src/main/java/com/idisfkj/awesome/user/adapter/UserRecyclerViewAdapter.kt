@@ -1,6 +1,5 @@
 package com.idisfkj.awesome.user.adapter
 
-import android.app.Application
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
