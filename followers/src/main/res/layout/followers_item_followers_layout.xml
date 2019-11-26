@@ -21,9 +21,8 @@
                 android:id="@+id/avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="@dimen/x_normal_margin"
                 app:imageUrl="@{vm.data.avatar_url}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/line"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -42,12 +41,16 @@
                 tools:text="@tools:sample/full_names" />
 
         <View
+                android:id="@+id/line"
                 android:layout_width="0dp"
-                android:layout_height="1px"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/x_normal_margin"
+                android:layout_marginBottom="@dimen/x_normal_margin"
                 android:background="@color/color_eaeaea"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
