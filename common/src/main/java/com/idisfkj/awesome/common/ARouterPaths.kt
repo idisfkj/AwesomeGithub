@@ -17,4 +17,6 @@ object ARouterPaths {
     const val PATH_REPOS_REPOS= "/repos/repos"
 
     const val PATH_FOLLOWERS_FOLLOWERS = "/followers/followers"
+
+    const val PATH_FOLLOWING_FOLLOWING = "/following/following"
 }

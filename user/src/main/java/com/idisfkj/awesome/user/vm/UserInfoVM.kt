@@ -3,6 +3,7 @@ package com.idisfkj.awesome.user.vm
 import com.idisfkj.awesome.basic.BaseRecyclerVM
 import com.idisfkj.awesome.common.ToPageStatus
 import com.idisfkj.awesome.common.UserToFollowers
+import com.idisfkj.awesome.common.UserToFollowing
 import com.idisfkj.awesome.common.UserToRepos
 import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.common.model.UserModel
@@ -26,5 +27,9 @@ class UserInfoVM : BaseRecyclerVM<UserModel>() {
 
     fun followersClick() {
         navigate.value = UserToFollowers
+    }
+
+    fun followingClick() {
+        navigate.value = UserToFollowing
     }
 }

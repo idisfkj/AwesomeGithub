@@ -39,6 +39,10 @@
                 android:name="com.idisfkj.awesome.followers.FollowersActivity"
                 android:screenOrientation="portrait" />
 
+        <activity
+                android:name="com.idisfkj.awesome.following.FollowingActivity"
+                android:screenOrientation="portrait" />
+
         <!--<activity-->
         <!--android:name=".ui.login.LoginActivity"-->
         <!--android:launchMode="singleTask">-->

@@ -40,4 +40,7 @@ interface GithubService {
     @GET("/user/followers")
     suspend fun getFollowers(): List<FollowersModel>
 
+    @GET("/user/following")
+    suspend fun getFollowing(): List<FollowersModel>
+
 }

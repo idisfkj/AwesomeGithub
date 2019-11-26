@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="FollowingAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/followingColorPrimary</item>
+        <item name="colorPrimaryDark">@color/followingColorPrimaryDark</item>
+        <item name="colorAccent">@color/followingColorAccent</item>
+    </style>
+
+</resources>
