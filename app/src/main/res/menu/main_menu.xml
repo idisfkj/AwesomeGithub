@@ -7,7 +7,7 @@
     <item
             android:id="@+id/repository"
             android:icon="@drawable/bg_selector_repository"
-            android:title="@string/repository" />
+            android:title="@string/notification" />
     <item
             android:id="@+id/user"
             android:icon="@drawable/bg_selector_user"

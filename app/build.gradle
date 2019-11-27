@@ -96,6 +96,9 @@ dependencies {
     if (addFollowing.toBoolean()) {
         implementation project(':following')
     }
+    if (addNotification.toBoolean()) {
+        implementation project(':notification')
+    }
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core

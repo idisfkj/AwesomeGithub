@@ -19,4 +19,6 @@ object ARouterPaths {
     const val PATH_FOLLOWERS_FOLLOWERS = "/followers/followers"
 
     const val PATH_FOLLOWING_FOLLOWING = "/following/following"
+
+    const val PATH_NOTIFICATION_MAIN = "/notification/main"
 }

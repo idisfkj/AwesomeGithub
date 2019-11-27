@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="NotifyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/notifyColorPrimary</item>
+        <item name="colorPrimaryDark">@color/notifyColorPrimaryDark</item>
+        <item name="colorAccent">@color/notifyColorAccent</item>
+    </style>
+
+</resources>

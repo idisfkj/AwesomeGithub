@@ -1,4 +1,4 @@
-if (addUser.toBoolean()) {
+if (addNotification.toBoolean()) {
     apply plugin: 'com.android.library'
 } else {
     apply plugin: 'com.android.application'
@@ -15,10 +15,10 @@ android {
     buildToolsVersion Versions.build_tools
 
 
-    resourcePrefix "user_"
+    resourcePrefix "notify_"
     defaultConfig {
-        if (!addUser.toBoolean()) {
-            applicationId "com.idisfkj.awesome.user"
+        if (!addNotification.toBoolean()) {
+            applicationId "com.idisfkj.awesome.notification"
         }
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
@@ -44,7 +44,7 @@ android {
 
     sourceSets {
         main {
-            if (addUser.toBoolean()) {
+            if (addNotification.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/manifest/AndroidManifest.xml'

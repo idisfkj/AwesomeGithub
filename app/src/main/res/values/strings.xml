@@ -8,6 +8,7 @@
     <string name="authorize">Authorize</string>
     <string name="home">Home</string>
     <string name="repository">Repository</string>
+    <string name="notification">Notification</string>
     <string name="user">User</string>
     <string name="press_again_to_exit_app">再按一次退出应用</string>
 </resources>
