@@ -1,10 +1,7 @@
 package com.idisfkj.awesome.network
 
 import com.google.gson.JsonObject
-import com.idisfkj.awesome.common.model.FollowersModel
-import com.idisfkj.awesome.common.model.IssuesModel
-import com.idisfkj.awesome.common.model.ReposModel
-import com.idisfkj.awesome.common.model.UserModel
+import com.idisfkj.awesome.common.model.*
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -42,5 +39,8 @@ interface GithubService {
 
     @GET("/user/following")
     suspend fun getFollowing(): List<FollowersModel>
+
+    @GET("/notifications")
+    suspend fun getNotification(@QueryMap params: Map<String, String>): List<NotificationModel>
 
 }
