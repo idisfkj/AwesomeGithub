@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#000a12</color>
     <color name="primaryLightColor">#cfd8dc</color>
 
+    <color name="color_transparent_5_black">#0D000000</color>
     <color name="dividerColor">#cfd8dc</color>
     <color name="color_455a64">#455a64</color>
     <color name="color_2175F3">#2175F3</color>

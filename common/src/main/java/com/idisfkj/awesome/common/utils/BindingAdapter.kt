@@ -94,6 +94,12 @@ object BindingAdapter {
         }).load(url).into(imageView)
     }
 
+    @JvmStatic
+    @BindingAdapter("android:src")
+    fun setImageResource(imageView: ImageView, resId: Int) {
+        imageView.setImageResource(resId)
+    }
+
     // -------- ImageView end --------
 
     // -------- RefreshLayout start --------

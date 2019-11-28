@@ -11,7 +11,7 @@ import com.idisfkj.awesome.network.GithubService
 class NotificationRepository(private val service: GithubService) : BaseRepository {
 
     suspend fun getNotification(
-        all: Boolean = false,
+        all: Boolean = true,
         participating: Boolean = false,
         since: String = "",
         before: String = ""
