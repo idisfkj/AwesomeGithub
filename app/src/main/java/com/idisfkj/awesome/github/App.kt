@@ -15,6 +15,7 @@ import com.idisfkj.awesome.github.bridge.AppBridge
 import com.idisfkj.awesome.home.bridge.HomeBridge
 import com.idisfkj.awesome.notification.bridge.NotificationBridge
 import com.idisfkj.awesome.repos.bridge.ReposBridge
+import com.idisfkj.awesome.search.bridge.SearchBridge
 import com.idisfkj.awesome.user.bridge.UserBridge
 import timber.log.Timber
 
@@ -94,5 +95,6 @@ class App : Application() {
             .register(FollowersBridge::class.java)
             .register(FollowingBridge::class.java)
             .register(NotificationBridge::class.java)
+            .register(SearchBridge::class.java)
     }
 }

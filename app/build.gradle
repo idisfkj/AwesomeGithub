@@ -99,6 +99,9 @@ dependencies {
     if (addNotification.toBoolean()) {
         implementation project(':notification')
     }
+    if (addSearch.toBoolean()) {
+        implementation project(':search')
+    }
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core

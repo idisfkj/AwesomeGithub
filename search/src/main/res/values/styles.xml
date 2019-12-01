@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="SearchAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/searchColorPrimary</item>
+        <item name="colorPrimaryDark">@color/searchColorPrimaryDark</item>
+        <item name="colorAccent">@color/searchColorAccent</item>
+    </style>
+
+</resources>
