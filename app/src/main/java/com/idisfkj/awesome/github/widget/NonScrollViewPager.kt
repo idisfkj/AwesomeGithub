@@ -11,6 +11,10 @@ import androidx.viewpager.widget.ViewPager
  */
 class NonScrollViewPager(context: Context, attrs: AttributeSet? = null) : ViewPager(context, attrs) {
 
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        return false
+    }
+
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
         if (ev?.action == MotionEvent.ACTION_UP) {
             performClick()
