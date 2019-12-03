@@ -45,7 +45,8 @@ abstract class BaseRecyclerViewAdapter :
     }
 
     fun clear() {
+        val size = mData.size
         mData.clear()
-        notifyItemRangeRemoved(0, mData.size)
+        notifyItemRangeRemoved(0, size)
     }
 }

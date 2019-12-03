@@ -5,13 +5,14 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
+import com.idisfkj.awesome.repos.bridge.ReposBridge
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-12-01.
  * Email: idisfkj@gmail.com.
  */
-class SearchApp: Application() {
+class SearchApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -20,6 +21,7 @@ class SearchApp: Application() {
         initRouter()
         // register bridges
         BridgeProviders.instance.register(DefaultAppBridge::class.java)
+            .register(ReposBridge::class.java)
     }
 
     private fun initTimber() {

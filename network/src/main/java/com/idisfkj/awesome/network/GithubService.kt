@@ -43,4 +43,7 @@ interface GithubService {
     @GET("/notifications")
     suspend fun getNotification(@QueryMap params: Map<String, String>): List<NotificationModel>
 
+    @GET("/search/repositories")
+    suspend fun searchRepository(@QueryMap params: Map<String, String>): SearchModel
+
 }

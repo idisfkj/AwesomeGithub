@@ -65,6 +65,7 @@ dependencies {
     implementation project(':componentbridge')
     implementation project(':network')
     implementation project(':basic')
+    implementation project(':repos')
     // glide
     implementation Deps.glide_runtime
     kapt Deps.glide_compiler

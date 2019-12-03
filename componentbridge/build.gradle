@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation project(':basic')
     api Deps.kotlin_stdlib
     api Deps.kotlin_core
     api Deps.appcompat

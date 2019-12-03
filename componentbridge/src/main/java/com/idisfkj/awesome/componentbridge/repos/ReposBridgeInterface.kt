@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.componentbridge.repos
 
 import android.content.Context
+import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
 import com.idisfkj.awesome.componentbridge.BridgeInterface
 
 /**
@@ -10,4 +11,6 @@ import com.idisfkj.awesome.componentbridge.BridgeInterface
 interface ReposBridgeInterface: BridgeInterface {
 
     fun toReposActivity(context: Context)
+
+    fun createReposAdapter(): BaseRecyclerViewAdapter
 }

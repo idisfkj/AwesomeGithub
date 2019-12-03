@@ -1,9 +1,11 @@
 package com.idisfkj.awesome.search.fragment
 
 import com.idisfkj.awesome.basic.fragment.BaseFragment
+import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.search.BR
 import com.idisfkj.awesome.search.R
 import com.idisfkj.awesome.search.databinding.SearchFragmentSearchLayoutBinding
+import com.idisfkj.awesome.search.repository.SearchRepository
 import com.idisfkj.awesome.search.vm.SearchVM
 
 /**
@@ -16,7 +18,8 @@ class SearchFragment : BaseFragment<SearchFragmentSearchLayoutBinding, SearchVM>
 
     override fun getLayoutId(): Int = R.layout.search_fragment_search_layout
 
-    override fun getViewModelInstance(): SearchVM = SearchVM()
+    override fun getViewModelInstance(): SearchVM =
+        SearchVM(SearchRepository(HttpClient.getService()))
 
     override fun getViewModelClass(): Class<SearchVM> = SearchVM::class.java
 

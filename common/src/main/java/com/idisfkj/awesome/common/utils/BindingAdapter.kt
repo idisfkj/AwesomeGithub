@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -126,5 +127,53 @@ object BindingAdapter {
     }
 
     // -------- RefreshLayout end --------
+
+    // -------- SearchView start --------
+
+    @JvmStatic
+    @BindingAdapter("setOnSearchClickListener")
+    fun setOnSearchClickListener(searchView: SearchView, listener: View.OnClickListener) {
+        searchView.setOnSearchClickListener(listener)
+    }
+
+//    @JvmStatic
+//    @BindingAdapter(value = ["onQueryTextSubmit", "onQueryTextChange"], requireAll = false)
+//    fun setOnQueryTextListener(
+//        searchView: SearchView,
+//        submit: (String?) -> Unit = {},
+//        change: (String?) -> Unit? = {}
+//    ) {
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                submit(query)
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                change(newText)
+//                return true
+//            }
+//        })
+//    }
+
+    @JvmStatic
+    @BindingAdapter("setOnQueryTextListener")
+    fun setOnQueryTextListener(
+        searchView: SearchView,
+        listener: SearchView.OnQueryTextListener
+    ) {
+        searchView.setOnQueryTextListener(listener)
+    }
+
+    @JvmStatic
+    @BindingAdapter("clearFocus")
+    fun setClearFocus(searchView: SearchView, clearFocus: Boolean) {
+        if (clearFocus) {
+            searchView.clearFocus()
+        }
+    }
+
+
+    // -------- SearchView end --------
 }
 
