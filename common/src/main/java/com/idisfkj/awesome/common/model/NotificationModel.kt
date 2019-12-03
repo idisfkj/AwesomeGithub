@@ -22,3 +22,11 @@ data class SubjectModel(
     val latest_comment_url: String,
     val type: String
 )
+
+data class NotificationRequestUrlModel(
+    val url: String,
+    val id: Long,
+    val html_url: String,
+    val userModel: UserModel,
+    val body: String
+)

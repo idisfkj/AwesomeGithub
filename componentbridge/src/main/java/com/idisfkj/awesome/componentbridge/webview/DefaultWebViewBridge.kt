@@ -9,7 +9,7 @@ import android.widget.Toast
  */
 class DefaultWebViewBridge : WebViewBridgeInterface {
 
-    override fun toWebViewActivity(context: Context, url: String) {
+    override fun toWebViewActivity(context: Context, url: String, requestUrl: String) {
         Toast.makeText(context, "toWebViewActivity: $url", Toast.LENGTH_LONG).show()
     }
 }

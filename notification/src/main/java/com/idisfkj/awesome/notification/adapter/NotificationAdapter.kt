@@ -23,7 +23,7 @@ class NotificationAdapter : BaseRecyclerViewAdapter() {
         return CommonRecyclerViewVH(
             parent,
             R.layout.notify_item_notification_layout,
-            NotificationVHVM(),
+            NotificationVHVM(parent.context),
             BR.vm
         )
     }

@@ -9,6 +9,6 @@ import com.idisfkj.awesome.componentbridge.BridgeInterface
  */
 interface WebViewBridgeInterface : BridgeInterface {
 
-    fun toWebViewActivity(context: Context, url: String)
+    fun toWebViewActivity(context: Context, url: String = "", requestUrl: String = "")
 
 }

@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@{vm.data.unread? @android:color/white: @color/color_transparent_5_black}"
+            android:onClick="@{() -> vm.contentClick()}"
             android:paddingStart="@dimen/horizontal_space"
             android:paddingTop="@dimen/normal_margin"
             android:paddingEnd="@dimen/horizontal_space">

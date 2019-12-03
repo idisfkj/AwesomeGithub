@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
  */
 object HttpClient {
 
-    private const val API_GITHUB_BASE_URL = "https://api.github.com"
+    const val API_GITHUB_BASE_URL = "https://api.github.com"
     const val GITHUB_BASE_URL = "https://github.com"
     private var sInstance: GithubService? = null
     private var gson: Gson? = null

@@ -46,4 +46,12 @@ interface GithubService {
     @GET("/search/repositories")
     suspend fun searchRepository(@QueryMap params: Map<String, String>): SearchModel
 
+    @GET("/{path}")
+    suspend fun getNotificationRequestUrl(
+        @Path(
+            value = "path",
+            encoded = true
+        ) path: String
+    ): NotificationRequestUrlModel
+
 }

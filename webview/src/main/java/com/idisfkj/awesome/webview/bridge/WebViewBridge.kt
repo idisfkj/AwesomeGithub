@@ -12,9 +12,10 @@ import com.idisfkj.awesome.componentbridge.webview.WebViewBridgeInterface
  */
 class WebViewBridge : WebViewBridgeInterface {
 
-    override fun toWebViewActivity(context: Context, url: String) {
-        ARouter.getInstance().build(ARouterPaths.PATH_WEBVIEW_WEBVIEW).with(bundleOf("url" to url))
-            .navigation(context)
+    override fun toWebViewActivity(context: Context, url: String, requestUrl: String) {
+        ARouter.getInstance().build(ARouterPaths.PATH_WEBVIEW_WEBVIEW).with(
+            bundleOf("url" to url, "requestUrl" to requestUrl)
+        ).navigation(context)
     }
 
 }
