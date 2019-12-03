@@ -102,6 +102,9 @@ dependencies {
     if (addSearch.toBoolean()) {
         implementation project(':search')
     }
+    if (addWebView.toBoolean()) {
+        implementation project(':webview')
+    }
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core

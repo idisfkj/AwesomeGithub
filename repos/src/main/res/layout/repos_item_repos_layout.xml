@@ -17,10 +17,11 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
+            android:onClick="@{() -> vm.contentClick()}"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_space"
-            android:layout_marginEnd="@dimen/horizontal_space"
-            android:layout_marginBottom="@dimen/vertical_space">
+            android:paddingStart="@dimen/horizontal_space"
+            android:paddingEnd="@dimen/horizontal_space"
+            android:paddingBottom="@dimen/vertical_space">
 
         <TextView
                 android:id="@+id/name"

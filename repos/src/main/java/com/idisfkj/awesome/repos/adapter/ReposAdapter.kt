@@ -25,7 +25,7 @@ class ReposAdapter : BaseRecyclerViewAdapter() {
         return CommonRecyclerViewVH<ReposItemReposLayoutBinding, ReposModel>(
             parent,
             R.layout.repos_item_repos_layout,
-            ReposVHVM(),
+            ReposVHVM(parent.context),
             BR.vm
         )
     }

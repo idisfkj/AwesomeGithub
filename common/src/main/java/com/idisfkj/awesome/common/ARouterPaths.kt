@@ -14,7 +14,7 @@ object ARouterPaths {
 
     const val PATH_USER_MAIN = "/user/main"
 
-    const val PATH_REPOS_REPOS= "/repos/repos"
+    const val PATH_REPOS_REPOS = "/repos/repos"
 
     const val PATH_FOLLOWERS_FOLLOWERS = "/followers/followers"
 
@@ -23,4 +23,6 @@ object ARouterPaths {
     const val PATH_NOTIFICATION_MAIN = "/notification/main"
 
     const val PATH_SEARCH_MAIN = "/search/main"
+
+    const val PATH_WEBVIEW_WEBVIEW = "/webview/webview"
 }

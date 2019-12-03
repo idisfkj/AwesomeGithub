@@ -2,6 +2,7 @@ package com.idisfkj.awesome.common.utils
 
 import android.text.TextWatcher
 import android.view.View
+import android.webkit.WebView
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -175,5 +176,16 @@ object BindingAdapter {
 
 
     // -------- SearchView end --------
+
+    // -------- WebView start --------
+
+    @JvmStatic
+    @BindingAdapter("url")
+    fun setWebViewUrl(webView: WebView, url: String) {
+        webView.loadUrl(url)
+    }
+
+    // -------- WebView end --------
+
 }
 

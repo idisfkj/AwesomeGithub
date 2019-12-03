@@ -17,6 +17,7 @@ import com.idisfkj.awesome.notification.bridge.NotificationBridge
 import com.idisfkj.awesome.repos.bridge.ReposBridge
 import com.idisfkj.awesome.search.bridge.SearchBridge
 import com.idisfkj.awesome.user.bridge.UserBridge
+import com.idisfkj.awesome.webview.bridge.WebViewBridge
 import timber.log.Timber
 
 /**
@@ -96,5 +97,6 @@ class App : Application() {
             .register(FollowingBridge::class.java)
             .register(NotificationBridge::class.java)
             .register(SearchBridge::class.java)
+            .register(WebViewBridge::class.java)
     }
 }
