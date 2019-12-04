@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.webview
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -10,6 +11,7 @@ import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.webview.databinding.WebviewActivityWebviewBinding
 import com.idisfkj.awesome.webview.repository.WebViewRepository
 import com.idisfkj.awesome.webview.vm.WebViewVM
+import kotlinx.android.synthetic.main.webview_activity_webview.*
 
 /**
  * Created by idisfkj on 2019-12-03.
@@ -37,6 +39,21 @@ class WebViewActivity : BaseActivity<WebviewActivityWebviewBinding, WebViewVM>()
         ARouter.getInstance().inject(this)
         viewModel.url.value = url
         viewModel.request(requestUrl)
+    }
+
+    override fun addObserver() {
+        super.addObserver()
+        viewModel.backClick.observe(this, Observer {
+            finish()
+        })
+    }
+
+    override fun onBackPressed() {
+        if (viewDataBinding.webView.canGoBack()) {
+            viewDataBinding.webView.goBack()
+            return
+        }
+        super.onBackPressed()
     }
 
 }

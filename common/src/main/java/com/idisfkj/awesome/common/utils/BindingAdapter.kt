@@ -1,5 +1,6 @@
 package com.idisfkj.awesome.common.utils
 
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import android.webkit.WebChromeClient
@@ -18,6 +19,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.idisfkj.awesome.common.R
+import com.idisfkj.awesome.common.navigation.CommonNavigationLayout
+import com.idisfkj.awesome.common.navigation.OnNavigationListener
 
 /**
  * Created by idisfkj on 2019-08-29.
@@ -184,7 +187,9 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter("url")
     fun setWebViewUrl(webView: WebView, url: String) {
-        webView.loadUrl(url)
+        if (!TextUtils.isEmpty(url)) {
+            webView.loadUrl(url)
+        }
     }
 
     @JvmStatic
@@ -201,5 +206,15 @@ object BindingAdapter {
 
     // -------- WebView end --------
 
+    // -------- CommonNavigationLayout start --------
+    @JvmStatic
+    @BindingAdapter("onNavigationListener")
+    fun setOnNavigationListener(
+        navigationLayout: CommonNavigationLayout,
+        listener: OnNavigationListener
+    ) {
+        navigationLayout.setNavigationListener(listener)
+    }
+    // -------- CommonNavigationLayout end --------
 }
 
