@@ -25,4 +25,6 @@ class NotificationRepository(private val service: GithubService) : BaseRepositor
             )
         )
     }
+
+    suspend fun markThreadRead(threadId: String) = service.markThreadRead(threadId)
 }

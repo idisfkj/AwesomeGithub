@@ -8,13 +8,15 @@ import com.idisfkj.awesome.basic.recyclerview.CommonRecyclerViewVH
 import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 import com.idisfkj.awesome.notification.BR
 import com.idisfkj.awesome.notification.R
+import com.idisfkj.awesome.notification.repository.NotificationRepository
 import com.idisfkj.awesome.notification.vm.NotificationVHVM
 
 /**
  * Created by idisfkj on 2019-11-28.
  * Email : idisfkj@gmail.com.
  */
-class NotificationAdapter : BaseRecyclerViewAdapter() {
+class NotificationAdapter(private val repository: NotificationRepository) :
+    BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,7 +25,7 @@ class NotificationAdapter : BaseRecyclerViewAdapter() {
         return CommonRecyclerViewVH(
             parent,
             R.layout.notify_item_notification_layout,
-            NotificationVHVM(parent.context),
+            NotificationVHVM(parent.context, repository),
             BR.vm
         )
     }

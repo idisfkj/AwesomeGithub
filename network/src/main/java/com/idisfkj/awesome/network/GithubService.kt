@@ -43,6 +43,9 @@ interface GithubService {
     @GET("/notifications")
     suspend fun getNotification(@QueryMap params: Map<String, String>): List<NotificationModel>
 
+    @PATCH("/notifications/threads/{thread_id}")
+    suspend fun markThreadRead(@Path("thread_id") threadId: String): Response<ResponseBody>
+
     @GET("/search/repositories")
     suspend fun searchRepository(@QueryMap params: Map<String, String>): SearchModel
 

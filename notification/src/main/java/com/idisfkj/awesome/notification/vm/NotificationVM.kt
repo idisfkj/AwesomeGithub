@@ -18,7 +18,7 @@ import timber.log.Timber
 class NotificationVM(private val repository: NotificationRepository) : BaseVM() {
 
     val isRefreshing = SingleLiveEvent<Boolean>()
-    private val mAdapter = NotificationAdapter()
+    private val mAdapter = NotificationAdapter(repository)
 
     override fun attach(savedInstanceState: Bundle?) {
         getNotification(false)
