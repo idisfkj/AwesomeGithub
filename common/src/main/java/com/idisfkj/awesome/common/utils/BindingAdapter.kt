@@ -2,7 +2,9 @@ package com.idisfkj.awesome.common.utils
 
 import android.text.TextWatcher
 import android.view.View
+import android.webkit.WebChromeClient
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -183,6 +185,18 @@ object BindingAdapter {
     @BindingAdapter("url")
     fun setWebViewUrl(webView: WebView, url: String) {
         webView.loadUrl(url)
+    }
+
+    @JvmStatic
+    @BindingAdapter("webViewClient")
+    fun setWebViewClient(webView: WebView, webViewClient: WebViewClient) {
+        webView.webViewClient = webViewClient
+    }
+
+    @JvmStatic
+    @BindingAdapter("webChromeClient")
+    fun setWebChromeClient(webView: WebView, webViewClient: WebChromeClient) {
+        webView.webChromeClient = webViewClient
     }
 
     // -------- WebView end --------
