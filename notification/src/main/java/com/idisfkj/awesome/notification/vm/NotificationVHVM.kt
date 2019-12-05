@@ -43,8 +43,8 @@ class NotificationVHVM(
             val response = repository.markThreadRead(threadId)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    data?.unread = false
                     unread.value = false
-                    executePendingBindings.value = true
                 }
             }
         }

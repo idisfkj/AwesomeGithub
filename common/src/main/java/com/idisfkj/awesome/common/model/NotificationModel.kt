@@ -10,7 +10,7 @@ data class NotificationModel(
     val repository: ReposModel,
     val subject: SubjectModel,
     val reason: String,
-    val unread: Boolean,
+    var unread: Boolean,
     val updated_at: String,
     val last_read_at: String,
     val url: String

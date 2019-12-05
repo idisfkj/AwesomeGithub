@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.notification.vm
 
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.live.SingleLiveEvent
@@ -15,10 +16,13 @@ import timber.log.Timber
  * Created by idisfkj on 2019-11-27.
  * Email: idisfkj@gmail.com.
  */
-class NotificationVM(private val repository: NotificationRepository) : BaseVM() {
+class NotificationVM(
+    private val repository: NotificationRepository,
+    outerLifecycle: Lifecycle
+) : BaseVM() {
 
     val isRefreshing = SingleLiveEvent<Boolean>()
-    private val mAdapter = NotificationAdapter(repository)
+    private val mAdapter = NotificationAdapter(repository, outerLifecycle)
 
     override fun attach(savedInstanceState: Bundle?) {
         getNotification(false)

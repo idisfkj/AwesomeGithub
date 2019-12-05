@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Lifecycle
 import com.idisfkj.awesome.basic.BaseRecyclerVM
 import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 
@@ -18,9 +19,20 @@ class CommonRecyclerViewVH<out VB : ViewDataBinding, out M : BaseRecyclerViewMod
     constructor(
         view: ViewGroup, @LayoutRes layoutId: Int,
         vm: BaseRecyclerVM<M>?,
-        variableId: Int
-    ) : super(LayoutInflater.from(view.context).inflate(layoutId, view, false), vm, variableId)
+        variableId: Int,
+        outerLifecycle: Lifecycle? = null
+    ) : super(
+        LayoutInflater.from(view.context).inflate(layoutId, view, false),
+        vm,
+        variableId,
+        outerLifecycle
+    )
 
-    constructor(view: View, vm: BaseRecyclerVM<M>?, variableId: Int) : super(view, vm, variableId)
+    constructor(
+        view: View,
+        vm: BaseRecyclerVM<M>?,
+        variableId: Int,
+        outerLifecycle: Lifecycle? = null
+    ) : super(view, vm, variableId, outerLifecycle)
 
 }

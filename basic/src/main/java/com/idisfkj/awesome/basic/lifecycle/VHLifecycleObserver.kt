@@ -16,12 +16,16 @@ class VHLifecycleObserver(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun create() {
-        lifecycleRegistry.currentState = Lifecycle.State.CREATED
+        if (outerLifecycle.currentState == Lifecycle.State.CREATED) {
+            lifecycleRegistry.currentState = Lifecycle.State.CREATED
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun start() {
-        lifecycleRegistry.currentState = Lifecycle.State.STARTED
+        if (outerLifecycle.currentState == Lifecycle.State.STARTED) {
+            lifecycleRegistry.currentState = Lifecycle.State.STARTED
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

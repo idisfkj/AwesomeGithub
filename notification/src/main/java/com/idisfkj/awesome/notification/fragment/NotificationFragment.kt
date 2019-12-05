@@ -20,7 +20,7 @@ class NotificationFragment :
     override fun getLayoutId(): Int = R.layout.notify_fragment_notification_layout
 
     override fun getViewModelInstance(): NotificationVM =
-        NotificationVM(NotificationRepository(HttpClient.getService()))
+        NotificationVM(NotificationRepository(HttpClient.getService()), lifecycle)
 
     override fun getViewModelClass(): Class<NotificationVM> = NotificationVM::class.java
 

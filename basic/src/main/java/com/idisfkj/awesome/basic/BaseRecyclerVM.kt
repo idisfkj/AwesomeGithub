@@ -1,7 +1,6 @@
 package com.idisfkj.awesome.basic
 
 import androidx.lifecycle.AndroidViewModel
-import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 import com.idisfkj.awesome.common.utils.CommonUtils
 
@@ -11,8 +10,6 @@ import com.idisfkj.awesome.common.utils.CommonUtils
  */
 abstract class BaseRecyclerVM<in T : BaseRecyclerViewModel> :
     AndroidViewModel(CommonUtils.getApp()) {
-
-    val executePendingBindings = SingleLiveEvent<Boolean>()
 
     abstract fun onBind(model: T?)
 }

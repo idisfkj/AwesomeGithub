@@ -3,6 +3,7 @@ package com.idisfkj.awesome.basic.recyclerview
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 
@@ -11,7 +12,7 @@ import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
  * Created by idisfkj on 2019-09-03.
  * Email : idisfkj@gmail.com.
  */
-abstract class BaseRecyclerViewAdapter :
+abstract class BaseRecyclerViewAdapter(private val outerLifecycle: Lifecycle? = null) :
     RecyclerView.Adapter<BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel>>() {
 
     private val mData = arrayListOf<BaseRecyclerViewModel>()
@@ -22,7 +23,7 @@ abstract class BaseRecyclerViewAdapter :
         parent: ViewGroup,
         viewType: Int
     ): BaseRecyclerViewVH<ViewDataBinding, BaseRecyclerViewModel> {
-        return CommonRecyclerViewVH(View(parent.context), null, 0)
+        return CommonRecyclerViewVH(View(parent.context), null, 0, outerLifecycle)
     }
 
     override fun onBindViewHolder(

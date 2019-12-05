@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.idisfkj.awesome.basic.BaseRecyclerVM
 import com.idisfkj.awesome.basic.lifecycle.VHLifecycleObserver
@@ -26,50 +25,48 @@ abstract class BaseRecyclerViewVH<out VB : ViewDataBinding, out M : BaseRecycler
     private var mVM: BaseRecyclerVM<M>? = null
     private var mVariableId: Int = 0
     private lateinit var mLifecycle: LifecycleRegistry
-    lateinit var outerLifecycle: LifecycleRegistry
+    private var mOuterLifecycle: Lifecycle? = null
 
     constructor(
         parent: ViewGroup, @LayoutRes layoutId: Int,
         vm: BaseRecyclerVM<M>?,
-        variableId: Int
+        variableId: Int,
+        outerLifecycle: Lifecycle? = null
     ) : super(
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
     ) {
-        init(vm, variableId)
+        init(vm, variableId, outerLifecycle)
     }
 
-    constructor(view: View, vm: BaseRecyclerVM<M>?, variableId: Int) : super(view) {
-        init(vm, variableId)
+    constructor(
+        view: View,
+        vm: BaseRecyclerVM<M>?,
+        variableId: Int,
+        outerLifecycle: Lifecycle? = null
+    ) : super(view) {
+        init(vm, variableId, outerLifecycle)
     }
 
     init {
         mViewDataBinding = DataBindingUtil.bind(itemView)
-        register()
     }
 
-    private fun init(vm: BaseRecyclerVM<M>?, variableId: Int) {
+    private fun init(vm: BaseRecyclerVM<M>?, variableId: Int, outerLifecycle: Lifecycle?) {
         mVM = vm
         mVariableId = variableId
-        mLifecycle.currentState = Lifecycle.State.STARTED
-        addObserve()
+        mOuterLifecycle = outerLifecycle
+        register()
     }
 
     private fun register() {
         mLifecycle = LifecycleRegistry(this)
-        mLifecycle.currentState = Lifecycle.State.CREATED
-//        lifecycle.addObserver(VHLifecycleObserver(lifecycle, mLifecycle))
-//        outerLifecycle.addObserver(VHLifecycleObserver(lifecycle, mLifecycle))
-        mViewDataBinding?.lifecycleOwner = this
-    }
-
-    private fun addObserve() {
-        mVM?.executePendingBindings?.observe(this, Observer {
-            mViewDataBinding?.executePendingBindings()
-        })
+        mOuterLifecycle?.let {
+            it.addObserver(VHLifecycleObserver(it, mLifecycle))
+            mViewDataBinding?.lifecycleOwner = this
+        }
     }
 
     open fun bind(data: BaseRecyclerViewModel?) {
-        mLifecycle.currentState = Lifecycle.State.RESUMED
         mViewDataBinding?.setVariable(mVariableId, mVM)
         @Suppress("UNCHECKED_CAST")
         mVM?.onBind(data as M?)
