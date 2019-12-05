@@ -11,7 +11,6 @@ import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.webview.databinding.WebviewActivityWebviewBinding
 import com.idisfkj.awesome.webview.repository.WebViewRepository
 import com.idisfkj.awesome.webview.vm.WebViewVM
-import kotlinx.android.synthetic.main.webview_activity_webview.*
 
 /**
  * Created by idisfkj on 2019-12-03.

@@ -2,7 +2,7 @@ package com.idisfkj.awesome.basic
 
 import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.common.utils.CommonUtils
 
 /**
@@ -11,7 +11,7 @@ import com.idisfkj.awesome.common.utils.CommonUtils
  */
 abstract class BaseVM : AndroidViewModel(CommonUtils.getApp()) {
 
-    val showLoading = MutableLiveData<Boolean>(false)
+    val showLoading = SingleLiveEvent<Boolean>()
 
     abstract fun attach(savedInstanceState: Bundle? = null)
 

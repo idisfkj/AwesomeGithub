@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.notification.vm
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import com.idisfkj.awesome.basic.BaseRecyclerVM
 import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.model.NotificationModel
@@ -8,7 +9,8 @@ import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.webview.WebViewBridgeInterface
 import com.idisfkj.awesome.notification.R
 import com.idisfkj.awesome.notification.repository.NotificationRepository
-import timber.log.Timber
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Created by idisfkj on 2019-11-28.
@@ -20,9 +22,11 @@ class NotificationVHVM(
 ) : BaseRecyclerVM<NotificationModel>() {
 
     var data: NotificationModel? = null
+    val unread = MutableLiveData<Boolean>()
 
     override fun onBind(model: NotificationModel?) {
         data = model
+        unread.value = data?.unread
     }
 
     fun getTypeFlagSrc(type: String): Int {
@@ -37,7 +41,12 @@ class NotificationVHVM(
     private fun markThreadRead(threadId: String) {
         request {
             val response = repository.markThreadRead(threadId)
-            Timber.d("markThreadRead: ${response.isSuccessful}")
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    unread.value = false
+                    executePendingBindings.value = true
+                }
+            }
         }
     }
 
