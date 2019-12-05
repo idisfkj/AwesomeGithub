@@ -22,10 +22,11 @@ import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 abstract class BaseRecyclerViewVH<out VB : ViewDataBinding, out M : BaseRecyclerViewModel> :
     RecyclerView.ViewHolder, LifecycleOwner {
 
-    private var mViewDataBinding: ViewDataBinding? = null
+    private var mViewDataBinding: VB? = null
     private var mVM: BaseRecyclerVM<M>? = null
     private var mVariableId: Int = 0
-    private lateinit var mLifecycleRegistry: LifecycleRegistry
+    private lateinit var mLifecycle: LifecycleRegistry
+    lateinit var outerLifecycle: LifecycleRegistry
 
     constructor(
         parent: ViewGroup, @LayoutRes layoutId: Int,
@@ -34,27 +35,30 @@ abstract class BaseRecyclerViewVH<out VB : ViewDataBinding, out M : BaseRecycler
     ) : super(
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
     ) {
-        mVM = vm
-        mVariableId = variableId
-        addObserve()
+        init(vm, variableId)
     }
 
     constructor(view: View, vm: BaseRecyclerVM<M>?, variableId: Int) : super(view) {
-        mVM = vm
-        mVariableId = variableId
-        addObserve()
+        init(vm, variableId)
     }
 
     init {
-        mViewDataBinding = DataBindingUtil.bind<VB>(itemView)
+        mViewDataBinding = DataBindingUtil.bind(itemView)
         register()
     }
 
+    private fun init(vm: BaseRecyclerVM<M>?, variableId: Int) {
+        mVM = vm
+        mVariableId = variableId
+        mLifecycle.currentState = Lifecycle.State.STARTED
+        addObserve()
+    }
+
     private fun register() {
-        mLifecycleRegistry = LifecycleRegistry(this)
-        mLifecycleRegistry.currentState = Lifecycle.State.CREATED
-        mLifecycleRegistry.currentState = Lifecycle.State.STARTED
-        lifecycle.addObserver(VHLifecycleObserver(lifecycle))
+        mLifecycle = LifecycleRegistry(this)
+        mLifecycle.currentState = Lifecycle.State.CREATED
+//        lifecycle.addObserver(VHLifecycleObserver(lifecycle, mLifecycle))
+//        outerLifecycle.addObserver(VHLifecycleObserver(lifecycle, mLifecycle))
         mViewDataBinding?.lifecycleOwner = this
     }
 
@@ -65,12 +69,12 @@ abstract class BaseRecyclerViewVH<out VB : ViewDataBinding, out M : BaseRecycler
     }
 
     open fun bind(data: BaseRecyclerViewModel?) {
-        mLifecycleRegistry.currentState = Lifecycle.State.RESUMED
+        mLifecycle.currentState = Lifecycle.State.RESUMED
         mViewDataBinding?.setVariable(mVariableId, mVM)
         @Suppress("UNCHECKED_CAST")
         mVM?.onBind(data as M?)
         mViewDataBinding?.executePendingBindings()
     }
 
-    override fun getLifecycle(): Lifecycle = mLifecycleRegistry
+    override fun getLifecycle(): Lifecycle = mLifecycle
 }
