@@ -23,7 +23,7 @@ class FollowersAdapter : BaseRecyclerViewAdapter() {
         return CommonRecyclerViewVH(
             parent,
             R.layout.followers_item_followers_layout,
-            FollowersVHVM(),
+            FollowersVHVM(parent.context),
             BR.vm
         )
     }

@@ -14,6 +14,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.contentClick()}"
             android:paddingStart="@dimen/horizontal_space"
             android:paddingEnd="@dimen/horizontal_space">
 

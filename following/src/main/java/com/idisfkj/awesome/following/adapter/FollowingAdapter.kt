@@ -8,7 +8,6 @@ import com.idisfkj.awesome.basic.recyclerview.CommonRecyclerViewVH
 import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 import com.idisfkj.awesome.following.BR
 import com.idisfkj.awesome.following.R
-import com.idisfkj.awesome.following.databinding.FollowingItemFollowingLayoutBinding
 import com.idisfkj.awesome.following.vm.FollowingVHVM
 
 /**
@@ -24,7 +23,7 @@ class FollowingAdapter : BaseRecyclerViewAdapter() {
         return CommonRecyclerViewVH(
             parent,
             R.layout.following_item_following_layout,
-            FollowingVHVM(),
+            FollowingVHVM(parent.context),
             BR.vm
         )
     }

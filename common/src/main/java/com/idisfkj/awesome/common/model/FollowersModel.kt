@@ -6,5 +6,6 @@ package com.idisfkj.awesome.common.model
  */
 data class FollowersModel(
     val login: String,
-    val avatar_url: String
+    val avatar_url: String,
+    val html_url: String
 ) : BaseRecyclerViewModel()
