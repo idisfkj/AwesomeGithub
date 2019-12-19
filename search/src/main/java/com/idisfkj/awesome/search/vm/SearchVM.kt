@@ -3,21 +3,24 @@ package com.idisfkj.awesome.search.vm
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
-import com.idisfkj.awesome.common.extensions.request
+import com.idisfkj.awesome.common.extensions.RequestCallback
+import com.idisfkj.awesome.common.model.ResponseError
+import com.idisfkj.awesome.common.model.ResponseSuccess
+import com.idisfkj.awesome.common.model.SearchModel
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
+import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.search.repository.SearchRepository
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * Created by idisfkj on 2019-12-01.
  * Email: idisfkj@gmail.com.
  */
-class SearchVM(private val repository: SearchRepository) : BaseVM() {
+class SearchVM : BaseVM() {
 
+    private val repository = SearchRepository(HttpClient.getService(), viewModelScope)
     private val mAdapter =
         BridgeProviders.instance.getBridge(ReposBridgeInterface::class.java).createReposAdapter()
 
@@ -29,17 +32,19 @@ class SearchVM(private val repository: SearchRepository) : BaseVM() {
 
     private fun search(query: String?) {
         query?.let {
-            showLoading.value = true
-            request(handler = CoroutineExceptionHandler { _, _ ->
-                showLoading.value = false
-            }) {
-                val result = repository.searchRepository(it)
-                withContext(Dispatchers.Main) {
+            repository.searchRepository(it, object : RequestCallback<SearchModel> {
+                override fun onSuccess(result: ResponseSuccess<SearchModel>) {
                     showLoading.value = false
                     getAdapter().clear()
-                    getAdapter().addData(result.items)
+                    result.data?.let { searchModel ->
+                        getAdapter().addData(searchModel.items)
+                    }
                 }
-            }
+
+                override fun onError(error: ResponseError) {
+                    showLoading.value = false
+                }
+            })
         }
     }
 

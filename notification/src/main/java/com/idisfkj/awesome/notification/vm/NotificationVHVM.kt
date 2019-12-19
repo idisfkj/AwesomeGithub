@@ -3,14 +3,16 @@ package com.idisfkj.awesome.notification.vm
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.idisfkj.awesome.basic.BaseRecyclerVM
-import com.idisfkj.awesome.common.extensions.request
+import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.model.NotificationModel
+import com.idisfkj.awesome.common.model.ResponseError
+import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.webview.WebViewBridgeInterface
 import com.idisfkj.awesome.notification.R
 import com.idisfkj.awesome.notification.repository.NotificationRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 /**
  * Created by idisfkj on 2019-11-28.
@@ -39,15 +41,16 @@ class NotificationVHVM(
     }
 
     private fun markThreadRead(threadId: String) {
-        request {
-            val response = repository.markThreadRead(threadId)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
+        repository.markThreadRead(threadId, object : RequestCallback<Response<ResponseBody>> {
+            override fun onSuccess(result: ResponseSuccess<Response<ResponseBody>>) {
+                if (result.data?.isSuccessful == true) {
                     data?.unread = false
                     unread.value = false
                 }
             }
-        }
+
+            override fun onError(error: ResponseError) {}
+        })
     }
 
     fun contentClick() {

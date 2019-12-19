@@ -4,9 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.idisfkj.awesome.basic.activity.BaseActivity
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.followers.databinding.FollowersActivityFollowersLayoutBinding
-import com.idisfkj.awesome.followers.repository.FollowersRepository
 import com.idisfkj.awesome.followers.vm.FollowersVM
-import com.idisfkj.awesome.network.HttpClient
 
 /**
  * Created by idisfkj on 2019-11-21.
@@ -19,8 +17,7 @@ class FollowersActivity : BaseActivity<FollowersActivityFollowersLayoutBinding, 
 
     override fun getLayoutId(): Int = R.layout.followers_activity_followers_layout
 
-    override fun getViewModelInstance(): FollowersVM =
-        FollowersVM(FollowersRepository(HttpClient.getService()))
+    override fun getViewModelInstance(): FollowersVM = FollowersVM()
 
     override fun getViewModelClass(): Class<FollowersVM> = FollowersVM::class.java
 }

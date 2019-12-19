@@ -6,21 +6,24 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
-import com.idisfkj.awesome.common.extensions.request
+import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
+import com.idisfkj.awesome.common.model.NotificationRequestUrlModel
+import com.idisfkj.awesome.common.model.ResponseError
+import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.navigation.OnNavigationListener
+import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.webview.repository.WebViewRepository
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * Created by idisfkj on 2019-12-03.
  * Email: idisfkj@gmail.com.
  */
-class WebViewVM(private val repository: WebViewRepository) : BaseVM() {
+class WebViewVM : BaseVM() {
 
+    private val repository = WebViewRepository(HttpClient.getService(), viewModelScope)
     val url = MutableLiveData<String>()
     val backClick = SingleLiveEvent<Boolean>()
 
@@ -30,14 +33,18 @@ class WebViewVM(private val repository: WebViewRepository) : BaseVM() {
 
     fun request(requestUrl: String) {
         if (!TextUtils.isEmpty(requestUrl)) {
-            request(handler = CoroutineExceptionHandler { _, _ ->
-                showLoading.value = false
-            }) {
-                val result = repository.getNotificationRequestUrl(requestUrl)
-                withContext(Dispatchers.Main) {
-                    url.value = result.html_url
-                }
-            }
+            repository.getNotificationRequestUrl(
+                requestUrl,
+                object : RequestCallback<NotificationRequestUrlModel> {
+                    override fun onSuccess(result: ResponseSuccess<NotificationRequestUrlModel>) {
+                        url.value = result.data?.html_url
+                    }
+
+                    override fun onError(error: ResponseError) {
+                        showLoading.value = false
+                    }
+
+                })
         }
     }
 

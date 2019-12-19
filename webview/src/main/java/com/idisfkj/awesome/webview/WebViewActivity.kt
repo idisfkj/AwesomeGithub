@@ -7,9 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.basic.activity.BaseActivity
 import com.idisfkj.awesome.common.ARouterPaths
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.webview.databinding.WebviewActivityWebviewBinding
-import com.idisfkj.awesome.webview.repository.WebViewRepository
 import com.idisfkj.awesome.webview.vm.WebViewVM
 
 /**
@@ -28,8 +26,7 @@ class WebViewActivity : BaseActivity<WebviewActivityWebviewBinding, WebViewVM>()
 
     override fun getLayoutId(): Int = R.layout.webview_activity_webview
 
-    override fun getViewModelInstance(): WebViewVM =
-        WebViewVM(WebViewRepository(HttpClient.getService()))
+    override fun getViewModelInstance(): WebViewVM = WebViewVM()
 
     override fun getViewModelClass(): Class<WebViewVM> = WebViewVM::class.java
 

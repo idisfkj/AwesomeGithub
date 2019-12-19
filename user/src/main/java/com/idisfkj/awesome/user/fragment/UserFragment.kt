@@ -9,11 +9,9 @@ import com.idisfkj.awesome.componentbridge.followers.FollowersBridgeInterface
 import com.idisfkj.awesome.componentbridge.following.FollowingBridgeInterface
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.user.BR
 import com.idisfkj.awesome.user.R
 import com.idisfkj.awesome.user.databinding.UserFragmentUserBinding
-import com.idisfkj.awesome.user.repository.UserRepository
 import com.idisfkj.awesome.user.vm.UserInfoVM
 import com.idisfkj.awesome.user.vm.UserVM
 import timber.log.Timber
@@ -28,8 +26,7 @@ class UserFragment : BaseFragment<UserFragmentUserBinding, UserVM>() {
 
     override fun getLayoutId(): Int = R.layout.user_fragment_user
 
-    override fun getViewModelInstance(): UserVM =
-        UserVM(UserRepository(HttpClient.getService()), UserInfoVM())
+    override fun getViewModelInstance(): UserVM = UserVM(UserInfoVM())
 
     override fun getViewModelClass(): Class<UserVM> = UserVM::class.java
 

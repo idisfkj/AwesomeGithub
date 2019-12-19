@@ -1,16 +1,24 @@
 package com.idisfkj.awesome.repos.repository
 
 import com.idisfkj.awesome.basic.repository.BaseRepository
+import com.idisfkj.awesome.common.extensions.RequestCallback
+import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.model.ReposModel
 import com.idisfkj.awesome.network.GithubService
+import kotlinx.coroutines.CoroutineScope
 
 /**
  * Created by idisfkj on 2019-11-20.
  * Email : idisfkj@gmail.com.
  */
-class ReposRepository(private val service: GithubService) : BaseRepository {
+class ReposRepository(
+    private val service: GithubService,
+    scope: CoroutineScope
+) : BaseRepository(scope) {
 
-    suspend fun getRepos(): List<ReposModel> {
-        return service.getPros(mapOf("visibility" to "all", "sort" to "pushed"))
+    fun getRepos(callback: RequestCallback<List<ReposModel>>) {
+        request(scope, callback) {
+            service.getPros(mapOf("visibility" to "all", "sort" to "pushed"))
+        }
     }
 }

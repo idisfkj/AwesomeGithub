@@ -5,9 +5,7 @@ import com.idisfkj.awesome.basic.fragment.BaseFragment
 import com.idisfkj.awesome.home.BR
 import com.idisfkj.awesome.home.R
 import com.idisfkj.awesome.home.databinding.HomeFragmentHomeBinding
-import com.idisfkj.awesome.home.fragment.repository.HomeRepository
 import com.idisfkj.awesome.home.fragment.vm.HomeVM
-import com.idisfkj.awesome.network.HttpClient
 import timber.log.Timber
 
 /**
@@ -20,8 +18,7 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeVM>() {
 
     override fun getLayoutId(): Int = R.layout.home_fragment_home
 
-    override fun getViewModelInstance(): HomeVM =
-        HomeVM(HomeRepository(HttpClient.getService()))
+    override fun getViewModelInstance(): HomeVM = HomeVM()
 
     override fun getViewModelClass(): Class<HomeVM> = HomeVM::class.java
 

@@ -1,21 +1,24 @@
 package com.idisfkj.awesome.following.vm
 
 import android.os.Bundle
+import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
-import com.idisfkj.awesome.common.extensions.request
+import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
+import com.idisfkj.awesome.common.model.FollowersModel
+import com.idisfkj.awesome.common.model.ResponseError
+import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.following.adapter.FollowingAdapter
 import com.idisfkj.awesome.following.repository.FollowingRepository
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.idisfkj.awesome.network.HttpClient
 
 /**
  * Created by idisfkj on 2019-11-26.
  * Email: idisfkj@gmail.com.
  */
-class FollowingVM(private val repository: FollowingRepository) : BaseVM() {
+class FollowingVM : BaseVM() {
 
+    private val repository = FollowingRepository(HttpClient.getService(), viewModelScope)
     val adapter = FollowingAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
 
@@ -25,21 +28,23 @@ class FollowingVM(private val repository: FollowingRepository) : BaseVM() {
 
     private fun getFollowers(refresh: Boolean) {
         if (!refresh) showLoading.value = true
-        request(handler = CoroutineExceptionHandler { _, _ ->
-            showLoading.value = false
-            isRefreshing.value = false
-        }) {
-            val list = repository.getFollowing()
-            withContext(Dispatchers.Main) {
+        repository.getFollowing(object : RequestCallback<List<FollowersModel>> {
+            override fun onSuccess(result: ResponseSuccess<List<FollowersModel>>) {
                 isRefreshing.value = false
                 showLoading.value = false
                 if (refresh) {
                     adapter.clear()
                     adapter.notifyDataSetChanged()
                 }
-                adapter.addData(list)
+                result.data?.let { adapter.addData(it) }
             }
-        }
+
+            override fun onError(error: ResponseError) {
+                showLoading.value = false
+                isRefreshing.value = false
+            }
+
+        })
     }
 
     fun onRefreshListener() {

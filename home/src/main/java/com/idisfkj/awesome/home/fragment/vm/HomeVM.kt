@@ -2,23 +2,25 @@ package com.idisfkj.awesome.home.fragment.vm
 
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
-import com.idisfkj.awesome.common.extensions.request
+import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
+import com.idisfkj.awesome.common.model.ResponseError
+import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.model.TYPE_INFO
 import com.idisfkj.awesome.common.model.UserModel
 import com.idisfkj.awesome.home.fragment.adapter.HomeRecyclerViewAdapter
 import com.idisfkj.awesome.home.fragment.repository.HomeRepository
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.idisfkj.awesome.network.HttpClient
 
 /**
  * Created by idisfkj on 2019-09-02.
  * Email : idisfkj@gmail.com.
  */
-class HomeVM(private val repository: HomeRepository) : BaseVM() {
+class HomeVM : BaseVM() {
 
+    private val repository = HomeRepository(HttpClient.getService(), viewModelScope)
     val userData = MutableLiveData<UserModel>()
     private val mAdapter = HomeRecyclerViewAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
@@ -29,23 +31,26 @@ class HomeVM(private val repository: HomeRepository) : BaseVM() {
 
     private fun getUser(refresh: Boolean) {
         if (!refresh) showLoading.value = true
-        request(handler = CoroutineExceptionHandler { _, _ ->
-            showLoading.value = false
-            isRefreshing.value = false
-        }) {
-            val userModel = repository.getUser()
-            withContext(Dispatchers.Main) {
+        repository.getUser(object : RequestCallback<UserModel> {
+            override fun onSuccess(result: ResponseSuccess<UserModel>) {
                 showLoading.value = false
                 isRefreshing.value = false
-                val userInfo = userModel.copy()
-                userInfo.itemType = TYPE_INFO
                 if (refresh) {
                     mAdapter.clear()
-                    mAdapter.notifyDataSetChanged()
                 }
-                mAdapter.addData(userInfo)
+                result.data?.let {
+                    val userInfo = it.copy()
+                    userInfo.itemType = TYPE_INFO
+                    mAdapter.addData(userInfo)
+                }
             }
-        }
+
+            override fun onError(error: ResponseError) {
+                showLoading.value = false
+                isRefreshing.value = false
+            }
+
+        })
     }
 
     fun createAdapter() = mAdapter
