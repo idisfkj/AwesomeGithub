@@ -11,7 +11,7 @@ import timber.log.Timber
  */
 fun <T> request(
     scope: CoroutineScope,
-    callback: RequestCallback<T>?,
+    callback: RequestCallback<T>? = null,
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
     handler: CoroutineExceptionHandler? = null,
     block: suspend CoroutineScope.() -> T

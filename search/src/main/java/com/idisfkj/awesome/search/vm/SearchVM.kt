@@ -32,6 +32,7 @@ class SearchVM : BaseVM() {
 
     private fun search(query: String?) {
         query?.let {
+            showLoading.value = true
             repository.searchRepository(it, object : RequestCallback<SearchModel> {
                 override fun onSuccess(result: ResponseSuccess<SearchModel>) {
                     showLoading.value = false

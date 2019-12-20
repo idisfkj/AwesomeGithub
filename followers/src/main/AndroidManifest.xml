@@ -1,2 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.idisfkj.awesome.followers" />
+        package="com.idisfkj.awesome.followers">
+
+    <application>
+
+        <activity
+                android:name=".FollowersActivity"
+                android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>
