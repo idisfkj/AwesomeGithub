@@ -1,4 +1,11 @@
 # AwesomeGithub
+[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[![Platform](https://img.shields.io/badge/platform-android-lightgrey.svg)](https://www.android.com/)
+[![Language](https://img.shields.io/badge/language-kotlin-ff4081.svg)](https://kotlinlang.org/)
+[![Author](https://img.shields.io/badge/Author-idisfkj-orange.svg)](https://idisfkj.github.io/archives/)
+[![Rating](https://img.shields.io/chrome-web-store/stars/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
+
 Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行开发，项目架构是基于JetPack&DataBinding的MVVM；同时支持模块开发，使用Arouter进行组件间的跳转；网络框架使用了Retrofit&Coroutine。项目持续更新中，为了防止走失，请做好start准备！😊😊
 
 ![](https://github.com/idisfkj/AwesomeGithub/raw/master/images/awesome_github.png)
@@ -32,6 +39,14 @@ Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行�
 #### ARouter
 
 [ARouter](https://github.com/alibaba/ARouter)
+
+#### Retrofit
+
+[Retrofit](https://square.github.io/retrofit/)
+
+#### Glide
+
+[Glide](https://github.com/bumptech/glide)
 
 ## Other
 
