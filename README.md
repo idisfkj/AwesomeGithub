@@ -10,6 +10,9 @@ Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行�
 
 ![](https://github.com/idisfkj/AwesomeGithub/raw/master/images/awesome_github.png)
 
+## Description
+[AwesomeGithub组件化探索之旅](https://www.rousetime.com/2020/01/03/AwesomeGithub%E7%BB%84%E4%BB%B6%E5%8C%96%E6%8E%A2%E7%B4%A2%E4%B9%8B%E6%97%85/)
+
 ## Technology
 
 #### Kotlin Coroutine
