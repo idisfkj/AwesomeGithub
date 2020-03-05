@@ -10,9 +10,10 @@ Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行�
 
 ![](https://github.com/idisfkj/AwesomeGithub/raw/master/images/awesome_github.png)
 
-## Doing
+## Flutter Github
+除了Android原生版本，以下是基于Flutter的跨平台版本。正在持续更新中...
 
-**AwesomeGithub Flutter**
+[Flutter Github](https://github.com/idisfkj/flutter_github)
 
 ## Description
 [AwesomeGithub组件化探索之旅](https://mp.weixin.qq.com/s?__biz=MzIzNTc5NDY4Nw==&mid=2247484214&idx=1&sn=d37e21fd82fb77ccbccd292c3d52ccbe&chksm=e8e0faa6df9773b061e973c070dd72a7830e0afc8b21ba26d07718709b635e50f86a24719fb3&token=1496474879&lang=zh_CN#rd)
