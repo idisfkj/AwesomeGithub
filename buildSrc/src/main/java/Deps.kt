@@ -35,6 +35,8 @@ object Versions {
     const val gson = "2.8.5"
     const val arouter_api = "1.5.0"
     const val arouter_compiler = "1.2.2"
+
+    const val dagger = "2.28"
 }
 
 object Deps {
@@ -77,8 +79,8 @@ object Deps {
     const val arouter_api = "com.alibaba:arouter-api:${Versions.arouter_api}"
     const val arouter_compiler = "com.alibaba:arouter-compiler:${Versions.arouter_compiler}"
 
-    const val dagger = "com.google.dagger:dagger:2.28"
-    const val dagger_compiler = "com.google.dagger:dagger-compiler:2.28"
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    const val dagger_compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
 
     val addRepos: (handler: RepositoryHandler) -> Unit = {
         it.google()
