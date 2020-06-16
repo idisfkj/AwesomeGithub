@@ -77,6 +77,9 @@ object Deps {
     const val arouter_api = "com.alibaba:arouter-api:${Versions.arouter_api}"
     const val arouter_compiler = "com.alibaba:arouter-compiler:${Versions.arouter_compiler}"
 
+    const val dagger = "com.google.dagger:dagger:2.28"
+    const val dagger_compiler = "com.google.dagger:dagger-compiler:2.28"
+
     val addRepos: (handler: RepositoryHandler) -> Unit = {
         it.google()
         it.jcenter()

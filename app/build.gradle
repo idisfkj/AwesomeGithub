@@ -140,6 +140,10 @@ dependencies {
     implementation Deps.arouter_api
     kapt Deps.arouter_compiler
 
+    //dagger
+    implementation Deps.dagger
+    kapt Deps.dagger_compiler
+
     testImplementation Deps.junit
     androidTestImplementation Deps.runner
     androidTestImplementation Deps.espresso_core
