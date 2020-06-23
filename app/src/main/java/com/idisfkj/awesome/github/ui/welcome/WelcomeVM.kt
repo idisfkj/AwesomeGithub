@@ -9,12 +9,13 @@ import com.idisfkj.awesome.common.WelcomeToLogin
 import com.idisfkj.awesome.common.WelcomeToMain
 import com.idisfkj.awesome.common.utils.CommonUtils
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-08-13.
  * Email : idisfkj@gmail.com.
  */
-class WelcomeVM : BaseVM() {
+class WelcomeVM @Inject constructor() : BaseVM() {
 
     val toPage = MutableLiveData<ToPageStatus>(PageDefault)
     private var mTimer: Timer? = null

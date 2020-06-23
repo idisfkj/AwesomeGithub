@@ -12,6 +12,7 @@ import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.followers.bridge.FollowersBridge
 import com.idisfkj.awesome.following.bridge.FollowingBridge
 import com.idisfkj.awesome.github.bridge.AppBridge
+import com.idisfkj.awesome.github.di.DaggerAppComponent
 import com.idisfkj.awesome.home.bridge.HomeBridge
 import com.idisfkj.awesome.notification.bridge.NotificationBridge
 import com.idisfkj.awesome.repos.bridge.ReposBridge
@@ -49,6 +50,8 @@ class App : Application() {
 
         }
     }
+
+    val appComponent by lazy { DaggerAppComponent.factory().create(this) }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

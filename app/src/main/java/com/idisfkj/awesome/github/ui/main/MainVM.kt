@@ -2,7 +2,6 @@ package com.idisfkj.awesome.github.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.viewpager.widget.PagerAdapter
@@ -13,12 +12,13 @@ import com.idisfkj.awesome.github.R
 import com.idisfkj.awesome.login.IssuesRequestModel
 import com.idisfkj.awesome.network.HttpClient
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
-class MainVM(private val fm: FragmentManager) : BaseVM() {
+class MainVM @Inject constructor() : BaseVM() {
 
     companion object {
         private const val HOME_POS = 0
@@ -26,7 +26,8 @@ class MainVM(private val fm: FragmentManager) : BaseVM() {
         private const val USER_POS = 2
     }
 
-    private val mMainViewPagerAdapter by lazy { MainViewPagerAdapter(fm) }
+    @Inject
+    lateinit var mMainViewPagerAdapter: MainViewPagerAdapter
     private var mBackTime = 0L
     private var mBackIntervalTime = 2500L
     val selectedPosition = MutableLiveData<Int>(HOME_POS)
