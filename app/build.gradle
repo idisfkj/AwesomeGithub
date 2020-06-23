@@ -108,6 +108,7 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
     implementation Deps.kotlin_core
+    implementation Deps.fragment_ktx
 
     implementation Deps.constraint_layout
     implementation Deps.material

@@ -25,6 +25,15 @@ android {
         enabled true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,6 +47,7 @@ dependencies {
     implementation project(':common')
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_core
+    implementation Deps.fragment_ktx
 
     api Deps.appcompat
     api Deps.material
@@ -50,6 +60,10 @@ dependencies {
 
     //timber
     implementation Deps.timber
+
+    //dagger
+    implementation Deps.dagger
+    kapt Deps.dagger_compiler
 }
 
 repositories {

@@ -1,4 +1,5 @@
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import sun.misc.Version
 import java.net.URI
 
 object Versions {
@@ -11,6 +12,8 @@ object Versions {
     const val gradle = "3.4.2"
     const val kotlin = "1.3.50"
     const val core_ktx = "1.0.2"
+    const val fragment_ktx = "1.2.5"
+    const val viewmodel_ktx = "2.2.0"
 
     const val appcompat = "1.0.2"
     const val junit = "4.12"
@@ -44,6 +47,8 @@ object Deps {
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlin_core = "androidx.core:core-ktx:${Versions.core_ktx}"
+    const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragment_ktx}"
+    const val viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel_ktx}"
 
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val junit = "junit:junit:${Versions.junit}"
