@@ -6,13 +6,15 @@ import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.webview.DefaultWebViewBridge
+import com.idisfkj.awesome.notification.di.DaggerAppComponent
+import com.idisfkj.awesome.notification.fragment.di.NotificationFragmentComponent
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-11-27.
  * Email: idisfkj@gmail.com.
  */
-class NotificationApp : Application() {
+class NotificationApp : Application(), NotificationFragmentComponentFactory {
 
     override fun onCreate() {
         super.onCreate()
@@ -38,4 +40,7 @@ class NotificationApp : Application() {
         }
         ARouter.init(this)
     }
+
+    override fun notificationFragmentComponentFactory(): NotificationFragmentComponent.Factory =
+        DaggerAppComponent.factory().create(this).notificationFragmentComponent()
 }

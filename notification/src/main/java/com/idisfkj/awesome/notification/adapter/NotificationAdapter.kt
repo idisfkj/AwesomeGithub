@@ -11,12 +11,13 @@ import com.idisfkj.awesome.notification.BR
 import com.idisfkj.awesome.notification.R
 import com.idisfkj.awesome.notification.repository.NotificationRepository
 import com.idisfkj.awesome.notification.vm.NotificationVHVM
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-28.
  * Email : idisfkj@gmail.com.
  */
-class NotificationAdapter(
+class NotificationAdapter @Inject constructor(
     private val repository: NotificationRepository,
     private val outerLifecycle: Lifecycle
 ) : BaseRecyclerViewAdapter(outerLifecycle) {

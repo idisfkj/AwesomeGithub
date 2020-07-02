@@ -5,14 +5,17 @@ import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.model.NotificationModel
 import com.idisfkj.awesome.network.GithubService
+import com.idisfkj.awesome.notification.fragment.di.scope.NotificationScope
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.ResponseBody
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-27.
  * Email: idisfkj@gmail.com.
  */
-class NotificationRepository(
+@NotificationScope
+class NotificationRepository @Inject constructor(
     private val service: GithubService,
     scope: CoroutineScope
 ) : BaseRepository(scope) {

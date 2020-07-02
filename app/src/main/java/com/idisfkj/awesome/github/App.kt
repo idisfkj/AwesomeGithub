@@ -18,6 +18,7 @@ import com.idisfkj.awesome.github.ui.welcome.di.WelcomeComponent
 import com.idisfkj.awesome.home.bridge.HomeBridge
 import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
 import com.idisfkj.awesome.notification.bridge.NotificationBridge
+import com.idisfkj.awesome.notification.fragment.di.NotificationFragmentComponent
 import com.idisfkj.awesome.repos.bridge.ReposBridge
 import com.idisfkj.awesome.search.bridge.SearchBridge
 import com.idisfkj.awesome.user.bridge.UserBridge
@@ -114,5 +115,7 @@ class App : Application(), AppComponentFactory {
     override fun userFragmentComponentFactory(): UserFragmentComponent.Factory = appComponent.userFragmentComponent()
 
     override fun homeFragmentComponentFactory(): HomeFragmentComponent.Factory = appComponent.homeFragmentComponent()
+
+    override fun notificationFragmentComponentFactory(): NotificationFragmentComponent.Factory = appComponent.notificationFragmentComponent()
 
 }
