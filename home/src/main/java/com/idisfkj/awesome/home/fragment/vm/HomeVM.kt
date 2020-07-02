@@ -17,10 +17,12 @@ import javax.inject.Inject
  * Created by idisfkj on 2019-09-02.
  * Email : idisfkj@gmail.com.
  */
-class HomeVM @Inject constructor(private val repository: HomeRepository) : BaseVM() {
+class HomeVM @Inject constructor(
+    private val repository: HomeRepository,
+    private val adapter: HomeRecyclerViewAdapter
+) : BaseVM() {
 
     val userData = MutableLiveData<UserModel>()
-    private val mAdapter = HomeRecyclerViewAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
 
     override fun attach(savedInstanceState: Bundle?) {
@@ -34,12 +36,12 @@ class HomeVM @Inject constructor(private val repository: HomeRepository) : BaseV
                 showLoading.value = false
                 isRefreshing.value = false
                 if (refresh) {
-                    mAdapter.clear()
+                    adapter.clear()
                 }
                 result.data?.let {
                     val userInfo = it.copy()
                     userInfo.itemType = TYPE_INFO
-                    mAdapter.addData(userInfo)
+                    adapter.addData(userInfo)
                 }
             }
 
@@ -51,7 +53,7 @@ class HomeVM @Inject constructor(private val repository: HomeRepository) : BaseV
         })
     }
 
-    fun createAdapter() = mAdapter
+    fun createAdapter() = adapter
 
     fun onRefreshListener() {
         isRefreshing.value = true

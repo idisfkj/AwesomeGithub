@@ -12,12 +12,13 @@ import com.idisfkj.awesome.home.BR
 import com.idisfkj.awesome.home.R
 import com.idisfkj.awesome.home.databinding.HomeItemUserInfoLayoutBinding
 import com.idisfkj.awesome.home.fragment.vm.HomeUserInfoVM
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-09-03.
  * Email : idisfkj@gmail.com.
  */
-class HomeRecyclerViewAdapter : BaseRecyclerViewAdapter() {
+class HomeRecyclerViewAdapter @Inject constructor() : BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
