@@ -39,6 +39,7 @@ dependencies {
     api Deps.retrofit_gson
     api Deps.okhttp_logging_interceptor
     api Deps.retrofit_adapter_rxjava2
+    kapt Deps.dagger_compiler
 }
 
 repositories {
