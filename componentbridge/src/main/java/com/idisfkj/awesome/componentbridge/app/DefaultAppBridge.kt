@@ -20,4 +20,6 @@ class DefaultAppBridge : AppBridgeInterface {
     override fun setAccessToken(accessToken: String?) {
 
     }
+
+    override fun getHomeFragmentComponent(): Any = Any()
 }

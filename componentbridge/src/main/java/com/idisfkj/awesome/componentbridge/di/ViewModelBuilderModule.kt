@@ -1,4 +1,4 @@
-package com.idisfkj.awesome.github.di
+package com.idisfkj.awesome.componentbridge.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +10,7 @@ import javax.inject.Provider
 import kotlin.reflect.KClass
 
 /**
- * Created by idisfkj on 2020/6/16.
+ * Created by idisfkj on 2020/6/24.
  * Email: idisfkj@gmail.com.
  */
 @Module

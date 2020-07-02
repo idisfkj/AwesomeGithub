@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
 
 def getProperties(String key) {
@@ -43,6 +45,10 @@ dependencies {
 
     //timber
     api Deps.timber
+
+    // dagger
+    api Deps.dagger
+    kapt Deps.dagger_compiler
 }
 
 repositories {
