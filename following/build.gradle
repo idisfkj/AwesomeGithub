@@ -17,7 +17,7 @@ android {
 
     resourcePrefix "following_"
     defaultConfig {
-        if (!addHome.toBoolean()) {
+        if (!addFollowing.toBoolean()) {
             applicationId "com.idisfkj.awesome.following"
         }
         minSdkVersion Versions.min_sdk
