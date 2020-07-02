@@ -1,7 +1,7 @@
 package com.idisfkj.awesome.github.ui.main.di
 
 import androidx.lifecycle.ViewModel
-import com.idisfkj.awesome.github.di.ViewModelKey
+import com.idisfkj.awesome.componentbridge.di.ViewModelKey
 import com.idisfkj.awesome.github.ui.main.MainVM
 import dagger.Binds
 import dagger.Module

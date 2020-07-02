@@ -90,7 +90,7 @@ class App : Application() {
         BridgeProviders.instance.register(AppBridge::class.java, object : Factory {
             override fun <T : BridgeInterface> create(bridgeClazz: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return AppBridge() as T
+                return AppBridge(this@App) as T
             }
         })
             .register(HomeBridge::class.java)

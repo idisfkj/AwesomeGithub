@@ -6,12 +6,13 @@ import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.model.UserModel
 import com.idisfkj.awesome.network.GithubService
 import kotlinx.coroutines.CoroutineScope
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-09-02.
  * Email : idisfkj@gmail.com.
  */
-class HomeRepository(
+class HomeRepository @Inject constructor(
     private val service: GithubService,
     scope: CoroutineScope
 ) : BaseRepository(scope) {

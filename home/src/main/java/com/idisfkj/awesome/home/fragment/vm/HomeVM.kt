@@ -2,7 +2,6 @@ package com.idisfkj.awesome.home.fragment.vm
 
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
@@ -12,15 +11,14 @@ import com.idisfkj.awesome.common.model.TYPE_INFO
 import com.idisfkj.awesome.common.model.UserModel
 import com.idisfkj.awesome.home.fragment.adapter.HomeRecyclerViewAdapter
 import com.idisfkj.awesome.home.fragment.repository.HomeRepository
-import com.idisfkj.awesome.network.HttpClient
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-09-02.
  * Email : idisfkj@gmail.com.
  */
-class HomeVM : BaseVM() {
+class HomeVM @Inject constructor(private val repository: HomeRepository) : BaseVM() {
 
-    private val repository = HomeRepository(HttpClient.getService(), viewModelScope)
     val userData = MutableLiveData<UserModel>()
     private val mAdapter = HomeRecyclerViewAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
