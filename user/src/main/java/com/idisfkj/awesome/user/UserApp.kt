@@ -6,13 +6,15 @@ import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.DefaultReposBridge
+import com.idisfkj.awesome.user.di.DaggerAppComponent
+import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserApp : Application() {
+class UserApp : Application(), UserFragmentComponentFactory {
 
     override fun onCreate() {
         super.onCreate()
@@ -38,4 +40,6 @@ class UserApp : Application() {
         }
         ARouter.init(this)
     }
+
+    override fun userFragmentComponentFactory(): UserFragmentComponent.Factory = DaggerAppComponent.factory().create(this).userFragmentComponent()
 }

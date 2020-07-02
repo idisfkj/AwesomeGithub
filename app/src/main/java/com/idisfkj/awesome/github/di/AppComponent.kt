@@ -6,6 +6,7 @@ import com.idisfkj.awesome.github.ui.main.di.MainComponent
 import com.idisfkj.awesome.github.ui.welcome.di.WelcomeComponent
 import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
 import com.idisfkj.awesome.network.di.NetworkModule
+import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -36,13 +37,16 @@ interface AppComponent {
 
     fun homeFragmentComponent(): HomeFragmentComponent.Factory
 
+    fun userFragmentComponent(): UserFragmentComponent.Factory
+
 }
 
 @Module(
     subcomponents = [
         WelcomeComponent::class,
         MainComponent::class,
-        HomeFragmentComponent::class
+        HomeFragmentComponent::class,
+        UserFragmentComponent::class
     ]
 )
 object SubComponentModule

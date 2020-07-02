@@ -7,12 +7,15 @@ import com.idisfkj.awesome.common.UserToFollowing
 import com.idisfkj.awesome.common.UserToRepos
 import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.common.model.UserModel
+import com.idisfkj.awesome.user.fragment.di.scope.UserScope
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserInfoVM : BaseRecyclerVM<UserModel>() {
+@UserScope
+class UserInfoVM @Inject constructor() : BaseRecyclerVM<UserModel>() {
 
     var data: UserModel? = null
     var navigate: SingleLiveEvent<ToPageStatus> = SingleLiveEvent()

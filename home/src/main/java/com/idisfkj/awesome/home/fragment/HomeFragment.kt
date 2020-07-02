@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.idisfkj.awesome.basic.fragment.BaseDaggerFragment
-import com.idisfkj.awesome.componentbridge.di.AppComponentFactory
 import com.idisfkj.awesome.home.BR
-import com.idisfkj.awesome.home.HomeApp
+import com.idisfkj.awesome.home.HomeFragmentComponentFactory
 import com.idisfkj.awesome.home.R
 import com.idisfkj.awesome.home.databinding.HomeFragmentHomeBinding
-import com.idisfkj.awesome.home.di.AppComponent
 import com.idisfkj.awesome.home.fragment.di.HomeFragmentProviderModule
 import com.idisfkj.awesome.home.fragment.vm.HomeVM
 import timber.log.Timber
@@ -36,7 +34,7 @@ class HomeFragment : BaseDaggerFragment<HomeFragmentHomeBinding, HomeVM>() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        ((requireActivity().application as AppComponentFactory<*>).create() as AppComponent).homeFragmentComponent()
+        (requireActivity().application as HomeFragmentComponentFactory).homeFragmentComponentFactory()
             .create(HomeFragmentProviderModule(lifecycleScope))
             .inject(this)
         return super.onCreateView(inflater, container, savedInstanceState)

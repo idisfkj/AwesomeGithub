@@ -7,19 +7,21 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.CommonUtils
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.BridgeInterface
-import com.idisfkj.awesome.componentbridge.di.AppComponentFactory
 import com.idisfkj.awesome.componentbridge.factory.Factory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.followers.bridge.FollowersBridge
 import com.idisfkj.awesome.following.bridge.FollowingBridge
 import com.idisfkj.awesome.github.bridge.AppBridge
-import com.idisfkj.awesome.github.di.AppComponent
 import com.idisfkj.awesome.github.di.DaggerAppComponent
+import com.idisfkj.awesome.github.ui.main.di.MainComponent
+import com.idisfkj.awesome.github.ui.welcome.di.WelcomeComponent
 import com.idisfkj.awesome.home.bridge.HomeBridge
+import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
 import com.idisfkj.awesome.notification.bridge.NotificationBridge
 import com.idisfkj.awesome.repos.bridge.ReposBridge
 import com.idisfkj.awesome.search.bridge.SearchBridge
 import com.idisfkj.awesome.user.bridge.UserBridge
+import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
 import com.idisfkj.awesome.webview.bridge.WebViewBridge
 import timber.log.Timber
 
@@ -27,7 +29,7 @@ import timber.log.Timber
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
-class App : Application(), AppComponentFactory<AppComponent> {
+class App : Application(), AppComponentFactory {
 
     companion object {
         var AUTHORIZATION_BASIC: String? = null
@@ -52,6 +54,8 @@ class App : Application(), AppComponentFactory<AppComponent> {
 
         }
     }
+
+    private val appComponent by lazy { DaggerAppComponent.factory().create(this) }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -103,6 +107,12 @@ class App : Application(), AppComponentFactory<AppComponent> {
             .register(WebViewBridge::class.java)
     }
 
-    override fun create(): AppComponent = DaggerAppComponent.factory().create(this)
+    override fun mainComponentFactory(): MainComponent.Factory = appComponent.mainComponent()
+
+    override fun welcomeComponentFactory(): WelcomeComponent.Factory = appComponent.welcomeComponent()
+
+    override fun userFragmentComponentFactory(): UserFragmentComponent.Factory = appComponent.userFragmentComponent()
+
+    override fun homeFragmentComponentFactory(): HomeFragmentComponent.Factory = appComponent.homeFragmentComponent()
 
 }

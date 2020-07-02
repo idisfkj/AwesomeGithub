@@ -1,9 +1,9 @@
-package com.idisfkj.awesome.home.di
+package com.idisfkj.awesome.user.di
 
 import android.content.Context
 import com.idisfkj.awesome.componentbridge.di.ViewModelBuilderModule
-import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
 import com.idisfkj.awesome.network.di.NetworkModule
+import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -22,8 +22,8 @@ interface AppComponent {
         fun create(@BindsInstance applicationContext: Context): AppComponent
     }
 
-    fun homeFragmentComponent(): HomeFragmentComponent.Factory
-}
+    fun userFragmentComponent(): UserFragmentComponent.Factory
 
-@Module(subcomponents = [HomeFragmentComponent::class])
+}
+@Module(subcomponents = [UserFragmentComponent::class])
 object SubComponentModule

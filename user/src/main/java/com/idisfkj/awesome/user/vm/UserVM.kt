@@ -2,7 +2,6 @@ package com.idisfkj.awesome.user.vm
 
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
@@ -10,19 +9,21 @@ import com.idisfkj.awesome.common.model.ResponseError
 import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.model.TYPE_INFO
 import com.idisfkj.awesome.common.model.UserModel
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.user.adapter.UserRecyclerViewAdapter
 import com.idisfkj.awesome.user.repository.UserRepository
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
+class UserVM @Inject constructor(
+    val userInfoVM: UserInfoVM,
+    private val repository: UserRepository,
+    private val adapter: UserRecyclerViewAdapter
+) : BaseVM() {
 
-    private val repository = UserRepository(HttpClient.getService(), viewModelScope)
     val userData = MutableLiveData<UserModel>()
-    private val mAdapter = UserRecyclerViewAdapter(userInfoVM)
     val isRefreshing = SingleLiveEvent<Boolean>()
 
     override fun attach(savedInstanceState: Bundle?) {
@@ -39,10 +40,10 @@ class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
                 userInfo?.itemType = TYPE_INFO
                 userInfo?.let {
                     if (refresh) {
-                        mAdapter.clear()
-                        mAdapter.notifyDataSetChanged()
+                        adapter.clear()
+                        adapter.notifyDataSetChanged()
                     }
-                    mAdapter.addData(it)
+                    adapter.addData(it)
                 }
             }
 
@@ -54,7 +55,7 @@ class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
         })
     }
 
-    fun createAdapter() = mAdapter
+    fun createAdapter() = adapter
 
     fun onRefreshListener() {
         isRefreshing.value = true

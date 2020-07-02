@@ -1,7 +1,12 @@
 package com.idisfkj.awesome.user.fragment
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.idisfkj.awesome.basic.fragment.BaseFragment
+import androidx.lifecycle.lifecycleScope
+import com.idisfkj.awesome.basic.fragment.BaseDaggerFragment
 import com.idisfkj.awesome.common.UserToFollowers
 import com.idisfkj.awesome.common.UserToFollowing
 import com.idisfkj.awesome.common.UserToRepos
@@ -11,8 +16,9 @@ import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
 import com.idisfkj.awesome.user.BR
 import com.idisfkj.awesome.user.R
+import com.idisfkj.awesome.user.UserFragmentComponentFactory
 import com.idisfkj.awesome.user.databinding.UserFragmentUserBinding
-import com.idisfkj.awesome.user.vm.UserInfoVM
+import com.idisfkj.awesome.user.fragment.di.UserFragmentProviderModule
 import com.idisfkj.awesome.user.vm.UserVM
 import timber.log.Timber
 
@@ -20,13 +26,11 @@ import timber.log.Timber
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserFragment : BaseFragment<UserFragmentUserBinding, UserVM>() {
+class UserFragment : BaseDaggerFragment<UserFragmentUserBinding, UserVM>() {
 
     override fun getVariableId(): Int = BR.vm
 
     override fun getLayoutId(): Int = R.layout.user_fragment_user
-
-    override fun getViewModelInstance(): UserVM = UserVM(UserInfoVM())
 
     override fun getViewModelClass(): Class<UserVM> = UserVM::class.java
 
@@ -34,6 +38,12 @@ class UserFragment : BaseFragment<UserFragmentUserBinding, UserVM>() {
         fun getInstance(): UserFragment {
             return UserFragment()
         }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        ((requireActivity().application as UserFragmentComponentFactory).userFragmentComponentFactory())
+            .create(UserFragmentProviderModule(lifecycleScope)).inject(this)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun addObserver() {
