@@ -18,6 +18,10 @@ Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行�
 ## Description
 [AwesomeGithub组件化探索之旅](https://mp.weixin.qq.com/s?__biz=MzIzNTc5NDY4Nw==&mid=2247484214&idx=1&sn=d37e21fd82fb77ccbccd292c3d52ccbe&chksm=e8e0faa6df9773b061e973c070dd72a7830e0afc8b21ba26d07718709b635e50f86a24719fb3&token=1496474879&lang=zh_CN#rd)
 
+## Doing
+
+目前项目正在使用dagger重构，详细信息请将分支切换到 [feat_dagger](https://github.com/idisfkj/AwesomeGithub/tree/feat_dagger)
+
 ## Technology
 
 #### Kotlin Coroutine
