@@ -17,7 +17,7 @@ android {
 
     resourcePrefix "webview_"
     defaultConfig {
-        if (!addHome.toBoolean()) {
+        if (!addWebView.toBoolean()) {
             applicationId "com.idisfkj.awesome.webview"
         }
         minSdkVersion Versions.min_sdk

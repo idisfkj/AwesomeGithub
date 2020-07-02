@@ -17,7 +17,7 @@ android {
 
     resourcePrefix "followers_"
     defaultConfig {
-        if (!addHome.toBoolean()) {
+        if (!addFollowers.toBoolean()) {
             applicationId "com.idisfkj.awesome.followers"
         }
         minSdkVersion Versions.min_sdk

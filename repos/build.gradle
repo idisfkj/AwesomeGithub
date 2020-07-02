@@ -17,7 +17,7 @@ android {
 
     resourcePrefix "repos_"
     defaultConfig {
-        if (!addHome.toBoolean()) {
+        if (!addRepos.toBoolean()) {
             applicationId "com.idisfkj.awesome.repos"
         }
         minSdkVersion Versions.min_sdk
