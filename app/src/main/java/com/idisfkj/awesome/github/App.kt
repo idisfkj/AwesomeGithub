@@ -7,11 +7,13 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.CommonUtils
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.BridgeInterface
+import com.idisfkj.awesome.componentbridge.di.AppComponentFactory
 import com.idisfkj.awesome.componentbridge.factory.Factory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.followers.bridge.FollowersBridge
 import com.idisfkj.awesome.following.bridge.FollowingBridge
 import com.idisfkj.awesome.github.bridge.AppBridge
+import com.idisfkj.awesome.github.di.AppComponent
 import com.idisfkj.awesome.github.di.DaggerAppComponent
 import com.idisfkj.awesome.home.bridge.HomeBridge
 import com.idisfkj.awesome.notification.bridge.NotificationBridge
@@ -25,7 +27,7 @@ import timber.log.Timber
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
-class App : Application() {
+class App : Application(), AppComponentFactory<AppComponent> {
 
     companion object {
         var AUTHORIZATION_BASIC: String? = null
@@ -50,8 +52,6 @@ class App : Application() {
 
         }
     }
-
-    val appComponent by lazy { DaggerAppComponent.factory().create(this) }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -90,7 +90,7 @@ class App : Application() {
         BridgeProviders.instance.register(AppBridge::class.java, object : Factory {
             override fun <T : BridgeInterface> create(bridgeClazz: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return AppBridge(this@App) as T
+                return AppBridge() as T
             }
         })
             .register(HomeBridge::class.java)
@@ -102,4 +102,7 @@ class App : Application() {
             .register(SearchBridge::class.java)
             .register(WebViewBridge::class.java)
     }
+
+    override fun create(): AppComponent = DaggerAppComponent.factory().create(this)
+
 }

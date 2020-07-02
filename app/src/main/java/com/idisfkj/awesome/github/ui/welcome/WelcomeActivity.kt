@@ -36,7 +36,7 @@ class WelcomeActivity : BaseDaggerActivity<ActivityWelcomeBinding, WelcomeVM>() 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).appComponent.welcomeComponent().create().inject(this)
+        (application as App).create().welcomeComponent().create().inject(this)
         super.onCreate(savedInstanceState)
     }
 

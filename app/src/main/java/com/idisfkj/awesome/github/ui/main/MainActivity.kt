@@ -7,11 +7,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.idisfkj.awesome.basic.activity.BaseActivity
 import com.idisfkj.awesome.basic.activity.BaseDaggerActivity
 import com.idisfkj.awesome.common.ARouterPaths
+import com.idisfkj.awesome.componentbridge.di.AppComponentFactory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.github.App
 import com.idisfkj.awesome.github.BR
 import com.idisfkj.awesome.github.R
 import com.idisfkj.awesome.github.databinding.ActivityMainBinding
+import com.idisfkj.awesome.github.di.AppComponent
 import com.idisfkj.awesome.github.ui.main.di.MainProviderModule
 import timber.log.Timber
 import kotlin.system.exitProcess
@@ -30,7 +32,7 @@ class MainActivity : BaseDaggerActivity<ActivityMainBinding, MainVM>() {
     override fun getViewModelClass(): Class<MainVM> = MainVM::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).appComponent.mainComponent().create(MainProviderModule(this)).inject(this)
+        (application as App).create().mainComponent().create(MainProviderModule(this)).inject(this)
         super.onCreate(savedInstanceState)
     }
 

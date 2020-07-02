@@ -22,5 +22,4 @@ interface AppBridgeInterface: BridgeInterface {
 
     fun setAccessToken(accessToken: String?)
 
-    fun getHomeFragmentComponent(): Any
 }

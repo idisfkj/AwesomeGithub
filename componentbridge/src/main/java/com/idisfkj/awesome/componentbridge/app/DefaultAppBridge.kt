@@ -21,5 +21,4 @@ class DefaultAppBridge : AppBridgeInterface {
 
     }
 
-    override fun getHomeFragmentComponent(): Any = Any()
 }

@@ -1,7 +1,5 @@
 package com.idisfkj.awesome.home.fragment.di
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope
@@ -11,9 +9,9 @@ import kotlinx.coroutines.CoroutineScope
  * Email: idisfkj@gmail.com.
  */
 @Module
-class HomeFragmentProviderModule(private val viewModel: ViewModel) {
+class HomeFragmentProviderModule(private val scope: CoroutineScope) {
 
     @Provides
-    fun providerViewModelScope(): CoroutineScope = viewModel.viewModelScope
+    fun providerViewModelScope(): CoroutineScope = scope
 
 }

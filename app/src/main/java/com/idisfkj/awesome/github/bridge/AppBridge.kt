@@ -8,7 +8,7 @@ import com.idisfkj.awesome.github.App
  * Created by idisfkj on 2019-08-29.
  * Email : idisfkj@gmail.com.
  */
-class AppBridge(private val app: App) : AppBridgeInterface {
+class AppBridge : AppBridgeInterface {
 
     override fun getAuthorizationBasic(): String? = App.AUTHORIZATION_BASIC
 
@@ -21,7 +21,5 @@ class AppBridge(private val app: App) : AppBridgeInterface {
     override fun setAccessToken(accessToken: String?) {
         App.ACCESS_TOKEN = accessToken
     }
-
-    override fun getHomeFragmentComponent(): Any = app.appComponent.homeFragmentComponent()
 
 }

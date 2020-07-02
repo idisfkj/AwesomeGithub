@@ -4,14 +4,17 @@ import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
+import com.idisfkj.awesome.componentbridge.di.AppComponentFactory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
+import com.idisfkj.awesome.home.di.AppComponent
+import com.idisfkj.awesome.home.di.DaggerAppComponent
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-09-03.
  * Email : idisfkj@gmail.com.
  */
-class HomeApp : Application() {
+class HomeApp : Application(), AppComponentFactory<AppComponent> {
 
     override fun onCreate() {
         super.onCreate()
@@ -35,4 +38,6 @@ class HomeApp : Application() {
         }
         ARouter.init(this)
     }
+
+    override fun create(): AppComponent = DaggerAppComponent.factory().create(this)
 }
