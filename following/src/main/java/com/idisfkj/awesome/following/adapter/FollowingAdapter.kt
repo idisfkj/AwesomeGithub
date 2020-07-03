@@ -9,12 +9,13 @@ import com.idisfkj.awesome.common.model.BaseRecyclerViewModel
 import com.idisfkj.awesome.following.BR
 import com.idisfkj.awesome.following.R
 import com.idisfkj.awesome.following.vm.FollowingVHVM
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-26.
  * Email: idisfkj@gmail.com.
  */
-class FollowingAdapter : BaseRecyclerViewAdapter() {
+class FollowingAdapter @Inject constructor() : BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

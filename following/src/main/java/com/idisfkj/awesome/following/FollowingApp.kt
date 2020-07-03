@@ -6,13 +6,15 @@ import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.webview.DefaultWebViewBridge
+import com.idisfkj.awesome.following.di.DaggerAppComponent
+import com.idisfkj.awesome.following.di.FollowingComponent
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-11-26.
  * Email: idisfkj@gmail.com.
  */
-class FollowingApp : Application() {
+class FollowingApp : Application(), FollowingComponentFactory {
 
     override fun onCreate() {
         super.onCreate()
@@ -37,4 +39,7 @@ class FollowingApp : Application() {
         }
         ARouter.init(this)
     }
+
+    override fun followingComponentFactory(): FollowingComponent.Factory = DaggerAppComponent.factory().create(this).followingComponent()
+
 }

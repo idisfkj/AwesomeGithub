@@ -3,6 +3,7 @@ package com.idisfkj.awesome.github.di
 import android.content.Context
 import com.idisfkj.awesome.componentbridge.di.ViewModelBuilderModule
 import com.idisfkj.awesome.followers.di.FollowersComponent
+import com.idisfkj.awesome.following.di.FollowingComponent
 import com.idisfkj.awesome.github.ui.main.di.MainComponent
 import com.idisfkj.awesome.github.ui.welcome.di.WelcomeComponent
 import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
@@ -51,6 +52,8 @@ interface AppComponent {
 
     fun followersComponent(): FollowersComponent.Factory
 
+    fun followingComponent(): FollowingComponent.Factory
+
 }
 
 @Module(
@@ -62,6 +65,7 @@ interface AppComponent {
         NotificationFragmentComponent::class,
         SearchFragmentComponent::class,
         ReposComponent::class,
+        FollowersComponent::class,
         FollowersComponent::class
     ]
 )

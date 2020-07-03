@@ -12,6 +12,7 @@ import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.followers.bridge.FollowersBridge
 import com.idisfkj.awesome.followers.di.FollowersComponent
 import com.idisfkj.awesome.following.bridge.FollowingBridge
+import com.idisfkj.awesome.following.di.FollowingComponent
 import com.idisfkj.awesome.github.bridge.AppBridge
 import com.idisfkj.awesome.github.di.DaggerAppComponent
 import com.idisfkj.awesome.github.ui.main.di.MainComponent
@@ -126,5 +127,7 @@ class App : Application(), AppComponentFactory {
     override fun reposComponentFactory(): ReposComponent.Factory = appComponent.reposComponent()
 
     override fun followersComponentFactory(): FollowersComponent.Factory = appComponent.followersComponent()
+
+    override fun followingComponentFactory(): FollowingComponent.Factory = appComponent.followingComponent()
 
 }

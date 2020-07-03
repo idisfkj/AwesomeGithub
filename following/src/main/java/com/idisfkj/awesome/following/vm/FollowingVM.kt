@@ -1,7 +1,6 @@
 package com.idisfkj.awesome.following.vm
 
 import android.os.Bundle
-import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
@@ -10,16 +9,17 @@ import com.idisfkj.awesome.common.model.ResponseError
 import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.following.adapter.FollowingAdapter
 import com.idisfkj.awesome.following.repository.FollowingRepository
-import com.idisfkj.awesome.network.HttpClient
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-26.
  * Email: idisfkj@gmail.com.
  */
-class FollowingVM : BaseVM() {
+class FollowingVM @Inject constructor(
+    private val repository: FollowingRepository,
+    val adapter: FollowingAdapter
+) : BaseVM() {
 
-    private val repository = FollowingRepository(HttpClient.getService(), viewModelScope)
-    val adapter = FollowingAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
 
     override fun attach(savedInstanceState: Bundle?) {
