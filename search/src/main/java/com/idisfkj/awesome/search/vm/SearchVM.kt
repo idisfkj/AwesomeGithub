@@ -3,28 +3,25 @@ package com.idisfkj.awesome.search.vm
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
+import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.model.ResponseError
 import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.model.SearchModel
-import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
-import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.search.repository.SearchRepository
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-12-01.
  * Email: idisfkj@gmail.com.
  */
-class SearchVM : BaseVM() {
+class SearchVM @Inject constructor(
+    private val repository: SearchRepository,
+    private val adapter: BaseRecyclerViewAdapter
+) : BaseVM() {
 
-    private val repository = SearchRepository(HttpClient.getService(), viewModelScope)
-    private val mAdapter =
-        BridgeProviders.instance.getBridge(ReposBridgeInterface::class.java).createReposAdapter()
-
-    val clearFocus = MutableLiveData<Boolean>(true)
+    val clearFocus = MutableLiveData(true)
 
     override fun attach(savedInstanceState: Bundle?) {
         search("android-api-analysis")
@@ -49,7 +46,7 @@ class SearchVM : BaseVM() {
         }
     }
 
-    fun getAdapter() = mAdapter
+    fun getAdapter() = adapter
 
     fun setOnQueryTextListener() = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {

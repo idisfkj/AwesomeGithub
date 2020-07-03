@@ -21,6 +21,7 @@ import com.idisfkj.awesome.notification.bridge.NotificationBridge
 import com.idisfkj.awesome.notification.fragment.di.NotificationFragmentComponent
 import com.idisfkj.awesome.repos.bridge.ReposBridge
 import com.idisfkj.awesome.search.bridge.SearchBridge
+import com.idisfkj.awesome.search.fragment.di.SearchFragmentComponent
 import com.idisfkj.awesome.user.bridge.UserBridge
 import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
 import com.idisfkj.awesome.webview.bridge.WebViewBridge
@@ -117,5 +118,7 @@ class App : Application(), AppComponentFactory {
     override fun homeFragmentComponentFactory(): HomeFragmentComponent.Factory = appComponent.homeFragmentComponent()
 
     override fun notificationFragmentComponentFactory(): NotificationFragmentComponent.Factory = appComponent.notificationFragmentComponent()
+
+    override fun searchFragmentComponentFactory(): SearchFragmentComponent.Factory = appComponent.searchFragmentComponent()
 
 }
