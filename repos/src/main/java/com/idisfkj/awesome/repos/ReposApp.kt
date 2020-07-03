@@ -6,13 +6,15 @@ import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.webview.DefaultWebViewBridge
+import com.idisfkj.awesome.repos.di.DaggerAppComponent
+import com.idisfkj.awesome.repos.di.ReposComponent
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-11-19.
  * Email: idisfkj@gmail.com.
  */
-class ReposApp : Application() {
+class ReposApp : Application(), ReposComponentFactory {
 
     override fun onCreate() {
         super.onCreate()
@@ -37,4 +39,7 @@ class ReposApp : Application() {
         }
         ARouter.init(this)
     }
+
+    override fun reposComponentFactory(): ReposComponent.Factory = DaggerAppComponent.factory().create(this).reposComponent()
+
 }
