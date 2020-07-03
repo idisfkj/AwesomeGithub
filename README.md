@@ -10,6 +10,8 @@ Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行�
 
 ![](https://github.com/idisfkj/AwesomeGithub/raw/master/images/awesome_github.png)
 
+> 温馨提示：GitHub提供的OpenApi可能不稳定，如果登录失败或者成功之后页面无数据，请尝试使用科学上网或者稍等再尝试。
+
 ## Flutter Github
 除了Android原生版本，以下是基于Flutter的跨平台版本。正在持续更新中...
 
