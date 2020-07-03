@@ -10,6 +10,7 @@ import com.idisfkj.awesome.componentbridge.BridgeInterface
 import com.idisfkj.awesome.componentbridge.factory.Factory
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.followers.bridge.FollowersBridge
+import com.idisfkj.awesome.followers.di.FollowersComponent
 import com.idisfkj.awesome.following.bridge.FollowingBridge
 import com.idisfkj.awesome.github.bridge.AppBridge
 import com.idisfkj.awesome.github.di.DaggerAppComponent
@@ -123,5 +124,7 @@ class App : Application(), AppComponentFactory {
     override fun searchFragmentComponentFactory(): SearchFragmentComponent.Factory = appComponent.searchFragmentComponent()
 
     override fun reposComponentFactory(): ReposComponent.Factory = appComponent.reposComponent()
+
+    override fun followersComponentFactory(): FollowersComponent.Factory = appComponent.followersComponent()
 
 }
