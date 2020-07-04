@@ -7,7 +7,6 @@ import android.util.Base64
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.LoginToAuthorize
 import com.idisfkj.awesome.common.LoginToMain
@@ -21,20 +20,22 @@ import com.idisfkj.awesome.common.model.UserModel
 import com.idisfkj.awesome.common.utils.CommonUtils
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.AppBridgeInterface
-import com.idisfkj.awesome.network.HttpClient
 import kotlinx.coroutines.Job
 import okhttp3.ResponseBody
 import retrofit2.Response
 import timber.log.Timber
 import java.io.IOException
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
-class LoginVM(private val appBridge: AppBridgeInterface) : BaseVM() {
+class LoginVM @Inject constructor(
+    private val appBridge: AppBridgeInterface,
+    private val repository: LoginRepository
+) : BaseVM() {
 
-    private val repository = LoginRepository(HttpClient.getService(), viewModelScope)
     val username = MutableLiveData<String>(CommonUtils.getUsername())
     val password = MutableLiveData<String>(CommonUtils.getPassword())
     val signInEnable = MutableLiveData<Boolean>(false)

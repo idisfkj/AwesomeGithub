@@ -19,6 +19,7 @@ import com.idisfkj.awesome.github.ui.main.di.MainComponent
 import com.idisfkj.awesome.github.ui.welcome.di.WelcomeComponent
 import com.idisfkj.awesome.home.bridge.HomeBridge
 import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
+import com.idisfkj.awesome.login.di.LoginComponent
 import com.idisfkj.awesome.notification.bridge.NotificationBridge
 import com.idisfkj.awesome.notification.fragment.di.NotificationFragmentComponent
 import com.idisfkj.awesome.repos.bridge.ReposBridge
@@ -132,5 +133,7 @@ class App : Application(), AppComponentFactory {
     override fun followingComponentFactory(): FollowingComponent.Factory = appComponent.followingComponent()
 
     override fun webviewComponentFactory(): WebViewComponent.Factory = appComponent.webviewComponent()
+
+    override fun loginComponentFactory(): LoginComponent.Factory = appComponent.loginComponent()
 
 }

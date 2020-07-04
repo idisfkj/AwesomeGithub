@@ -11,12 +11,13 @@ import com.idisfkj.awesome.network.HttpClient
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.ResponseBody
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
-class LoginRepository(
+class LoginRepository @Inject constructor(
     private val service: GithubService,
     scope: CoroutineScope
 ) : BaseRepository(scope) {

@@ -7,6 +7,7 @@ import com.idisfkj.awesome.following.di.FollowingComponent
 import com.idisfkj.awesome.github.ui.main.di.MainComponent
 import com.idisfkj.awesome.github.ui.welcome.di.WelcomeComponent
 import com.idisfkj.awesome.home.fragment.di.HomeFragmentComponent
+import com.idisfkj.awesome.login.di.LoginComponent
 import com.idisfkj.awesome.network.di.NetworkModule
 import com.idisfkj.awesome.notification.fragment.di.NotificationFragmentComponent
 import com.idisfkj.awesome.repos.di.ReposComponent
@@ -57,6 +58,8 @@ interface AppComponent {
 
     fun webviewComponent(): WebViewComponent.Factory
 
+    fun loginComponent(): LoginComponent.Factory
+
 }
 
 @Module(
@@ -70,7 +73,8 @@ interface AppComponent {
         ReposComponent::class,
         FollowersComponent::class,
         FollowersComponent::class,
-        WebViewComponent::class
+        WebViewComponent::class,
+        LoginComponent::class
     ]
 )
 object SubComponentModule

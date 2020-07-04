@@ -2,22 +2,23 @@ package com.idisfkj.awesome.login
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.text.TextUtils
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.idisfkj.awesome.basic.activity.BaseActivity
+import com.idisfkj.awesome.basic.activity.BaseDaggerActivity
 import com.idisfkj.awesome.common.*
-import com.idisfkj.awesome.componentbridge.app.AppBridgeInterface
-import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.login.databinding.LoginActivityLoginBinding
+import com.idisfkj.awesome.login.di.LoginProviderModule
 
 /**
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
 @Route(path = ARouterPaths.PATH_LOGIN_LOGIN)
-class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginVM>() {
+class LoginActivity : BaseDaggerActivity<LoginActivityLoginBinding, LoginVM>() {
 
     override fun getVariableId(): Int = BR.vm
 
@@ -25,10 +26,13 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginVM>() {
 
     override fun getLayoutId(): Int = R.layout.login_activity_login
 
-    override fun getViewModelInstance(): LoginVM =
-        LoginVM(BridgeProviders.instance.getBridge(AppBridgeInterface::class.java))
-
     override fun getViewModelClass(): Class<LoginVM> = LoginVM::class.java
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        (application as LoginComponentFactory).loginComponentFactory()
+            .create(LoginProviderModule(lifecycleScope)).inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)

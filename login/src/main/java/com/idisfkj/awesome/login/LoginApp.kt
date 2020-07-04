@@ -5,13 +5,15 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
+import com.idisfkj.awesome.login.di.DaggerAppComponent
+import com.idisfkj.awesome.login.di.LoginComponent
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-09-02.
  * Email : idisfkj@gmail.com.
  */
-class LoginApp : Application() {
+class LoginApp : Application(), LoginComponentFactory {
 
     override fun onCreate() {
         super.onCreate()
@@ -35,4 +37,7 @@ class LoginApp : Application() {
         }
         ARouter.init(this)
     }
+
+    override fun loginComponentFactory(): LoginComponent.Factory = DaggerAppComponent.factory().create(this).loginComponent()
+
 }

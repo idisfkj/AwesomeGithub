@@ -64,6 +64,8 @@ dependencies {
     implementation project(':basic')
     implementation Deps.arouter_api
     kapt Deps.arouter_compiler
+
+    kapt Deps.dagger_compiler
 }
 
 repositories {
