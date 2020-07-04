@@ -6,14 +6,16 @@
 [![Author](https://img.shields.io/badge/Author-idisfkj-orange.svg)](https://idisfkj.github.io/archives/)
 [![Rating](https://img.shields.io/chrome-web-store/stars/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
 
-Github客户端，支持账户密码与认证登陆。使用Kotlin语言进行开发，项目架构是基于JetPack&DataBinding的MVVM；同时支持模块开发，使用Arouter进行组件间的跳转；网络框架使用了Retrofit&Coroutine。项目持续更新中，为了防止走失，请做好start准备！😊😊
+Android Github客户端，基于组件化开发，支持账户密码与认证登陆。
+使用Kotlin语言进行开发，项目架构是基于JetPack&DataBinding的MVVM；
+项目中使用了Arouter、Retrofit、Coroutine、Glide与Dagger等流行开源技术。
 
 ![](https://github.com/idisfkj/AwesomeGithub/raw/master/images/awesome_github.png)
 
 > 温馨提示：GitHub提供的OpenApi可能不稳定，如果登录失败或者成功之后页面无数据，请尝试使用科学上网或者稍等再尝试。
 
 ## Flutter Github
-除了Android原生版本，以下是基于Flutter的跨平台版本。正在持续更新中...
+除了Android原生版本，以下是基于[Flutter](https://flutter.dev/)的跨平台版本。
 
 [Flutter Github](https://github.com/idisfkj/flutter_github)
 
