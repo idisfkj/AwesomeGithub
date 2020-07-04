@@ -2,12 +2,14 @@ package com.idisfkj.awesome.webview
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.idisfkj.awesome.basic.activity.BaseActivity
+import com.idisfkj.awesome.basic.activity.BaseDaggerActivity
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.webview.databinding.WebviewActivityWebviewBinding
+import com.idisfkj.awesome.webview.di.WebViewProviderModule
 import com.idisfkj.awesome.webview.vm.WebViewVM
 
 /**
@@ -15,10 +17,11 @@ import com.idisfkj.awesome.webview.vm.WebViewVM
  * Email: idisfkj@gmail.com.
  */
 @Route(path = ARouterPaths.PATH_WEBVIEW_WEBVIEW)
-class WebViewActivity : BaseActivity<WebviewActivityWebviewBinding, WebViewVM>() {
+class WebViewActivity : BaseDaggerActivity<WebviewActivityWebviewBinding, WebViewVM>() {
 
     @Autowired
     lateinit var url: String
+
     @Autowired
     lateinit var requestUrl: String
 
@@ -26,11 +29,11 @@ class WebViewActivity : BaseActivity<WebviewActivityWebviewBinding, WebViewVM>()
 
     override fun getLayoutId(): Int = R.layout.webview_activity_webview
 
-    override fun getViewModelInstance(): WebViewVM = WebViewVM()
-
     override fun getViewModelClass(): Class<WebViewVM> = WebViewVM::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as WebViewComponentFactory).webviewComponentFactory()
+            .create(WebViewProviderModule(lifecycleScope)).inject(this)
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
         viewModel.url.value = url

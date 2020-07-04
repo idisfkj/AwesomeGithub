@@ -6,7 +6,6 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.live.SingleLiveEvent
@@ -14,16 +13,15 @@ import com.idisfkj.awesome.common.model.NotificationRequestUrlModel
 import com.idisfkj.awesome.common.model.ResponseError
 import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.navigation.OnNavigationListener
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.webview.repository.WebViewRepository
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-12-03.
  * Email: idisfkj@gmail.com.
  */
-class WebViewVM : BaseVM() {
+class WebViewVM @Inject constructor(private val repository: WebViewRepository) : BaseVM() {
 
-    private val repository = WebViewRepository(HttpClient.getService(), viewModelScope)
     val url = MutableLiveData<String>()
     val backClick = SingleLiveEvent<Boolean>()
 

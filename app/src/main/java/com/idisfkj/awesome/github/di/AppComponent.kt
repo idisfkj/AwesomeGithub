@@ -12,6 +12,7 @@ import com.idisfkj.awesome.notification.fragment.di.NotificationFragmentComponen
 import com.idisfkj.awesome.repos.di.ReposComponent
 import com.idisfkj.awesome.search.fragment.di.SearchFragmentComponent
 import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
+import com.idisfkj.awesome.webview.di.WebViewComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -54,6 +55,8 @@ interface AppComponent {
 
     fun followingComponent(): FollowingComponent.Factory
 
+    fun webviewComponent(): WebViewComponent.Factory
+
 }
 
 @Module(
@@ -66,7 +69,8 @@ interface AppComponent {
         SearchFragmentComponent::class,
         ReposComponent::class,
         FollowersComponent::class,
-        FollowersComponent::class
+        FollowersComponent::class,
+        WebViewComponent::class
     ]
 )
 object SubComponentModule

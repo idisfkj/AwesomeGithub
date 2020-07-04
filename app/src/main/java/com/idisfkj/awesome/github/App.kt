@@ -28,6 +28,7 @@ import com.idisfkj.awesome.search.fragment.di.SearchFragmentComponent
 import com.idisfkj.awesome.user.bridge.UserBridge
 import com.idisfkj.awesome.user.fragment.di.UserFragmentComponent
 import com.idisfkj.awesome.webview.bridge.WebViewBridge
+import com.idisfkj.awesome.webview.di.WebViewComponent
 import timber.log.Timber
 
 /**
@@ -129,5 +130,7 @@ class App : Application(), AppComponentFactory {
     override fun followersComponentFactory(): FollowersComponent.Factory = appComponent.followersComponent()
 
     override fun followingComponentFactory(): FollowingComponent.Factory = appComponent.followingComponent()
+
+    override fun webviewComponentFactory(): WebViewComponent.Factory = appComponent.webviewComponent()
 
 }

@@ -9,13 +9,15 @@ import com.idisfkj.awesome.notification.NotificationFragmentComponentFactory
 import com.idisfkj.awesome.repos.ReposComponentFactory
 import com.idisfkj.awesome.search.SearchFragmentComponentFactory
 import com.idisfkj.awesome.user.UserFragmentComponentFactory
+import com.idisfkj.awesome.webview.WebViewComponentFactory
 
 /**
  * Created by idisfkj on 2020/7/2.
  * Email: idisfkj@gmail.com.
  */
 interface AppComponentFactory : UserFragmentComponentFactory, HomeFragmentComponentFactory, NotificationFragmentComponentFactory,
-    SearchFragmentComponentFactory, ReposComponentFactory, FollowersComponentFactory, FollowingComponentFactory {
+    SearchFragmentComponentFactory, ReposComponentFactory, FollowersComponentFactory, FollowingComponentFactory,
+    WebViewComponentFactory {
 
     fun mainComponentFactory(): MainComponent.Factory
 
