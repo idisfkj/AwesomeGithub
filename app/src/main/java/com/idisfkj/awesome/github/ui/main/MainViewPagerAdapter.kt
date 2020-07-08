@@ -13,7 +13,7 @@ import com.idisfkj.awesome.componentbridge.user.UserBridgeInterface
  * Created by idisfkj on 2019-08-16.
  * Email : idisfkj@gmail.com.
  */
-class MainViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+class MainViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment = when (position) {
         0 -> BridgeProviders.instance.getBridge(SearchBridgeInterface::class.java).getSearchFragment()

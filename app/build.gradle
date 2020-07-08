@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdkVersion Versions.target_sdk
     buildToolsVersion Versions.build_tools
@@ -139,6 +141,10 @@ dependencies {
     //arouter
     implementation Deps.arouter_api
     kapt Deps.arouter_compiler
+
+    // hilt
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
 
     testImplementation Deps.junit
     androidTestImplementation Deps.runner

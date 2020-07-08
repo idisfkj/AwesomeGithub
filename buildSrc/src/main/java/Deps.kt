@@ -35,6 +35,8 @@ object Versions {
     const val gson = "2.8.5"
     const val arouter_api = "1.5.0"
     const val arouter_compiler = "1.2.2"
+
+    const val hilt = "2.28-alpha"
 }
 
 object Deps {
@@ -76,6 +78,10 @@ object Deps {
 
     const val arouter_api = "com.alibaba:arouter-api:${Versions.arouter_api}"
     const val arouter_compiler = "com.alibaba:arouter-compiler:${Versions.arouter_compiler}"
+
+    const val hilt_plugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hilt_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
     val addRepos: (handler: RepositoryHandler) -> Unit = {
         it.google()
