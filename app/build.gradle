@@ -145,6 +145,8 @@ dependencies {
     // hilt
     implementation Deps.hilt
     kapt Deps.hilt_compiler
+    implementation Deps.hilt_viewmodel
+    kapt Deps.hilt_viewmodel_compile
 
     testImplementation Deps.junit
     androidTestImplementation Deps.runner

@@ -37,6 +37,7 @@ object Versions {
     const val arouter_compiler = "1.2.2"
 
     const val hilt = "2.28-alpha"
+    const val hilt_viewmodel = "1.0.0-alpha01"
 }
 
 object Deps {
@@ -82,6 +83,8 @@ object Deps {
     const val hilt_plugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hilt_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hilt_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt_viewmodel}"
+    const val hilt_viewmodel_compile = "androidx.hilt:hilt-compiler:${Versions.hilt_viewmodel}"
 
     val addRepos: (handler: RepositoryHandler) -> Unit = {
         it.google()
