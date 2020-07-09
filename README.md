@@ -24,6 +24,10 @@ Android Github客户端，基于组件化开发，支持账户密码与认证登
 
 [feat_dagger](https://github.com/idisfkj/AwesomeGithub/tree/feat_dagger): 使用[dagger](https://github.com/google/dagger)实现
 
+## Doing
+
+[feat_hilt](https://github.com/idisfkj/AwesomeGithub/tree/feat_hilt): 使用[hilt](https://dagger.dev/hilt/)实现
+
 ## Technology
 
 #### Kotlin Coroutine
