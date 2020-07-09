@@ -1,7 +1,10 @@
 package com.idisfkj.awesome.github.ui.welcome
 
 import android.os.Bundle
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.PageDefault
 import com.idisfkj.awesome.common.ToPageStatus
@@ -14,7 +17,7 @@ import java.util.*
  * Created by idisfkj on 2019-08-13.
  * Email : idisfkj@gmail.com.
  */
-class WelcomeVM : BaseVM() {
+class WelcomeVM @ViewModelInject constructor() : BaseVM() {
 
     val toPage = MutableLiveData<ToPageStatus>(PageDefault)
     private var mTimer: Timer? = null

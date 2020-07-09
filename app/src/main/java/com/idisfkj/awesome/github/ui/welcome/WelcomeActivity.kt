@@ -2,8 +2,10 @@ package com.idisfkj.awesome.github.ui.welcome
 
 import android.view.KeyEvent
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.basic.activity.BaseActivity
+import com.idisfkj.awesome.basic.activity.BaseHiltActivity
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.common.PageDefault
 import com.idisfkj.awesome.common.WelcomeToLogin
@@ -11,18 +13,18 @@ import com.idisfkj.awesome.common.WelcomeToMain
 import com.idisfkj.awesome.github.BR
 import com.idisfkj.awesome.github.R
 import com.idisfkj.awesome.github.databinding.ActivityWelcomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by idisfkj on 2019-08-13.
  * Email : idisfkj@gmail.com.
  */
-class WelcomeActivity : BaseActivity<ActivityWelcomeBinding, WelcomeVM>() {
+@AndroidEntryPoint
+class WelcomeActivity : BaseHiltActivity<ActivityWelcomeBinding, WelcomeVM>() {
 
     override fun getVariableId(): Int = BR.vm
 
     override fun getLayoutId(): Int = R.layout.activity_welcome
-
-    override fun getViewModelInstance(): WelcomeVM = WelcomeVM()
 
     override fun getViewModelClass(): Class<WelcomeVM> = WelcomeVM::class.java
 

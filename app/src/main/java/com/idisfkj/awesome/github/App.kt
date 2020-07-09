@@ -18,12 +18,14 @@ import com.idisfkj.awesome.repos.bridge.ReposBridge
 import com.idisfkj.awesome.search.bridge.SearchBridge
 import com.idisfkj.awesome.user.bridge.UserBridge
 import com.idisfkj.awesome.webview.bridge.WebViewBridge
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
+@HiltAndroidApp
 class App : Application() {
 
     companion object {
