@@ -4,14 +4,18 @@ import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
+import com.idisfkj.awesome.componentbridge.followers.DefaultFollowersBridge
+import com.idisfkj.awesome.componentbridge.following.DefaultFollowingBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.DefaultReposBridge
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
+@HiltAndroidApp
 class UserApp : Application() {
 
     override fun onCreate() {
@@ -23,6 +27,8 @@ class UserApp : Application() {
         BridgeProviders.instance
             .register(DefaultAppBridge::class.java)
             .register(DefaultReposBridge::class.java)
+            .register(DefaultFollowersBridge::class.java)
+            .register(DefaultFollowingBridge::class.java)
     }
 
     private fun initTimber() {
