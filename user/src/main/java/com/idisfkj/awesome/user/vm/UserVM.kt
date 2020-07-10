@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.user.vm
 
 import android.os.Bundle
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
@@ -10,7 +11,6 @@ import com.idisfkj.awesome.common.model.ResponseError
 import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.model.TYPE_INFO
 import com.idisfkj.awesome.common.model.UserModel
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.user.adapter.UserRecyclerViewAdapter
 import com.idisfkj.awesome.user.repository.UserRepository
 
@@ -18,11 +18,12 @@ import com.idisfkj.awesome.user.repository.UserRepository
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
+class UserVM @ViewModelInject constructor(
+    val adapter: UserRecyclerViewAdapter,
+    private val repository: UserRepository
+) : BaseVM() {
 
-    private val repository = UserRepository(HttpClient.getService(), viewModelScope)
     val userData = MutableLiveData<UserModel>()
-    private val mAdapter = UserRecyclerViewAdapter(userInfoVM)
     val isRefreshing = SingleLiveEvent<Boolean>()
 
     override fun attach(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
 
     private fun getUser(refresh: Boolean) {
         if (!refresh) showLoading.value = true
-        repository.getUser(object : RequestCallback<UserModel> {
+        repository.getUser(viewModelScope, object : RequestCallback<UserModel> {
             override fun onSuccess(result: ResponseSuccess<UserModel>) {
                 showLoading.value = false
                 isRefreshing.value = false
@@ -39,10 +40,10 @@ class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
                 userInfo?.itemType = TYPE_INFO
                 userInfo?.let {
                     if (refresh) {
-                        mAdapter.clear()
-                        mAdapter.notifyDataSetChanged()
+                        adapter.clear()
+                        adapter.notifyDataSetChanged()
                     }
-                    mAdapter.addData(it)
+                    adapter.addData(it)
                 }
             }
 
@@ -54,7 +55,7 @@ class UserVM(val userInfoVM: UserInfoVM) : BaseVM() {
         })
     }
 
-    fun createAdapter() = mAdapter
+    fun createAdapter() = adapter
 
     fun onRefreshListener() {
         isRefreshing.value = true

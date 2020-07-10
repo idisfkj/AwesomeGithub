@@ -9,6 +9,7 @@ import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.github.BR
 import com.idisfkj.awesome.github.R
 import com.idisfkj.awesome.github.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import kotlin.system.exitProcess
 
@@ -16,6 +17,7 @@ import kotlin.system.exitProcess
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
+@AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_APP_MAIN)
 class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 

@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdkVersion Versions.target_sdk
     buildToolsVersion Versions.build_tools
@@ -39,6 +41,12 @@ dependencies {
     api Deps.retrofit_gson
     api Deps.okhttp_logging_interceptor
     api Deps.retrofit_adapter_rxjava2
+
+    // hilt
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
+    implementation Deps.hilt_viewmodel
+    kapt Deps.hilt_viewmodel_compile
 }
 
 repositories {

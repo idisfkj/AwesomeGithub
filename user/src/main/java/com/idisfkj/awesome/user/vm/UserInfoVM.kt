@@ -7,12 +7,14 @@ import com.idisfkj.awesome.common.UserToFollowing
 import com.idisfkj.awesome.common.UserToRepos
 import com.idisfkj.awesome.common.live.SingleLiveEvent
 import com.idisfkj.awesome.common.model.UserModel
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-15.
  * Email: idisfkj@gmail.com.
  */
-class UserInfoVM : BaseRecyclerVM<UserModel>() {
+class UserInfoVM @Inject constructor() : BaseRecyclerVM<UserModel>() {
 
     var data: UserModel? = null
     var navigate: SingleLiveEvent<ToPageStatus> = SingleLiveEvent()
