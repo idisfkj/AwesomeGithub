@@ -2,6 +2,7 @@ package com.idisfkj.awesome.notification.vm
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseRecyclerVM
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.model.NotificationModel
@@ -41,7 +42,7 @@ class NotificationVHVM(
     }
 
     private fun markThreadRead(threadId: String) {
-        repository.markThreadRead(threadId, object : RequestCallback<Response<ResponseBody>> {
+        repository.markThreadRead(viewModelScope, threadId, object : RequestCallback<Response<ResponseBody>> {
             override fun onSuccess(result: ResponseSuccess<Response<ResponseBody>>) {
                 if (result.data?.isSuccessful == true) {
                     data?.unread = false

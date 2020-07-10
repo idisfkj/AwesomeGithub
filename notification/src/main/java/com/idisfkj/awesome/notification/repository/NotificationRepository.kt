@@ -7,17 +7,18 @@ import com.idisfkj.awesome.common.model.NotificationModel
 import com.idisfkj.awesome.network.GithubService
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.ResponseBody
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-27.
  * Email: idisfkj@gmail.com.
  */
-class NotificationRepository(
-    private val service: GithubService,
-    scope: CoroutineScope
-) : BaseRepository(scope) {
+class NotificationRepository @Inject constructor(
+    private val service: GithubService
+) : BaseRepository() {
 
     fun getNotification(
+        scope: CoroutineScope,
         all: Boolean = true,
         participating: Boolean = false,
         since: String = "",
@@ -37,6 +38,7 @@ class NotificationRepository(
     }
 
     fun markThreadRead(
+        scope: CoroutineScope,
         threadId: String,
         callback: RequestCallback<retrofit2.Response<ResponseBody>>
     ) {

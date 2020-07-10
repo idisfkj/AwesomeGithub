@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.notification.fragment.NotificationFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by idisfkj on 2019-11-27.
  * Email: idisfkj@gmail.com.
  */
+@AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_NOTIFICATION_MAIN)
 class NotificationMainActivity : AppCompatActivity() {
 
