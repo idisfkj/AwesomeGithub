@@ -2,27 +2,27 @@ package com.idisfkj.awesome.search.vm
 
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
+import com.idisfkj.awesome.basic.recyclerview.BaseRecyclerViewAdapter
 import com.idisfkj.awesome.common.extensions.RequestCallback
 import com.idisfkj.awesome.common.model.ResponseError
 import com.idisfkj.awesome.common.model.ResponseSuccess
 import com.idisfkj.awesome.common.model.SearchModel
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.ReposBridgeInterface
-import com.idisfkj.awesome.network.HttpClient
 import com.idisfkj.awesome.search.repository.SearchRepository
 
 /**
  * Created by idisfkj on 2019-12-01.
  * Email: idisfkj@gmail.com.
  */
-class SearchVM : BaseVM() {
-
-    private val repository = SearchRepository(HttpClient.getService(), viewModelScope)
-    private val mAdapter =
-        BridgeProviders.instance.getBridge(ReposBridgeInterface::class.java).createReposAdapter()
+class SearchVM @ViewModelInject constructor(
+    private val repository: SearchRepository,
+    private val adapter: BaseRecyclerViewAdapter
+) : BaseVM() {
 
     val clearFocus = MutableLiveData<Boolean>(true)
 
@@ -33,7 +33,7 @@ class SearchVM : BaseVM() {
     private fun search(query: String?) {
         query?.let {
             showLoading.value = true
-            repository.searchRepository(it, object : RequestCallback<SearchModel> {
+            repository.searchRepository(viewModelScope, it, object : RequestCallback<SearchModel> {
                 override fun onSuccess(result: ResponseSuccess<SearchModel>) {
                     showLoading.value = false
                     getAdapter().clear()
@@ -49,7 +49,7 @@ class SearchVM : BaseVM() {
         }
     }
 
-    fun getAdapter() = mAdapter
+    fun getAdapter() = adapter
 
     fun setOnQueryTextListener() = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {

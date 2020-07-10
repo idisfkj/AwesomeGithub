@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.search.fragment.SearchFragment
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-12-01.
  * Email: idisfkj@gmail.com.
  */
+@AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_SEARCH_MAIN)
 class SearchMainActivity : AppCompatActivity() {
 

@@ -7,12 +7,14 @@ import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.webview.DefaultWebViewBridge
 import com.idisfkj.awesome.repos.bridge.ReposBridge
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-12-01.
  * Email: idisfkj@gmail.com.
  */
+@HiltAndroidApp
 class SearchApp : Application() {
 
     override fun onCreate() {
