@@ -67,7 +67,7 @@ dependencies {
     implementation project(':componentbridge')
     implementation project(':network')
     implementation project(':basic')
-    if (addRepos.toBoolean()) {
+    if (addRepos.toBoolean() || addSearch.toBoolean()) {
         implementation project(':repos')
     }
     // glide

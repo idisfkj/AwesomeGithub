@@ -7,6 +7,7 @@ import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.DefaultReposBridge
 import com.idisfkj.awesome.componentbridge.webview.DefaultWebViewBridge
+import com.idisfkj.awesome.repos.bridge.ReposBridge
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -24,7 +25,7 @@ class SearchApp : Application() {
         initRouter()
         // register bridges
         BridgeProviders.instance.register(DefaultAppBridge::class.java)
-            .register(DefaultReposBridge::class.java)
+            .register(ReposBridge::class.java)
             .register(DefaultWebViewBridge::class.java)
     }
 
