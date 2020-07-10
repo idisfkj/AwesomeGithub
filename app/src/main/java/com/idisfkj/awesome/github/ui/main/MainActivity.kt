@@ -3,7 +3,7 @@ package com.idisfkj.awesome.github.ui.main
 import android.view.KeyEvent
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.idisfkj.awesome.basic.activity.BaseActivity
+import com.idisfkj.awesome.basic.activity.BaseHiltActivity
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.github.BR
@@ -19,13 +19,11 @@ import kotlin.system.exitProcess
  */
 @AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_APP_MAIN)
-class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
+class MainActivity : BaseHiltActivity<ActivityMainBinding, MainVM>() {
 
     override fun getVariableId(): Int = BR.vm
 
     override fun getLayoutId(): Int = R.layout.activity_main
-
-    override fun getViewModelInstance(): MainVM = MainVM(supportFragmentManager)
 
     override fun getViewModelClass(): Class<MainVM> = MainVM::class.java
 

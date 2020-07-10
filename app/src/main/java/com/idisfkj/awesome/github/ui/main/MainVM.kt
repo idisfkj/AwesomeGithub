@@ -2,7 +2,7 @@ package com.idisfkj.awesome.github.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.FragmentManager
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.viewpager.widget.PagerAdapter
@@ -18,7 +18,7 @@ import timber.log.Timber
  * Created by idisfkj on 2019-08-12.
  * Email : idisfkj@gmail.com.
  */
-class MainVM(private val fm: FragmentManager) : BaseVM() {
+class MainVM @ViewModelInject constructor(private val mainViewPagerAdapter: MainViewPagerAdapter) : BaseVM() {
 
     companion object {
         private const val HOME_POS = 0
@@ -26,7 +26,6 @@ class MainVM(private val fm: FragmentManager) : BaseVM() {
         private const val USER_POS = 2
     }
 
-    private val mMainViewPagerAdapter by lazy { MainViewPagerAdapter(fm) }
     private var mBackTime = 0L
     private var mBackIntervalTime = 2500L
     val selectedPosition = MutableLiveData<Int>(HOME_POS)
@@ -36,7 +35,7 @@ class MainVM(private val fm: FragmentManager) : BaseVM() {
 //        createIssues()
     }
 
-    fun createAdapter(): PagerAdapter = mMainViewPagerAdapter
+    fun createAdapter(): PagerAdapter = mainViewPagerAdapter
 
     fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
