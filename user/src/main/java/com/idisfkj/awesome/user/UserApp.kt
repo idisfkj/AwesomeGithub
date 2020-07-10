@@ -4,6 +4,8 @@ import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
+import com.idisfkj.awesome.componentbridge.followers.DefaultFollowersBridge
+import com.idisfkj.awesome.componentbridge.following.DefaultFollowingBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.componentbridge.repos.DefaultReposBridge
 import com.idisfkj.awesome.user.di.DaggerAppComponent
@@ -25,6 +27,8 @@ class UserApp : Application(), UserFragmentComponentFactory {
         BridgeProviders.instance
             .register(DefaultAppBridge::class.java)
             .register(DefaultReposBridge::class.java)
+            .register(DefaultFollowersBridge::class.java)
+            .register(DefaultFollowingBridge::class.java)
     }
 
     private fun initTimber() {
