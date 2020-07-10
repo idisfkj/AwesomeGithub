@@ -11,12 +11,13 @@ import com.idisfkj.awesome.repos.BR
 import com.idisfkj.awesome.repos.R
 import com.idisfkj.awesome.repos.databinding.ReposItemReposLayoutBinding
 import com.idisfkj.awesome.repos.vm.ReposVHVM
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-20.
  * Email : idisfkj@gmail.com.
  */
-class ReposAdapter : BaseRecyclerViewAdapter() {
+class ReposAdapter @Inject constructor() : BaseRecyclerViewAdapter() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
