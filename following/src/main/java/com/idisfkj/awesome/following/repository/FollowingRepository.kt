@@ -6,17 +6,17 @@ import com.idisfkj.awesome.common.extensions.request
 import com.idisfkj.awesome.common.model.FollowersModel
 import com.idisfkj.awesome.network.GithubService
 import kotlinx.coroutines.CoroutineScope
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-11-26.
  * Email: idisfkj@gmail.com.
  */
-class FollowingRepository(
-    private val service: GithubService,
-    scope: CoroutineScope
-) : BaseRepository(scope) {
+class FollowingRepository @Inject constructor(
+    private val service: GithubService
+) : BaseRepository() {
 
-    fun getFollowing(callback: RequestCallback<List<FollowersModel>>) {
+    fun getFollowing(scope: CoroutineScope, callback: RequestCallback<List<FollowersModel>>) {
         request(scope = scope, callback = callback) {
             service.getFollowing()
         }

@@ -1,6 +1,7 @@
 package com.idisfkj.awesome.following.vm
 
 import android.os.Bundle
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.extensions.RequestCallback
@@ -16,10 +17,11 @@ import com.idisfkj.awesome.network.HttpClient
  * Created by idisfkj on 2019-11-26.
  * Email: idisfkj@gmail.com.
  */
-class FollowingVM : BaseVM() {
+class FollowingVM @ViewModelInject constructor(
+    private val repository: FollowingRepository,
+    val adapter: FollowingAdapter
+): BaseVM() {
 
-    private val repository = FollowingRepository(HttpClient.getService(), viewModelScope)
-    val adapter = FollowingAdapter()
     val isRefreshing = SingleLiveEvent<Boolean>()
 
     override fun attach(savedInstanceState: Bundle?) {
@@ -28,7 +30,7 @@ class FollowingVM : BaseVM() {
 
     private fun getFollowers(refresh: Boolean) {
         if (!refresh) showLoading.value = true
-        repository.getFollowing(object : RequestCallback<List<FollowersModel>> {
+        repository.getFollowing(viewModelScope, object : RequestCallback<List<FollowersModel>> {
             override fun onSuccess(result: ResponseSuccess<List<FollowersModel>>) {
                 isRefreshing.value = false
                 showLoading.value = false
