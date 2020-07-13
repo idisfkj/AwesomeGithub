@@ -6,12 +6,14 @@ import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.webview.bridge.WebViewBridge
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-12-03.
  * Email: idisfkj@gmail.com.
  */
+@HiltAndroidApp
 class WebViewApp : Application() {
 
     override fun onCreate() {

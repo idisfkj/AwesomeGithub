@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
@@ -21,9 +22,10 @@ import com.idisfkj.awesome.webview.repository.WebViewRepository
  * Created by idisfkj on 2019-12-03.
  * Email: idisfkj@gmail.com.
  */
-class WebViewVM : BaseVM() {
+class WebViewVM @ViewModelInject constructor(
+    private val repository: WebViewRepository
+): BaseVM() {
 
-    private val repository = WebViewRepository(HttpClient.getService(), viewModelScope)
     val url = MutableLiveData<String>()
     val backClick = SingleLiveEvent<Boolean>()
 
@@ -34,6 +36,7 @@ class WebViewVM : BaseVM() {
     fun request(requestUrl: String) {
         if (!TextUtils.isEmpty(requestUrl)) {
             repository.getNotificationRequestUrl(
+                viewModelScope,
                 requestUrl,
                 object : RequestCallback<NotificationRequestUrlModel> {
                     override fun onSuccess(result: ResponseSuccess<NotificationRequestUrlModel>) {

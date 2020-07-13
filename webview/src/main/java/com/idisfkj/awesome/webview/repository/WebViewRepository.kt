@@ -7,17 +7,18 @@ import com.idisfkj.awesome.common.model.NotificationRequestUrlModel
 import com.idisfkj.awesome.network.GithubService
 import com.idisfkj.awesome.network.HttpClient
 import kotlinx.coroutines.CoroutineScope
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-12-03.
  * Email : idisfkj@gmail.com.
  */
-class WebViewRepository(
-    private val service: GithubService,
-    scope: CoroutineScope
-) : BaseRepository(scope) {
+class WebViewRepository @Inject constructor(
+    private val service: GithubService
+) : BaseRepository() {
 
     fun getNotificationRequestUrl(
+        scope: CoroutineScope,
         path: String,
         callback: RequestCallback<NotificationRequestUrlModel>
     ) {

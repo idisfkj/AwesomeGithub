@@ -6,16 +6,19 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.basic.activity.BaseActivity
+import com.idisfkj.awesome.basic.activity.BaseHiltActivity
 import com.idisfkj.awesome.common.ARouterPaths
 import com.idisfkj.awesome.webview.databinding.WebviewActivityWebviewBinding
 import com.idisfkj.awesome.webview.vm.WebViewVM
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by idisfkj on 2019-12-03.
  * Email: idisfkj@gmail.com.
  */
+@AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_WEBVIEW_WEBVIEW)
-class WebViewActivity : BaseActivity<WebviewActivityWebviewBinding, WebViewVM>() {
+class WebViewActivity : BaseHiltActivity<WebviewActivityWebviewBinding, WebViewVM>() {
 
     @Autowired
     lateinit var url: String
@@ -25,8 +28,6 @@ class WebViewActivity : BaseActivity<WebviewActivityWebviewBinding, WebViewVM>()
     override fun getVariableId(): Int = BR.vm
 
     override fun getLayoutId(): Int = R.layout.webview_activity_webview
-
-    override fun getViewModelInstance(): WebViewVM = WebViewVM()
 
     override fun getViewModelClass(): Class<WebViewVM> = WebViewVM::class.java
 

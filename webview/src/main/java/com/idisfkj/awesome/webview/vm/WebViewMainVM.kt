@@ -2,6 +2,7 @@ package com.idisfkj.awesome.webview.vm
 
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.idisfkj.awesome.basic.BaseVM
 import com.idisfkj.awesome.common.PageDefault
@@ -13,7 +14,7 @@ import com.idisfkj.awesome.common.live.SingleLiveEvent
  * Created by idisfkj on 2019-12-03.
  * Email: idisfkj@gmail.com.
  */
-class WebViewMainVM : BaseVM() {
+class WebViewMainVM @ViewModelInject constructor(): BaseVM() {
 
     val clearFocus = MutableLiveData<Boolean>(true)
     val toPage = SingleLiveEvent<String>()
