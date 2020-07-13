@@ -5,12 +5,14 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.utils.SPUtils
 import com.idisfkj.awesome.componentbridge.app.DefaultAppBridge
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
  * Created by idisfkj on 2019-09-02.
  * Email : idisfkj@gmail.com.
  */
+@HiltAndroidApp
 class LoginApp : Application() {
 
     override fun onCreate() {

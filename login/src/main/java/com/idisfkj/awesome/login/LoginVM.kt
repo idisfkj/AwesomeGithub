@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.Base64
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.idisfkj.awesome.basic.BaseVM
@@ -32,9 +33,11 @@ import java.io.IOException
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
-class LoginVM(private val appBridge: AppBridgeInterface) : BaseVM() {
+class LoginVM @ViewModelInject constructor(
+    private val appBridge: AppBridgeInterface,
+    private val repository: LoginRepository
+) : BaseVM() {
 
-    private val repository = LoginRepository(HttpClient.getService(), viewModelScope)
     val username = MutableLiveData<String>(CommonUtils.getUsername())
     val password = MutableLiveData<String>(CommonUtils.getPassword())
     val signInEnable = MutableLiveData<Boolean>(false)
@@ -94,7 +97,7 @@ class LoginVM(private val appBridge: AppBridgeInterface) : BaseVM() {
     }
 
     private fun getUser() {
-        repository.getUser(object : RequestCallback<UserModel> {
+        repository.getUser(viewModelScope, object : RequestCallback<UserModel> {
             override fun onSuccess(result: ResponseSuccess<UserModel>) {
                 val user = result.data
                 Timber.d("getUser %s", user?.login)
@@ -118,7 +121,7 @@ class LoginVM(private val appBridge: AppBridgeInterface) : BaseVM() {
 
     fun getAccessTokenFromCode(code: String) {
         showLoading.value = true
-        repository.getAccessToken(code, object : RequestCallback<Response<ResponseBody>> {
+        repository.getAccessToken(viewModelScope, code, object : RequestCallback<Response<ResponseBody>> {
             override fun onSuccess(result: ResponseSuccess<Response<ResponseBody>>) {
                 try {
                     appBridge.setAccessToken(

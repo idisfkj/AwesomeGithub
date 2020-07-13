@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.common.ARouterPaths
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_LOGIN_MAIN)
 class MainActivity : AppCompatActivity() {
 

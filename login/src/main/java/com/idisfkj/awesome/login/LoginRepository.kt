@@ -11,23 +11,23 @@ import com.idisfkj.awesome.network.HttpClient
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.ResponseBody
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
-class LoginRepository(
-    private val service: GithubService,
-    scope: CoroutineScope
-) : BaseRepository(scope) {
+class LoginRepository @Inject constructor(
+    private val service: GithubService
+) : BaseRepository() {
 
-    fun getUser(callback: RequestCallback<UserModel>) {
+    fun getUser(scope: CoroutineScope, callback: RequestCallback<UserModel>) {
         request(scope, callback) {
             service.getUser()
         }
     }
 
-    fun getAccessToken(code: String, callback: RequestCallback<Response<ResponseBody>>) {
+    fun getAccessToken(scope: CoroutineScope, code: String, callback: RequestCallback<Response<ResponseBody>>) {
         request(scope, callback) {
             HttpClient.getServiceFromBaseUrl(HttpClient.GITHUB_BASE_URL).getAccessToken(
                 CommonUtils.parseToJsonObject(

@@ -7,26 +7,26 @@ import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.idisfkj.awesome.basic.activity.BaseActivity
+import com.idisfkj.awesome.basic.activity.BaseHiltActivity
 import com.idisfkj.awesome.common.*
 import com.idisfkj.awesome.componentbridge.app.AppBridgeInterface
 import com.idisfkj.awesome.componentbridge.provider.BridgeProviders
 import com.idisfkj.awesome.login.databinding.LoginActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by idisfkj on 2019-08-30.
  * Email : idisfkj@gmail.com.
  */
+@AndroidEntryPoint
 @Route(path = ARouterPaths.PATH_LOGIN_LOGIN)
-class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginVM>() {
+class LoginActivity : BaseHiltActivity<LoginActivityLoginBinding, LoginVM>() {
 
     override fun getVariableId(): Int = BR.vm
 
     private var mAuthorizationCode: String? = null
 
     override fun getLayoutId(): Int = R.layout.login_activity_login
-
-    override fun getViewModelInstance(): LoginVM =
-        LoginVM(BridgeProviders.instance.getBridge(AppBridgeInterface::class.java))
 
     override fun getViewModelClass(): Class<LoginVM> = LoginVM::class.java
 
