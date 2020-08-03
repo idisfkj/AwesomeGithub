@@ -14,6 +14,14 @@ Android Github客户端，基于组件化开发，支持账户密码与认证登
 
 > 温馨提示：GitHub提供的OpenApi可能不稳定，如果登录失败或者成功之后页面无数据，请尝试使用科学上网或者稍等再尝试。
 
+## New Feature
+使用[android-startup](https://github.com/idisfkj/android-startup)消除`Application`，优化配置的初始化时间，使用前与使用后时间对比:
+
+|状态|启动页面|消耗时间|
+|---|------| ------|
+|使用前|WelcomeActivity|420ms|
+|使用后|WelcomeActivity|333ms|
+
 ## Flutter Github
 除了Android原生版本，以下是基于[Flutter](https://flutter.dev/)的跨平台版本。
 
