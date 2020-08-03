@@ -133,12 +133,15 @@ dependencies {
     implementation Deps.glide_runtime
     kapt Deps.glide_compiler
 
-    //timber
+    // timber
     implementation Deps.timber
 
-    //arouter
+    // arouter
     implementation Deps.arouter_api
     kapt Deps.arouter_compiler
+
+    // android-startup
+    implementation Deps.android_startup
 
     testImplementation Deps.junit
     androidTestImplementation Deps.runner

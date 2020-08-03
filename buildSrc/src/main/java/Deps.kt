@@ -35,6 +35,8 @@ object Versions {
     const val gson = "2.8.5"
     const val arouter_api = "1.5.0"
     const val arouter_compiler = "1.2.2"
+
+    const val android_startup = "1.0.1"
 }
 
 object Deps {
@@ -76,6 +78,8 @@ object Deps {
 
     const val arouter_api = "com.alibaba:arouter-api:${Versions.arouter_api}"
     const val arouter_compiler = "com.alibaba:arouter-compiler:${Versions.arouter_compiler}"
+
+    const val android_startup = "com.rousetime.android:android-startup:${Versions.android_startup}"
 
     val addRepos: (handler: RepositoryHandler) -> Unit = {
         it.google()
