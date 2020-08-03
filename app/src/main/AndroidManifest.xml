@@ -4,13 +4,35 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:name=".App"
             android:allowBackup="false"
             android:icon="@drawable/github_icon"
             android:label="@string/app_name"
             android:roundIcon="@drawable/github_icon"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
+        <provider
+                android:name="com.rousetime.android_startup.provider.StartupProvider"
+                android:authorities="${applicationId}.startup.provider"
+                android:exported="false">
+
+            <meta-data
+                    android:name="com.idisfkj.awesome.github.startup.AwesomeGithubStartupConfig"
+                    android:value="android.startup.provider.config" />
+
+            <meta-data
+                    android:name="com.idisfkj.awesome.github.startup.ThirdPartStartup"
+                    android:value="android.startup" />
+
+            <meta-data
+                    android:name="com.idisfkj.awesome.github.startup.AsyncBridgeStartup"
+                    android:value="android.startup" />
+
+            <meta-data
+                    android:name="com.idisfkj.awesome.github.startup.SyncBridgeStartup"
+                    android:value="android.startup" />
+
+        </provider>
 
         <activity
                 android:name=".ui.welcome.WelcomeActivity"
