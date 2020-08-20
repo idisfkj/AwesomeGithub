@@ -36,7 +36,7 @@ object Versions {
     const val arouter_api = "1.5.0"
     const val arouter_compiler = "1.2.2"
 
-    const val android_startup = "1.0.1"
+    const val android_startup = "1.0.3"
 }
 
 object Deps {
